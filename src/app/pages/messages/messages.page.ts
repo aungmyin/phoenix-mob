@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpService } from 'src/app/services/http.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { MenuController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-messages',
@@ -13,9 +15,11 @@ export class MessagesPage implements OnInit {
 
   displayUserData: any;
 
+  activeMenu: String;
+
   public UserProfile: any;
 
-  constructor(private httpService: HttpService, private authService: AuthService) { 
+  constructor(private httpService: HttpService, private router: Router, private authService: AuthService, private menu: MenuController) { 
     this.listItems = [  
       'Java',   
       'Python',  
@@ -26,6 +30,7 @@ export class MessagesPage implements OnInit {
       'PHP', 
       'C++'  
     ];  
+
    }
 
   ngOnInit() {
@@ -57,6 +62,10 @@ export class MessagesPage implements OnInit {
     } );
   }
 
+ 
+  changePasswordAction() {
+    this.router.navigate(['changepassword']);
+  }
   
 
 }

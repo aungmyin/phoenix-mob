@@ -60,6 +60,18 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'changepassword',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../pages/changepassword/changepassword.module').then(
+                m => m.ChangepasswordPageModule
+              )
+          }
+        ]
+      },
+      {
         path: '',
         redirectTo: '/home/feed',
         pathMatch: 'full'
