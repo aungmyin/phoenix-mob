@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-changepassword',
@@ -10,7 +11,12 @@ export class ChangepasswordPage implements OnInit {
 
   activeMenu: String;
 
-  constructor(private menu: MenuController) {
+  postData = {
+    password: '',
+    retype_password: ''
+  };
+
+  constructor(private menu: MenuController, private toastService: ToastService) {
     this.menuActive();
   }
 
@@ -20,6 +26,28 @@ export class ChangepasswordPage implements OnInit {
   menuActive() {
     this.activeMenu = "first";
     this.menu.enable(false, "first");
+  }
+
+  validateInputs() {
+    let password = this.postData.password.trim();
+    let retype_password = this.postData.retype_password.trim();
+
+    return (
+      this.postData.password &&
+      password.length > 0 &&
+      retype_password.length > 0 &&
+      password == retype_password
+    );
+  }
+
+  changePasswordAction() {
+    if(this.validateInputs()) {
+      console.log(this.postData);
+    } else {
+      this.toastService.presentToast(
+        'Please enter password or retypepassword OR do not match.'
+      );
+    }
   }
 
 }
