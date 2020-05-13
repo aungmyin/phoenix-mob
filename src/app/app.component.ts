@@ -46,7 +46,7 @@ export class AppComponent {
  }
 
  changePasswordAction() {
-   this.router.navigate(['home/messages']);
+   this.router.navigate(['changepassword']);
  }
 
 }
