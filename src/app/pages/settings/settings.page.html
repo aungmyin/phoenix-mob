@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="primary" style="background-color: aquamarine;">
+        ion-col
+      </ion-col>
+      <ion-col>
+        ion-col
+      </ion-col>
+      <ion-col class="primary">
+        ion-col
+      </ion-col>
+      <ion-col>
+        ion-col
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-button expand="block" color="warning" (click)="logoutAction()" >
+    <ion-icon name="log-out" slot="start"></ion-icon>
+    Log out
+  </ion-button>
+  <p>token: {{ displayUserData['access-token'] }}</p>
+  <p>Company: {{ displayUserData.company }}</p>
+</ion-content>

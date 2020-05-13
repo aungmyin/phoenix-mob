@@ -1,0 +1,10 @@
+<ion-item>
+  <ion-textarea [(ngModel)]="postData.feed" placeholder="Write your thought {{loginUser.name}} ..."></ion-textarea>
+</ion-item>
+
+<ion-item>
+  <ion-button color="primary" (click)="feedUpdateAction()" >
+    Update
+  </ion-button>
+</ion-item>
+
