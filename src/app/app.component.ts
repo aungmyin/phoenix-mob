@@ -14,13 +14,16 @@ import { Router } from '@angular/router';
 export class AppComponent {
 
   public authUser: any;
+
+  activeMenu: String;
   
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private authServices: AuthService,
-    private router: Router
+    private router: Router,
+    private menu: MenuController
   ) {
     this.initializeApp();
     this.authServices.userData$.subscribe((res: any) => {
@@ -37,16 +40,22 @@ export class AppComponent {
 
   navigateToLoginPage(){
     // router naviage to login page
-    this.router.navigate(['login']);
+    this.router.navigate(['home/feed']);
+    this.closeMenu();
   }
 
- logoutAction() {
-   this.authServices.logout();
-   //window.location.href="/login";
- }
+  closeMenu() {
+    this.menu.close();
+  }
 
- changePasswordAction() {
-   this.router.navigate(['home']);
- }
+  logoutAction() {
+    this.authServices.logout();
+    //window.location.href="/login";
+  }
+
+  changePasswordAction() {
+    this.router.navigate(['home/messages']);
+    this.closeMenu();
+  }
 
 }
