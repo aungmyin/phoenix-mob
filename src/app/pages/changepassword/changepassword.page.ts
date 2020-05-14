@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { ToastService } from 'src/app/services/toast.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-changepassword',
@@ -22,7 +23,7 @@ export class ChangepasswordPage implements OnInit {
     token: ''
   };
 
-  constructor(private menu: MenuController, private toastService: ToastService, private authoService: AuthService) {
+  constructor(private menu: MenuController, private router: Router, private toastService: ToastService, private authoService: AuthService) {
     //this.menuActive();
   }
 
@@ -56,9 +57,21 @@ export class ChangepasswordPage implements OnInit {
       this.postData.token = this.dlyuser['access-token'];
       this.postData.company = this.dlyuser['company'];
       this.postData.email = this.dlyuser['name'];
-      console.log(this.postData);
+      //console.log(this.postData);
       this.authoService.updatepassword(this.postData).subscribe( (res: any) => {
         console.log(res);
+        if(res.status == 1) {
+          //console.log("changed");
+          this.router.navigate(['home/messages']);
+        } else if(res.error) {
+          this.toastService.presentToast(res.error);
+        } else {
+          //console.log("something wrong!");
+          this.toastService.presentToast(res[0]['password']);
+        }
+      },
+      (error: any) => {
+        this.toastService.presentToast('Network Issue.');
       });
 
     } else {
