@@ -56,7 +56,7 @@ export class LoginPage implements OnInit {
     if (this.validateInputs()) {
       this.authService.login(this.postData).subscribe(
         (res: any) => {
-          //console.log(res['access-token']);
+          console.log(res);
           if (res['access-token']) {
             // Storing the User data.
             this.storageService

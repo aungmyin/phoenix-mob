@@ -41,13 +41,11 @@ export class ChangepasswordPage implements OnInit {
   validateInputs() {
     let new_password = this.postData.new_password.trim();
     let old_password = this.postData.old_password.trim();
-    let company = this.postData.company.trim();
     let email = this.postData.email.trim();
 
     return (
       new_password &&
       old_password &&
-      company &&
       email &&
       new_password.length > 0 &&
       old_password.length > 0 &&
@@ -58,6 +56,8 @@ export class ChangepasswordPage implements OnInit {
   changePasswordAction() {
     if(this.validateInputs()) {
       this.postData.token = this.dlyuser['access-token'];
+      this.postData.company = this.dlyuser['company'];
+      this.postData.email = this.dlyuser['name'];
       console.log(this.postData);
       this.authoService.updatepassword(this.postData).subscribe( (res: any) => {
         console.log(res);
