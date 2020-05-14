@@ -46,10 +46,8 @@ export class ChangepasswordPage implements OnInit {
     return (
       new_password &&
       old_password &&
-      email &&
       new_password.length > 0 &&
-      old_password.length > 0 &&
-      email.length > 0
+      old_password.length > 0 
     );
   }
 
@@ -65,7 +63,7 @@ export class ChangepasswordPage implements OnInit {
 
     } else {
       this.toastService.presentToast(
-        'Please enter password or retypepassword OR do not match.'
+        'Please enter new password or old password.'
       );
     }
   }
