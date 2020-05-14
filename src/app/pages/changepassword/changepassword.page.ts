@@ -3,6 +3,7 @@ import { MenuController } from '@ionic/angular';
 import { ToastService } from 'src/app/services/toast.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-changepassword',
@@ -62,6 +63,9 @@ export class ChangepasswordPage implements OnInit {
         console.log(res);
         if(res.status == 1) {
           //console.log("changed");
+          this.postData.new_password = '';
+          this.postData.old_password = '';
+          
           this.router.navigate(['home/messages']);
         } else if(res.error) {
           this.toastService.presentToast(res.error);
