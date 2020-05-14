@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { ToastService } from 'src/app/services/toast.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-changepassword',
@@ -11,16 +12,25 @@ export class ChangepasswordPage implements OnInit {
 
   activeMenu: String;
 
+  dlyuser: any;
+
   postData = {
-    password: '',
-    retype_password: ''
+    company: '',
+    email: '',
+    old_password: '',
+    new_password: '',
+    token: ''
   };
 
-  constructor(private menu: MenuController, private toastService: ToastService) {
-    this.menuActive();
+  constructor(private menu: MenuController, private toastService: ToastService, private authoService: AuthService) {
+    //this.menuActive();
   }
 
   ngOnInit() {
+    this.authoService.userData$.subscribe( (res: any) => {
+      console.log(res);
+     this.dlyuser = res;
+    });
   }
 
   menuActive() {
@@ -29,20 +39,30 @@ export class ChangepasswordPage implements OnInit {
   }
 
   validateInputs() {
-    let password = this.postData.password.trim();
-    let retype_password = this.postData.retype_password.trim();
+    let new_password = this.postData.new_password.trim();
+    let old_password = this.postData.old_password.trim();
+    let company = this.postData.company.trim();
+    let email = this.postData.email.trim();
 
     return (
-      this.postData.password &&
-      password.length > 0 &&
-      retype_password.length > 0 &&
-      password == retype_password
+      new_password &&
+      old_password &&
+      company &&
+      email &&
+      new_password.length > 0 &&
+      old_password.length > 0 &&
+      email.length > 0
     );
   }
 
   changePasswordAction() {
     if(this.validateInputs()) {
+      this.postData.token = this.dlyuser['access-token'];
       console.log(this.postData);
+      this.authoService.updatepassword(this.postData).subscribe( (res: any) => {
+        console.log(res);
+      });
+
     } else {
       this.toastService.presentToast(
         'Please enter password or retypepassword OR do not match.'

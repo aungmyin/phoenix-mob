@@ -8,9 +8,9 @@
   
     <ion-content paddding='true' >
       <ion-list>
-        <ion-item>
+        <ion-item (click)='navigateToLoginPage()'>
           <ion-icon name="home" slot="start"></ion-icon>
-          Menu Item</ion-item>
+          My Profile</ion-item>
         <ion-item>
           <ion-icon name="alarm-outline" slot="start"></ion-icon>
           Work Report</ion-item>
@@ -22,7 +22,7 @@
           <ion-icon name="log-out" slot="start"></ion-icon>
           Logout
         </ion-item>
-        <ion-item  *ngIf="!authUser?.name" (click)='navigateToLoginPage()'>
+        <ion-item  *ngIf="!authUser?.name" >
           <ion-icon name="log-out" slot="start"></ion-icon>
           Login
         </ion-item>
