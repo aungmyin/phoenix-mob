@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkreportPage implements OnInit {
 
+  postData = {
+    year: '',
+    month: ''
+  }
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  searchWkReportAction() {
+    
   }
 
 }
