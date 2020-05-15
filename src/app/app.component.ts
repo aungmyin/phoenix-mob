@@ -58,4 +58,9 @@ export class AppComponent {
     this.closeMenu();
   }
 
+  gotoWorkReportAction() {
+    this.router.navigate(['home/workreport']);
+    this.closeMenu();
+  }
+
 }
