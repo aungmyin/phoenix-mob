@@ -48,6 +48,18 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'workreport',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../pages/workreport/workreport.module').then(
+                m => m.WorkreportPageModule
+              )
+          }
+        ]
+      },
+      {
         path: 'settings',
         children: [
           {
@@ -55,6 +67,18 @@ const routes: Routes = [
             loadChildren: () =>
               import('../pages/settings/settings.module').then(
                 m => m.SettingsPageModule
+              )
+          }
+        ]
+      },
+      {
+        path: 'changepassword',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../pages/changepassword/changepassword.module').then(
+                m => m.ChangepasswordPageModule
               )
           }
         ]

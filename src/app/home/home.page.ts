@@ -12,7 +12,7 @@ export class HomePage implements OnInit {
   constructor(private menu: MenuController) { }
 
   ngOnInit() {
-   // this.router.navigate(['home']);
+    this.menu.close();
   }
 
 

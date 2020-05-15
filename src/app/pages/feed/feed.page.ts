@@ -16,6 +16,7 @@ export class FeedPage implements OnInit {
     user_id: '',
     token: ''
   };
+
   constructor(
     private auth: AuthService,
     private feedSerive: FeedService,
@@ -28,7 +29,10 @@ export class FeedPage implements OnInit {
       this.authUser = res;
       this.getFeedData();
     });
+
   }
+
+
 
   getFeedData() {
     this.postData.user_id = this.authUser.user_id;

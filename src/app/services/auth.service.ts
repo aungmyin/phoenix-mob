@@ -38,6 +38,10 @@ export class AuthService {
     return this.httpService.post('signup', postDate);
   }
 
+  updatepassword(postDate: any): Observable<any> {
+    return this.httpService.getupdatepsw('changepass/chpass', postDate);
+  }
+
   logout() {
     //this.storageService.clear();
 
