@@ -29,6 +29,10 @@ export class AuthService {
     return this.httpService.getUserData('/employee_detail/employee_info', userId);
   }
 
+  getWorkReportDetail(postData: any): Observable<any> {
+    return this.httpService.getWorkReportDetail('workreport/workreport_detail', postData);
+  }
+
   login(postDate: any): Observable<any> {
     //return this.httpService.post('login', postDate);
     return this.httpService.get('login/uac_login', postDate);

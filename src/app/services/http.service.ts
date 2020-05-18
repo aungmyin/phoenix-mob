@@ -20,16 +20,32 @@ export class HttpService {
 
   get(serviceName: string, data: any) {
     
-    const headers = new HttpHeaders();
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': "*"     
+    });
     const options = { headers: headers, withCredintials: false };
     const url = environment.apiUrl + serviceName + "?email=" + data.username + "&password=" + data.password + "&company=" + data.company;
+
+    return this.http.get(url, options);
+  }
+
+  getWorkReportDetail(serviceName: string, data: any) {
+    console.log(data);
+    
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': "*"    
+    });
+    const options = { headers: headers, withCredintials: true };
+    const url = environment.apiUrl + serviceName + "?year=" + data.year + "&month=" + data.month + "&workreport_id=" + data.workreport_id;
 
     return this.http.get(url, options);
   }
   
   getUserData(serviceName: string, data: any) {
     
-    const headers = new HttpHeaders();
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': "*"   
+    });
     const options = { headers: headers, withCredintials: true };
     const url = environment.apiUrl + serviceName + "?member_id=" + data;
 
@@ -40,6 +56,7 @@ export class HttpService {
     
     const options = {
       headers: new HttpHeaders({
+        'Access-Control-Allow-Origin': "*",
         'Content-Type':  'application/json',
         'access-token': data.token
       }),

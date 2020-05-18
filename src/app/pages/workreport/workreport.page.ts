@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-workreport',
@@ -8,17 +9,33 @@ import { Component, OnInit } from '@angular/core';
 export class WorkreportPage implements OnInit {
 
   postData = {
-    year: '',
-    month: ''
+    year: '2020',
+    month: '6',
+    workreport_id: '29558'
   }
 
-  constructor() { }
+  wReportData: any;
+  project_info: any;
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.getWorkReportDetailByEmpID();
   }
 
   searchWkReportAction() {
-    
+
+  }
+
+  getWorkReportDetailByEmpID() {
+    this.authService.getWorkReportDetail( this.postData ).subscribe( (res: any) => {
+      console.log(res);
+      this.project_info = res.project_info.project_infos;
+    });
+  }
+
+  unread() {
+
   }
 
 }

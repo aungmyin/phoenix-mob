@@ -27,7 +27,7 @@ export class LoginPage implements OnInit {
     private toastService: ToastService,
     private menu: MenuController
   ) {
-    this.menuActive();
+   // this.menuActive();
   }
 
   ngOnInit() {}
@@ -49,7 +49,7 @@ export class LoginPage implements OnInit {
 
   menuActive() {
     this.activeMenu = "first";
-    this.menu.enable(false, "first");
+    this.menu.enable(true, "first");
   }
 
   loginAction() {
@@ -62,8 +62,9 @@ export class LoginPage implements OnInit {
             this.storageService
               .store(AuthConstants.AUTH, res)
               .then(res => {
-                //this.router.navigate(['home']);
-                window.location.href = "/home/feed";
+                this.router.navigate(['home']);
+                this.menuActive();
+                //window.location.href = "/home/feed";
               });
           } else {
             this.toastService.presentToast('Incorrect username and password.');

@@ -11,14 +11,42 @@
   <ion-grid>
     <ion-row>
       <ion-col class="primary" >
-        <ion-input name="year" style="border: 1px solid #000000;" class="input-style" type="text" [(ngModel)]="postData.year"></ion-input>
+        <ion-input name="year"  class="input-style" type="text" [(ngModel)]="postData.year"></ion-input>
       </ion-col>
       <ion-col>
-        <ion-input name="year" style="border: 1px solid #000000;" class="input-style" type="text" [(ngModel)]="postData.month"></ion-input>
+        <ion-input name="year" class="input-style" type="text" [(ngModel)]="postData.month"></ion-input>
       </ion-col>
       <ion-col>
-        <ion-button expand="block" share="round" style="margin: 10px" color="success" (click)="searchWkReportAction()">Search</ion-button>
+        <ion-button expand="block" share="round" class="btn-style-search" color="success" (click)="searchWkReportAction()">Search</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-list>
+    <ion-item >
+      <h3>Client Information</h3>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngFor="let clinfo of project_info; let i = index">
+    <ion-item-sliding>
+      <ion-item >
+        <p>Individual Contract No.: {{ clinfo?.individual_contract_no }}</p>
+      </ion-item>
+      <ion-item >
+        <p>Company Name: {{ clinfo?.client_name }}</p>
+      </ion-item>
+      <ion-item>
+        <p>Project Name: {{ clinfo?.project_name }}</p>
+      </ion-item>
+      <ion-item>
+        <p>Contract Period: 
+          <ion-datetime displayFormat="YYYY-MM-DD" value="{{ clinfo?.start_contract_date}}"></ion-datetime>
+          <ion-datetime displayFormat="YYYY-MM-DD" value="{{ clinfo?.end_contract_date}}"></ion-datetime>
+        </p>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="unread()">Unread</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+    
+  </ion-list>
 </ion-content>
