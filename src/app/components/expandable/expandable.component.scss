@@ -1,0 +1,7 @@
+.expandable-wrapper {
+    height: 0;
+    transition: height 0.3s;
+}
+.expanded {
+    height: 200px !important;
+}

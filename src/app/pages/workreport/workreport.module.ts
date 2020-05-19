@@ -7,15 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { WorkreportPageRoutingModule } from './workreport-routing.module';
 
 import { WorkreportPage } from './workreport.page';
-import { ExpandableComponent } from '../../components/expandable/expandable.component';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    WorkreportPageRoutingModule
+    WorkreportPageRoutingModule,
+    ComponentsModule
   ],
-  declarations: [WorkreportPage, ExpandableComponent ]
+  declarations: [WorkreportPage ]
 })
 export class WorkreportPageModule {}

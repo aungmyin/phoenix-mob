@@ -17,12 +17,30 @@ export class WorkreportPage implements OnInit {
   wReportData: any;
   project_info: any;
 
-  items: any = new Array(10);
+  items: any = [];
+  itemExpandedHeight: number = 200;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
     this.getWorkReportDetailByEmpID();
+
+    this.items = [
+      {expanded: false},
+      {expanded: false},
+      {expanded: false},
+      {expanded: false},
+      {expanded: false},
+      {expanded: false},
+      {expanded: false},
+      {expanded: false},
+      {expanded: false},
+      {expanded: false}
+    ]
+  }
+
+  expandedItem(item: any) {
+    item.expanded = !item.expanded;
   }
 
   searchWkReportAction() {

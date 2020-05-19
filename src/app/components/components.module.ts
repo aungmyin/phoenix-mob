@@ -9,10 +9,11 @@ import { TimeAgoPipe } from 'time-ago-pipe';
 import { FeedCardComponent } from './feed-card/feed-card.component';
 import { FeedUpdateComponent } from './feed-update/feed-update.component';
 import { TimeagoComponent } from './timeago/timeago.component';
+import { ExpandableComponent } from './expandable/expandable.component';
 
 @NgModule({
-  declarations: [SlidesComponent, StartComponent, LogoComponent, FeedCardComponent, FeedUpdateComponent, TimeagoComponent, TimeAgoPipe ],
-  exports: [SlidesComponent, StartComponent, LogoComponent, FeedCardComponent, FeedUpdateComponent, TimeagoComponent, TimeAgoPipe],
+  declarations: [SlidesComponent, StartComponent, LogoComponent, FeedCardComponent, FeedUpdateComponent, TimeagoComponent, TimeAgoPipe, ExpandableComponent ],
+  exports: [SlidesComponent, StartComponent, LogoComponent, FeedCardComponent, FeedUpdateComponent, TimeagoComponent, TimeAgoPipe, ExpandableComponent],
   imports: [
     CommonModule,
     IonicModule, // <- do not forget to add this import
