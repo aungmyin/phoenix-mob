@@ -38,11 +38,13 @@
         <p>Project Name: {{ clinfo?.project_name }}</p>
       </ion-item>
       <ion-item>
-        <p>Contract Period: 
-          <ion-datetime displayFormat="YYYY-MM-DD" value="{{ clinfo?.start_contract_date}}"></ion-datetime>
+        <p>Contract Period: {{ clinfo?.start_contract_date | date }} to {{ clinfo?.end_contract_date | date }} </p>
+      </ion-item>
+     <!--<ion-item>
+        <p>Contract End: 
           <ion-datetime displayFormat="YYYY-MM-DD" value="{{ clinfo?.end_contract_date}}"></ion-datetime>
         </p>
-      </ion-item>
+      </ion-item>-->
       <ion-item-options side="end">
         <ion-item-option (click)="unread()">Unread</ion-item-option>
       </ion-item-options>
