@@ -17,6 +17,8 @@ export class WorkreportPage implements OnInit {
   wReportData: any;
   project_info: any;
 
+  items: any = new Array(10);
+
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
