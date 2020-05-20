@@ -23,6 +23,28 @@
   </ion-grid>
   <ion-list>
     <ion-item >
+      <h3>Member Information</h3>
+    </ion-item>
+    <ion-list>
+      <ion-item >
+        <p>Employee ID: {{ mbInfo?.member_id }} </p>
+      </ion-item>
+      <ion-item >
+        <p>Employee Name: {{ mbInfo?.first_name }} {{ mbInfo?.last_name }} </p>
+      </ion-item>
+      <ion-item >
+        <p>Department Name: {{ mbInfo?.unit_name }} </p>
+      </ion-item>
+      <ion-item>
+        <p>Status: {{ mbInfo?.status }} </p>
+      </ion-item>
+      <ion-item>
+        <p>Note: {{ mbInfo?.note }} </p>
+      </ion-item>
+    </ion-list>
+  </ion-list>
+  <ion-list>
+    <ion-item >
       <h3>Client Information</h3>
     </ion-item>
   </ion-list>
@@ -53,14 +75,83 @@
   </ion-list>
 
   <ion-list>
+    <div style="width: 100%;">
+      <ion-list #thenBlock *ngFor="let clinfo of project_info; let c = index">
+        <ion-item-sliding>
+          <ion-item >
+            <p>Individual Contract No.: {{ clinfo?.individual_contract_no }}</p>
+          </ion-item>
+          <ion-item >
+            <p>Company Name: {{ clinfo?.client_name }}</p>
+          </ion-item>
+          <ion-item>
+            <p>Project Name: {{ clinfo?.project_name }}</p>
+          </ion-item>
+          <ion-item>
+            <p>Contract Period: {{ clinfo?.start_contract_date | date }} to {{ clinfo?.end_contract_date | date }} </p>
+          </ion-item>
+         <!--<ion-item>
+            <p>Contract End: 
+              <ion-datetime displayFormat="YYYY-MM-DD" value="{{ clinfo?.end_contract_date}}"></ion-datetime>
+            </p>
+          </ion-item>-->
+          <ion-item-options side="end">
+            <ion-item-option (click)="unread()">Unread</ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+        
+      </ion-list>
+    </div>
+    
+  </ion-list>
+  <ion-item style="background: blueviolet;">
+    <h3>Work Report</h3>
+  </ion-item>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col" width="120">Att Type</th>
+          <th scope="col">Deducation</th>
+          <th scope="col">End Time</th>
+          <th scope="col">Night Break</th>
+          <th scope="col">Night Work Time</th>
+          <th scope="col">Over Time</th>
+          <th scope="col">Reason</th>
+          <th scope="col">Report Date</th>
+          <th scope="col">Check In</th>
+          <th scope="col">Total Break</th>
+          <th scope="col">Total Work Time</th>
+        </tr>
+      </thead>
+    <tr *ngFor="let r of wkReportDetail; let i = index" >
+      <td>{{ i }}</td>
+      <td>{{r.atendance_type}}</td>
+      <td>{{r.deduction_time}}</td>
+      <td>{{r.end_time}}</td>
+      <td>{{r.night_break_time}}</td>
+      <td>{{r.night_work_time}}</td>
+      <td>{{r.orver_work_time}}</td>
+      <td>{{r.reason}}</td>
+      <td>{{r.report_date | date}}</td>
+      <td>{{r.start_time}}</td>
+      <td>{{r.total_break_time}}</td>
+      <td>{{r.total_work_time}}</td>
+    </tr>
+  </table>
+  </div>
+  <!--<ion-list>
     <ion-item (click)="expandedItem(item)"  *ngFor="let item of items; let i = index">
+      
       <ion-thumbnail slot="start">
         <img src="https://via.placeholder.com/100" />
       </ion-thumbnail>
       <h2>This is sample{{ i }}</h2>
       <p>this is description.</p>
+
       <app-expandable [expandHeight]="itemExpandedHeight" [expanded]="item.expanded" ></app-expandable>
       <ion-button slot="end">View</ion-button>
     </ion-item>
-  </ion-list>
+  </ion-list>-->
 </ion-content>

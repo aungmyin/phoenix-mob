@@ -16,6 +16,8 @@ export class WorkreportPage implements OnInit {
 
   wReportData: any;
   project_info: any;
+  wkReportDetail: any;
+  mbInfo: any;
 
   items: any = [];
   itemExpandedHeight: number = 200;
@@ -26,8 +28,6 @@ export class WorkreportPage implements OnInit {
     this.getWorkReportDetailByEmpID();
 
     this.items = [
-      {expanded: false},
-      {expanded: false},
       {expanded: false},
       {expanded: false}
     ]
@@ -45,6 +45,8 @@ export class WorkreportPage implements OnInit {
     this.authService.getWorkReportDetail( this.postData ).subscribe( (res: any) => {
       console.log(res);
       this.project_info = res.project_info.project_infos;
+      this.wkReportDetail = res.work_report_detail;
+      this.mbInfo = res.member_info;
     });
   }
 
