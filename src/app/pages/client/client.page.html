@@ -1,9 +1,39 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>client</ion-title>
+    <ion-buttons slot="start" style="margin-right: 5px;">
+      <ion-back-button defaultHref="/home/workreport" text="" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Client</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-item >
+    <h3>Client Information</h3>
+  </ion-item>
+  <ion-list *ngFor="let clinfo of project_info; let i = index">
+    <ion-item-sliding>
+      <ion-item >
+        <p>Individual Contract No.: {{ clinfo?.individual_contract_no }}</p>
+      </ion-item>
+      <ion-item >
+        <p>Company Name: {{ clinfo?.client_name }}</p>
+      </ion-item>
+      <ion-item>
+        <p>Project Name: {{ clinfo?.project_name }}</p>
+      </ion-item>
+      <ion-item>
+        <p>Contract Period: {{ clinfo?.start_contract_date | date }} to {{ clinfo?.end_contract_date | date }} </p>
+      </ion-item>
+     <!--<ion-item>
+        <p>Contract End: 
+          <ion-datetime displayFormat="YYYY-MM-DD" value="{{ clinfo?.end_contract_date}}"></ion-datetime>
+        </p>
+      </ion-item>-->
+      <ion-item-options side="end">
+        <ion-item-option (click)="unread()">Unread</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+    
+  </ion-list>
 </ion-content>

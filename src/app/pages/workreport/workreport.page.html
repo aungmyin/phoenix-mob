@@ -45,33 +45,8 @@
   </ion-list>
   <ion-list>
     <ion-item >
-      <h3>Client Information</h3>
+      <a routerLink="/home/client">Client Information</a>
     </ion-item>
-  </ion-list>
-  <ion-list *ngFor="let clinfo of project_info; let i = index">
-    <ion-item-sliding>
-      <ion-item >
-        <p>Individual Contract No.: {{ clinfo?.individual_contract_no }}</p>
-      </ion-item>
-      <ion-item >
-        <p>Company Name: {{ clinfo?.client_name }}</p>
-      </ion-item>
-      <ion-item>
-        <p>Project Name: {{ clinfo?.project_name }}</p>
-      </ion-item>
-      <ion-item>
-        <p>Contract Period: {{ clinfo?.start_contract_date | date }} to {{ clinfo?.end_contract_date | date }} </p>
-      </ion-item>
-     <!--<ion-item>
-        <p>Contract End: 
-          <ion-datetime displayFormat="YYYY-MM-DD" value="{{ clinfo?.end_contract_date}}"></ion-datetime>
-        </p>
-      </ion-item>-->
-      <ion-item-options side="end">
-        <ion-item-option (click)="unread()">Unread</ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-    
   </ion-list>
 
   <ion-list>

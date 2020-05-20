@@ -84,6 +84,18 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'client',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../pages/client/client.module').then(
+                m => m.ClientPageModule
+              )
+          }
+        ]
+      },
+      {
         path: '',
         redirectTo: '/home/feed',
         pathMatch: 'full'
