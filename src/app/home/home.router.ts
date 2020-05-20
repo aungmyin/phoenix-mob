@@ -96,6 +96,18 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'workreportdetail',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../pages/workreportdetail/workreportdetail.module').then(
+                m => m.WorkreportdetailPageModule
+              )
+          }
+        ]
+      },
+      {
         path: '',
         redirectTo: '/home/feed',
         pathMatch: 'full'

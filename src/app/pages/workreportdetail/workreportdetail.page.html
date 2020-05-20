@@ -1,9 +1,49 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>workreportdetail</ion-title>
+    <ion-buttons slot="start" style="margin-right: 5px;">
+      <ion-back-button defaultHref="/home/workreport" text="" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Work Report</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  
+  <ion-item style="background: blueviolet;">
+    <h3>Work Report Date: {{ wkreport_detail_date | date }}</h3>
+  </ion-item>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" class="firstWidth">#</th>
+          <th scope="col" class="minwidth">Att Type</th>
+          <th scope="col" class="minwidth">Deducation</th>
+          <th scope="col" class="minwidth">End Time</th>
+          <th scope="col" class="minwidth">Night Break</th>
+          <th scope="col" class="minwidth">Night Work Time</th>
+          <th scope="col" class="minwidth">Over Time</th>
+          <th scope="col" class="minwidth">Reason</th>
+          <th scope="col" class="minwidth">Report Date</th>
+          <th scope="col" class="minwidth">Check In</th>
+          <th scope="col" class="minwidth">Total Break</th>
+          <th scope="col" class="minwidth">Total Work Time</th>
+        </tr>
+      </thead>
+    <tr *ngFor="let r of wkreport_detail; let i = index" >
+      <td>{{ i }}</td>
+      <td>{{r.atendance_type}}</td>
+      <td>{{r.deduction_time}}</td>
+      <td>{{r.end_time}}</td>
+      <td>{{r.night_break_time}}</td>
+      <td>{{r.night_work_time}}</td>
+      <td>{{r.orver_work_time}}</td>
+      <td>{{r.reason}}</td>
+      <td>{{r.report_date | date}}</td>
+      <td>{{r.start_time}}</td>
+      <td>{{r.total_break_time}}</td>
+      <td>{{r.total_work_time}}</td>
+    </tr>
+  </table>
+  </div>
 </ion-content>

@@ -48,47 +48,10 @@
       <a routerLink="/home/client">Client Information</a>
     </ion-item>
     <ion-item >
-      <a routerLink="/home/client">Work Report Detail</a>
+      <a routerLink="/home/workreportdetail">Work Report Detail</a>
     </ion-item>
   </ion-list>
 
-  <ion-item style="background: blueviolet;">
-    <h3>Work Report</h3>
-  </ion-item>
-  <div class="table-responsive">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col" width="120">Att Type</th>
-          <th scope="col">Deducation</th>
-          <th scope="col">End Time</th>
-          <th scope="col">Night Break</th>
-          <th scope="col">Night Work Time</th>
-          <th scope="col">Over Time</th>
-          <th scope="col">Reason</th>
-          <th scope="col">Report Date</th>
-          <th scope="col">Check In</th>
-          <th scope="col">Total Break</th>
-          <th scope="col">Total Work Time</th>
-        </tr>
-      </thead>
-    <tr *ngFor="let r of wkReportDetail; let i = index" >
-      <td>{{ i }}</td>
-      <td>{{r.atendance_type}}</td>
-      <td>{{r.deduction_time}}</td>
-      <td>{{r.end_time}}</td>
-      <td>{{r.night_break_time}}</td>
-      <td>{{r.night_work_time}}</td>
-      <td>{{r.orver_work_time}}</td>
-      <td>{{r.reason}}</td>
-      <td>{{r.report_date | date}}</td>
-      <td>{{r.start_time}}</td>
-      <td>{{r.total_break_time}}</td>
-      <td>{{r.total_work_time}}</td>
-    </tr>
-  </table>
-  </div>
   <!--<ion-list>
     <ion-item (click)="expandedItem(item)"  *ngFor="let item of items; let i = index">
       
