@@ -8,7 +8,6 @@ import { FeedPageRoutingModule } from './feed-routing.module';
 
 import { FeedPage } from './feed.page';
 import { ComponentsModule } from 'src/app/components/components.module';
-import { TimeAgoPipe } from 'time-ago-pipe';
 
 @NgModule({
   imports: [

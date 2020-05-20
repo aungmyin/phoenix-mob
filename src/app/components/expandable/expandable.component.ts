@@ -6,8 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./expandable.component.scss'],
 })
 export class ExpandableComponent implements OnInit {
-  @Input() expanded: any;
-  @Input() expandHeight: any;
+  @Input() expanded: boolean;
+  @Input() expandHeight: number;
   constructor() { }
 
   ngOnInit() {

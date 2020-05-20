@@ -29,12 +29,6 @@ export class WorkreportPage implements OnInit {
       {expanded: false},
       {expanded: false},
       {expanded: false},
-      {expanded: false},
-      {expanded: false},
-      {expanded: false},
-      {expanded: false},
-      {expanded: false},
-      {expanded: false},
       {expanded: false}
     ]
   }

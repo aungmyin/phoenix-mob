@@ -4,6 +4,7 @@
       <ion-icon name="trash"></ion-icon>
     </button>
     <p [innerHTML]="feed.feed+' '+feed.feed_id" ></p>
-    <app-timeago [created]="feed.created" ></app-timeago>
+   <!--<app-timeago [created]="feed.created" ></app-timeago>--> 
+   <p>{{ feed.created | date }}</p>
   </ion-card-content>
 </ion-card>

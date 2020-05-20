@@ -27,11 +27,10 @@ export class FeedPage implements OnInit {
   ngOnInit() {
     this.auth.userData$.subscribe((res: any) => {
       this.authUser = res;
-      this.getFeedData();
+      //this.getFeedData();
     });
 
   }
-
 
 
   getFeedData() {
