@@ -25,30 +25,46 @@
     <ion-item >
       <h3>Member Information</h3>
     </ion-item>
-    <ion-list>
-      <ion-item >
-        <p>Employee ID: {{ mbInfo?.member_id }} </p>
-      </ion-item>
-      <ion-item >
-        <p>Employee Name: {{ mbInfo?.first_name }} {{ mbInfo?.last_name }} </p>
-      </ion-item>
-      <ion-item >
-        <p>Department Name: {{ mbInfo?.unit_name }} </p>
-      </ion-item>
-      <ion-item>
-        <p>Status: {{ mbInfo?.status }} </p>
-      </ion-item>
-      <ion-item>
-        <p>Note: {{ mbInfo?.note }} </p>
-      </ion-item>
-    </ion-list>
+  </ion-list>
+  <ion-list>
+    <ion-item >
+      <p>Employee ID: YTS_{{ mbInfo?.member_id }} </p>
+    </ion-item>
+    <ion-item >
+      <p>Employee Name: {{ mbInfo?.first_name }} {{ mbInfo?.last_name }} </p>
+    </ion-item>
+    <ion-item >
+      <p>Department Name: {{ mbInfo?.unit_name }} </p>
+    </ion-item>
+    <ion-item>
+      <p>Status: {{ mbInfo?.status }} </p>
+    </ion-item>
+    <ion-item>
+      <p>Note: {{ mbInfo?.note }} </p>
+    </ion-item>
+    <ion-item>
+      <ion-label>Transportation Expenses: </ion-label>
+      <ion-select slot="end" value="{{compareTranEx}}" placeholder="Select One" >
+        <ion-select-option *ngFor="let t of tran_expen" value="{{ t.id }}">{{ t.value }}</ion-select-option>
+      </ion-select> 
+    </ion-item>
   </ion-list>
   <ion-list>
     <ion-item >
       <a routerLink="/home/client">Client Information</a>
+      <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
     </ion-item>
     <ion-item >
-      <a routerLink="/home/workreportdetail">Work Report Detail</a>
+      <a routerLink="/home/workreportdetail">Work Report Detail</a> 
+      <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+    <ion-item >
+      <a routerLink="/home/customerwkreport">Customer Work Report</a> 
+      <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+    <ion-item >
+      <a routerLink="/home/transportationexpenses">Transportation Expenses</a> 
+      <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
     </ion-item>
   </ion-list>
 

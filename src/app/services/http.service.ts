@@ -30,13 +30,13 @@ export class HttpService {
   }
 
   getWorkReportDetail(serviceName: string, data: any) {
-    console.log(data);
+    console.log(data.member_id);
     
     const headers = new HttpHeaders({
       'Access-Control-Allow-Origin': "*"    
     });
     const options = { headers: headers, withCredintials: true };
-    const url = environment.apiUrl + serviceName + "?year=" + data.year + "&month=" + data.month + "&workreport_id=" + data.workreport_id;
+    const url = environment.apiUrl + serviceName + "?year=" + data.year + "&month=" + data.month + "&member_id=" + data.member_id;
 
     return this.http.get(url, options);
   }

@@ -25,6 +25,14 @@ const routes: Routes = [
   {
     path: 'workreportdetail',
     loadChildren: () => import('./pages/workreportdetail/workreportdetail.module').then( m => m.WorkreportdetailPageModule)
+  },
+  {
+    path: 'customerwkreport',
+    loadChildren: () => import('./pages/customerwkreport/customerwkreport.module').then( m => m.CustomerwkreportPageModule)
+  },
+  {
+    path: 'transportationexpenses',
+    loadChildren: () => import('./pages/transportationexpenses/transportationexpenses.module').then( m => m.TransportationexpensesPageModule)
   }
 ];
 @NgModule({

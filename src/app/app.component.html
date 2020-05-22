@@ -10,14 +10,16 @@
       <ion-list>
         <ion-item (click)='navigateToLoginPage()'>
           <ion-icon name="home" slot="start"></ion-icon>
-          Home</ion-item>
+          Home
+        </ion-item>
+        
+        <ion-item *ngIf="authUser?.name" (click)="changePasswordAction()" >
+          <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+          My Profile
+        </ion-item>
         <ion-item (click)="gotoWorkReportAction()">
           <ion-icon name="alarm-outline" slot="start"></ion-icon>
           Work Report
-        </ion-item>
-        <ion-item *ngIf="authUser?.name" (click)="changePasswordAction()" >
-          <ion-icon name="person-circle-outline" slot="start"></ion-icon>
-          {{authUser?.name}}
         </ion-item>
         <ion-item (click)="logoutAction()" *ngIf="authUser?.name" >
           <ion-icon name="log-out" slot="start"></ion-icon>

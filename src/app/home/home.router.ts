@@ -96,6 +96,30 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'customerwkreport',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../pages/customerwkreport/customerwkreport.module').then(
+                m => m.CustomerwkreportPageModule
+              )
+          }
+        ]
+      },
+      {
+        path: 'transportationexpenses',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../pages/transportationexpenses/transportationexpenses.module').then(
+                m => m.TransportationexpensesPageModule
+              )
+          }
+        ]
+      },
+      {
         path: 'workreportdetail',
         children: [
           {

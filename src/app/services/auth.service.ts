@@ -30,7 +30,7 @@ export class AuthService {
   }
 
   getWorkReportDetail(postData: any): Observable<any> {
-    return this.httpService.getWorkReportDetail('workreport/workreport_detail', postData);
+    return this.httpService.getWorkReportDetail('basic_user/basic_user_workreport_detail', postData);
   }
 
   login(postDate: any): Observable<any> {

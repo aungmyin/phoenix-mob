@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start" style="margin-right: 5px;">
+    <ion-buttons slot="start" >
       <ion-back-button defaultHref="/home/workreport" text="" icon="chevron-back-outline"></ion-back-button>
     </ion-buttons>
     <ion-title>Work Report</ion-title>
@@ -45,5 +45,61 @@
       <td>{{r.total_work_time}}</td>
     </tr>
   </table>
+  </div>
+
+  <ion-list>
+    <ion-item><h3>Total</h3></ion-item>
+  </ion-list>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" >Working Hours</th>
+          <th scope="col" >Overtime (Total)	</th>
+          <th scope="col" >Night Work Hours</th>
+          <th scope="col" >Deduct Hours</th>
+        </tr>
+      </thead>
+        <tr>
+          <td><ion-input type="text" class="borderOne" value="{{wkReport?.mng_total_work_time}}" name="totalWH" [(ngModel)]="postData.totalWH"></ion-input></td>
+          <td><ion-input type="text" class="borderOne" value="{{wkReport?.mng_orver_work_time}}" name="totalOverTime" [(ngModel)]="postData.totalOverTime"></ion-input></td>
+          <td><ion-input type="text" class="borderOne" value="{{wkReport?.mng_night_work_time}}" name="totalNight" [(ngModel)]="postData.totalNight"></ion-input></td>
+          <td><ion-input type="text" class="borderOne" value="{{wkReport?.mng_deduction_time}}" name="totalDeduct" [(ngModel)]="postData.totalDeduct"></ion-input></td>
+        </tr>
+      </table>
+  </div>
+
+  <ion-list>
+    <ion-item><h3>Result</h3></ion-item>
+  </ion-list>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" >Working Hours</th>
+          <th scope="col" >Overtime (Total)	</th>
+          <th scope="col" >Overtime (Payments)</th>
+          <th scope="col" >Night Work Hours</th>
+          <th scope="col" >Deduct Hours</th>
+          <th scope="col" class="minwidth">Exercise of Paid Holidays</th>
+          <th scope="col" class="minwidth">Exercise of Paid Half Holiday</th>
+          <th scope="col" >Total</th>
+          <th scope="col" >Absenteeism Days</th>
+          <th scope="col" >Closing Dates</th>
+        </tr>
+      </thead>
+        <tr>
+          <td><ion-input type="text" class="borderOne" value="{{wkReport?.rslt_operated_time}}" name="rstWH" [(ngModel)]="postData.rstWH"></ion-input></td>
+          <td><ion-input type="text" class="borderOne" value="{{wkReport?.rslt_orver_work_time}}" name="rstOvt" [(ngModel)]="postData.rstOvt"></ion-input></td>
+          <td><ion-input type="text" class="borderOne" value="{{wkReport?.rslt_salary_time}}" name="rstOvtPay" [(ngModel)]="postData.rstOvtPay"></ion-input></td>
+          <td><ion-input type="text" class="borderOne" value="{{wkReport?.rslt_night_work_time}}" name="rstNgWH" [(ngModel)]="postData.rstNgWH"></ion-input></td>
+          <td><ion-input type="text" class="borderOne" value="{{wkReport?.rslt_deduction_time}}" name="rstDeHr" [(ngModel)]="postData.rstDeHr"></ion-input></td>
+          <td><ion-input type="text" class="borderOne" value="{{wkReport?.rslt_holiday}}" name="rstPaidHld" [(ngModel)]="postData.rstPaidHld"></ion-input></td>
+          <td><ion-input type="text" class="borderOne" value="{{wkReport?.rslt_harf_holiday}}" name="rstPaidHfHld" [(ngModel)]="postData.rstPaidHfHld"></ion-input></td>
+          <td><ion-input type="text" class="borderOne" value="{{wkReport?.rslt_total_holiday}}" name="rstTotal" [(ngModel)]="postData.rstTotal"></ion-input></td>
+          <td><ion-input type="text" class="borderOne" value="{{wkReport?.rslt_absence_num}}" name="rstAbsDay" [(ngModel)]="postData.rstAbsDay"></ion-input></td>
+          <td><ion-input type="text" class="borderOne" value="{{wkReport?.rslt_special_holiday}}" name="rstCloseDate" [(ngModel)]="postData.rstCloseDate"></ion-input></td>
+        </tr>
+      </table>
   </div>
 </ion-content>
