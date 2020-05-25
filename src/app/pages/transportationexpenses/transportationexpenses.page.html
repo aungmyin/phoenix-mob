@@ -11,12 +11,12 @@
   <ion-item style="background: blueviolet;">
     <h3>Transportation Expenses</h3>
   </ion-item>
-
+  <ion-button expand="block" share="round" style="margin: 10px" color="primary" (click)="addAction()">+ Add</ion-button>
   <div class="table-responsive">
-    <table class="table"> 
+    <table class="table" #addtable> 
       <thead>
         <tr>
-          <th scope="col" class="firstWidth">Date</th>
+          <th scope="col" class="minwidth">Date</th>
           <th scope="col" class="minwidth">Destination</th>
           <th scope="col" class="minwidth">Transportation</th>
           <th scope="col" class="minwidth">Departure</th>
@@ -30,15 +30,15 @@
       </thead>
     <tr *ngFor="let t of tranSportExpense; let i = index" >
       <td>{{ t.use_date | date }}</td>
-      <td>{{r.destination}}</td>
-      <td>{{r.transport_type}}</td>
-      <td>{{r.from_area}}</td>
-      <td>{{r.to_area}}</td>
-      <td>{{r.rourte_type}}</td>
-      <td>{{r.print_flg}}</td>
-      <td>{{r.amount}}</td>
-      <td>{{r.demand_type}}</td>
-      <td></td>
+      <td>{{t.destination}}</td>
+      <td>{{t.transport_type}}</td>
+      <td>{{t.from_area}}</td>
+      <td>{{t.to_area}}</td>
+      <td>{{t.rourte_type}}</td>
+      <td>{{t.print_flg}}</td>
+      <td>{{t.amount}}</td>
+      <td>{{t.demand_type}} </td>
+      <td><ion-button expand="block" share="round" style="margin: 10px" color="warning" (click)="addAction()">Remove</ion-button></td>
     </tr>
   </table>
   </div>
@@ -53,6 +53,7 @@
       <ion-label position="stacked">Customer Billing</ion-label>
       <ion-input autocomplete="off" name="customerBilling" type="text" [(ngModel)]="postData.customerBilling"></ion-input>
     </ion-item>
+    <ion-button expand="block" share="round" style="margin: 10px" color="success" (click)="storeAction()">Store</ion-button>
   </ion-list>
 
 </ion-content>
