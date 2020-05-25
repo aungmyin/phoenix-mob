@@ -13,6 +13,7 @@ export class CustomerwkreportPage implements OnInit {
     contractPeriod: '',
     custWkReport: '',
     actWorkHour: '',
+    note: ''
   }
 
   items: any = [];

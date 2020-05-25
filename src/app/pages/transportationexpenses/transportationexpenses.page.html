@@ -8,5 +8,51 @@
 </ion-header>
 
 <ion-content>
+  <ion-item style="background: blueviolet;">
+    <h3>Transportation Expenses</h3>
+  </ion-item>
+
+  <div class="table-responsive">
+    <table class="table"> 
+      <thead>
+        <tr>
+          <th scope="col" class="firstWidth">Date</th>
+          <th scope="col" class="minwidth">Destination</th>
+          <th scope="col" class="minwidth">Transportation</th>
+          <th scope="col" class="minwidth">Departure</th>
+          <th scope="col" class="minwidth">Arrival</th>
+          <th scope="col" class="minwidth">One Way/Round Trip</th>
+          <th scope="col" class="minwidth">Voucher</th>
+          <th scope="col" class="minwidth">Amount</th>
+          <th scope="col" class="minwidth">Billing</th>
+          <th scope="col" class="minwidth">Action</th>
+        </tr>
+      </thead>
+    <tr *ngFor="let t of tranSportExpense; let i = index" >
+      <td>{{ t.use_date | date }}</td>
+      <td>{{r.destination}}</td>
+      <td>{{r.transport_type}}</td>
+      <td>{{r.from_area}}</td>
+      <td>{{r.to_area}}</td>
+      <td>{{r.rourte_type}}</td>
+      <td>{{r.print_flg}}</td>
+      <td>{{r.amount}}</td>
+      <td>{{r.demand_type}}</td>
+      <td></td>
+    </tr>
+  </table>
+  </div>
+
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Total Amount</ion-label>
+      <ion-input autocomplete="off" name="totalAmount" type="text" [(ngModel)]="postData.totalAmount"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Customer Billing</ion-label>
+      <ion-input autocomplete="off" name="customerBilling" type="text" [(ngModel)]="postData.customerBilling"></ion-input>
+    </ion-item>
+  </ion-list>
 
 </ion-content>

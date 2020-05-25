@@ -42,6 +42,11 @@
         <ion-input autocomplete="off" name="actWorkHour" type="text" [(ngModel)]="postData.actWorkHour"></ion-input>
       </ion-item>
 
+      <ion-item>
+        <ion-label position="stacked">Note</ion-label>
+        <ion-textarea placeholder="Enter more information here..." name="note" [(ngModel)]="postData.note" ></ion-textarea>
+      </ion-item>
+
     </ion-list>
     <ion-button expand="block" share="round" style="margin: 10px" color="success" >Store</ion-button>
   </form>
