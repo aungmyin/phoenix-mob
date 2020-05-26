@@ -8,34 +8,60 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class TransportationexpensesPage implements OnInit {
 
-  postData = {
+ public postData = {
     year: '2020',
-    month: '5',
+    month: '05',
+    workreport_id: '29558',
     tran_date: '',
     member_id: '',
     totalAmount: '',
     customerBilling: ''
   }
 
-  @ViewChild('addtable', {static: false}) table: ElementRef;
-
   tranSportExpense: any;
   displayUserData: any;
   
   tran_expen: any = [];
+  transport_expen: any = [];
+  demend_types: any = [];
+  print_flgs: any = [];
   compareTranEx: any;
+
+  @ViewChild('addtable', {static: false}) table: ElementRef;
 
   constructor(private authService: AuthService, private renderer: Renderer2) { }
 
   ngOnInit() {
     this.authService.userData$.subscribe( (res: any) => {
+     console.log("hello Transport " + res.email);
       this.displayUserData = res;
-      console.log(res + " hello tran ");
     });
 
     this.getTransporationExpen();
 
     this.tran_expen = [
+      {
+        id: 0,
+        value: 'One-Way'
+      },
+      {
+        id: 1,
+        value: 'Round-Trip'
+      }
+    ];
+
+    this.demend_types = [
+      {
+        id: 0,
+        value: 'in house'
+      },
+      {
+        id: 1,
+        value: 'customer'
+      }
+    ];
+
+    this.print_flgs = [
       {
         id: 0,
         value: 'No'
@@ -46,12 +72,39 @@ export class TransportationexpensesPage implements OnInit {
       }
     ];
 
+    this.transport_expen = [
+      {
+        id: 0,
+        value: '-'
+      },
+      {
+        id: 1,
+        value: 'Bus'
+      },
+      {
+        id: 2,
+        value: 'Train'
+      },
+      {
+        id: 3,
+        value: 'Taxi'
+      },
+      {
+        id: 4,
+        value: 'Air Plane'
+      },
+      {
+        id: 5,
+        value: 'Other'
+      }
+    ];
+
     
   }
 
   getTransporationExpen() {
     this.postData.member_id = this.displayUserData['email'];
-    
+    console.log(this.postData + "Post Datas");
     this.authService.getWorkReportDetail( this.postData ).subscribe( (res: any) => {
       console.log(res);
       this.tranSportExpense = res.transport_expense;
@@ -64,7 +117,7 @@ export class TransportationexpensesPage implements OnInit {
   }
 
   removeAction() {
-    
+    console.log("remove");
   }
 
   addAction() {
@@ -83,7 +136,7 @@ export class TransportationexpensesPage implements OnInit {
     p.innerHTML += "<td ><ion-select name='print_flg' value='1' placeholder='Select One'><ion-select-option value='1' selected>No</ion-select-option><ion-select-option value='2'>Yes</ion-select-option></ion-select></td>";
     p.innerHTML += "<td ><ion-input type='text' name='destination' ></ion-input></td>";
     p.innerHTML += "<td ><ion-select name='demand_type' value='1' placeholder='Select One'><ion-select-option value='1' selected>in house</ion-select-option><ion-select-option value='2'>Customer</ion-select-option></ion-select></td>";
-    p.innerHTML += "<td ><ion-button expand='block' share='round' style='margin: 10px' color='warning' (click)='addAction()' >Remove</ion-input></td>";
+    p.innerHTML += "<td ><ion-button expand='block' share='round' style='margin: 10px' color='warning' (click)='removeAction()' >Remove</ion-input></td>";
     this.renderer.appendChild(this.table.nativeElement, p);
     
   }

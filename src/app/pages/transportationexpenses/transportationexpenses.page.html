@@ -31,14 +31,30 @@
     <tr *ngFor="let t of tranSportExpense; let i = index" >
       <td>{{ t.use_date | date }}</td>
       <td>{{t.destination}}</td>
-      <td>{{t.transport_type}}</td>
+      <td>
+        <ion-select slot="end" value="{{t.transport_type}}" placeholder="Select One" >
+          <ion-select-option *ngFor="let tp of transport_expen" value="{{ tp.id }}">{{ tp.value }}</ion-select-option>
+        </ion-select> 
+      </td>
       <td>{{t.from_area}}</td>
       <td>{{t.to_area}}</td>
-      <td>{{t.rourte_type}}</td>
-      <td>{{t.print_flg}}</td>
+      <td >
+        <ion-select slot="end" value="{{t.rourte_type}}" placeholder="Select One" >
+          <ion-select-option *ngFor="let r of tran_expen" value="{{ r.id }}">{{ r.value }}</ion-select-option>
+        </ion-select> 
+      </td>
+      <td>
+        <ion-select slot="end" value="{{t.print_flg}}" placeholder="Select One" >
+          <ion-select-option *ngFor="let p of print_flgs" value="{{ p.id }}">{{ p.value }}</ion-select-option>
+        </ion-select> 
+      </td>
       <td>{{t.amount}}</td>
-      <td>{{t.demand_type}} </td>
-      <td><ion-button expand="block" share="round" style="margin: 10px" color="warning" (click)="addAction()">Remove</ion-button></td>
+      <td>
+        <ion-select slot="end" value="{{t.demand_type}}" placeholder="Select One" >
+          <ion-select-option *ngFor="let b of demend_types" value="{{ b.id }}">{{ b.value }}</ion-select-option>
+        </ion-select> 
+      </td>
+      <td><ion-button expand="block" share="round" style="margin: 10px" color="warning" (click)="removeAction()">Remove</ion-button></td>
     </tr>
   </table>
   </div>
