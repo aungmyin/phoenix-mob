@@ -6,6 +6,8 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './workreport.page.html',
   styleUrls: ['./workreport.page.scss'],
 })
+
+
 export class WorkreportPage implements OnInit {
 
   postData = {
@@ -19,6 +21,7 @@ export class WorkreportPage implements OnInit {
   project_info: any;
   wkReportDetail: any;
   mbInfo: any;
+  memberNo: String;
 
   items: any = [];
   tran_expen: any = [];
@@ -95,6 +98,20 @@ export class WorkreportPage implements OnInit {
       this.project_info = res.project_info.project_infos;
       this.wkReportDetail = res.work_report_detail;
       this.mbInfo = res.member_info;
+     
+      this.memberNo = this.mbInfo.member_no;
+      
+      if( this.memberNo.toString().length == 3 ) {
+        this.memberNo = "0" + this.memberNo;
+      } else if (this.memberNo.toString().length == 2) {
+        this.memberNo = "00" + this.memberNo;
+      } else if (this.memberNo.toString().length == 1) {
+        this.memberNo = "000" + this.memberNo;
+      } else {
+        this.memberNo = this.memberNo;
+      }
+        //console.log(this.memberNo.toString().length);
+     
 
       this.compareTranEx = this.mbInfo['dairy_transrate_flg'];
 
