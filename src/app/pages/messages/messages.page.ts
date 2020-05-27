@@ -18,6 +18,7 @@ export class MessagesPage implements OnInit {
   activeMenu: String;
 
   public UserProfile: any;
+  memberNo: String;
 
   constructor(private httpService: HttpService, private router: Router, private authService: AuthService, private menu: MenuController) { 
     this.listItems = [  
@@ -59,6 +60,18 @@ export class MessagesPage implements OnInit {
     this.authService.getUserDatail( this.displayUserData.email ).subscribe( (res: any) => {
       console.log(res.show_detail);
       this.UserProfile = res.show_detail;
+
+      this.memberNo = this.UserProfile.member_no;
+
+      if( this.memberNo.toString().length == 3 ) {
+        this.memberNo = "0" + this.memberNo;
+      } else if (this.memberNo.toString().length == 2) {
+        this.memberNo = "00" + this.memberNo;
+      } else if (this.memberNo.toString().length == 1) {
+        this.memberNo = "000" + this.memberNo;
+      } else {
+        this.memberNo = this.memberNo;
+      }
     } );
   }
 
