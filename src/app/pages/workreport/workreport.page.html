@@ -37,7 +37,10 @@
       <p>Department Name: {{ mbInfo?.unit_name }} </p>
     </ion-item>
     <ion-item>
-      <p>Status: {{ mbInfo?.status }} </p>
+      <p>Status: </p>
+      <ion-select slot="end" value="{{ mbInfo?.status }}" placeholder="Select One" >
+        <ion-select-option *ngFor="let o of own_depart" value="{{ o.id }}">{{ o.value }}</ion-select-option>
+      </ion-select> 
     </ion-item>
     <ion-item>
       <p>Note: {{ mbInfo?.note }} </p>

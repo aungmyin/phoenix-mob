@@ -22,6 +22,7 @@ export class WorkreportPage implements OnInit {
 
   items: any = [];
   tran_expen: any = [];
+  own_depart: any = [];
   compareTranEx: any;
   itemExpandedHeight: number = 200;
 
@@ -57,7 +58,23 @@ export class WorkreportPage implements OnInit {
       }
     ];
 
-    
+    this.own_depart = [
+      { id: 0,
+        value: 'Not prducted'
+      },
+      { id: 1,
+        value: 'Not applied'
+      },
+      { id: 2,
+        value: 'Applied'
+      },
+      { id: 3,
+        value: 'Remand'
+      },
+      { id: 4,
+        value: 'Accepted'
+      }
+    ]
 
   }
 
@@ -80,6 +97,8 @@ export class WorkreportPage implements OnInit {
       this.mbInfo = res.member_info;
 
       this.compareTranEx = this.mbInfo['dairy_transrate_flg'];
+
+
     });
   }
 
