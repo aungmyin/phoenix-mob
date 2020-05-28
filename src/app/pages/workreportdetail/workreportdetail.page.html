@@ -17,7 +17,7 @@
       <thead>
         <tr>
           <th scope="col" class="firstWidth">#</th>
-          <th scope="col" class="minwidth">Att Type</th>
+          <th scope="col" class="minwidth">Working Hour</th>
           <th scope="col" class="minwidth">Deducation</th>
           <th scope="col" class="minwidth">End Time</th>
           <th scope="col" class="minwidth">Night Break</th>
@@ -28,11 +28,14 @@
           <th scope="col" class="minwidth">Check In</th>
           <th scope="col" class="minwidth">Total Break</th>
           <th scope="col" class="minwidth">Total Work Time</th>
+          <th scope="col" class="minwidth">Att Type</th>
         </tr>
       </thead>
     <tr *ngFor="let r of wkreport_detail; let i = index" >
-      <td>{{ i }}</td>
-      <td>{{r.atendance_type}}</td>
+      <td>{{ r.report_date | date: 'MM/dd' }}</td>
+      <td><ion-select slot="end" value="{{r.atendance_type}}" name="custWkReport" placeholder="Select One" >
+        <ion-select-option *ngFor="let p of workPattern" value="{{ p.pattern }}">勤務時間_パタン{{ p.pattern }}</ion-select-option>
+      </ion-select> </td>
       <td>{{r.deduction_time}}</td>
       <td>{{r.end_time}}</td>
       <td>{{r.night_break_time}}</td>
@@ -43,6 +46,11 @@
       <td>{{r.start_time}}</td>
       <td>{{r.total_break_time}}</td>
       <td>{{r.total_work_time}}</td>
+      <td>
+        <ion-select slot="end" value="{{r.atendance_type}}" name="custWkReport" placeholder="Select One" >
+          <ion-select-option *ngFor="let a of attendance_type" value="{{ a.id }}">{{ a.value }}</ion-select-option>
+        </ion-select> 
+      </td>
     </tr>
   </table>
   </div>
