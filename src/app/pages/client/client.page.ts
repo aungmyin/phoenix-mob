@@ -19,6 +19,9 @@ export class ClientPage implements OnInit {
   working_hours: any;
 
   displayUserData: any;
+  workingHour: any;
+  workingPattern: any;
+  contractTypeName: String;
 
   constructor(private authService: AuthService) { }
 
@@ -38,8 +41,26 @@ export class ClientPage implements OnInit {
       console.log(res);
       this.project_info = res.customer_work_report;
 
+      this.workingHour = res.work_report;
+      this.workingPattern = res.project_info.working_hour;
+
+      console.log(this.workingPattern);
+      this.getContractTypeById(res.customer_work_report[0]['client_report_flg']);
+
       //this.working_hours = res.customer_work_report.project_info.working_hour;
     });
+  }
+
+  getContractTypeById(contractId: Number) {
+    if( contractId == 1 ) {
+      this.contractTypeName = "Monthly Contract";
+    } else if ( contractId == 2 ) {
+      this.contractTypeName = "Fixed Contract";
+    } else if (contractId == 3) {
+      this.contractTypeName = "Time Contract";
+    } else {
+      this.contractTypeName = "";
+    }
   }
 
 }

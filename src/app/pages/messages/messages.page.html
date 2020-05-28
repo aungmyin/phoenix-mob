@@ -21,7 +21,7 @@
       <p>Company Name: {{ UserProfile?.company_name }}</p>
     </ion-item>
     <ion-item>
-      <p>Employee No.: YTS_{{ memberNo }}</p>
+      <p>Employee No.: YTS_{{ fmmemberNo }}</p>
     </ion-item>
     <ion-item>
       <p>Employee Name: {{ UserProfile?.first_name  }} {{ UserProfile?.last_name }}</p>
@@ -48,19 +48,16 @@
       <p>Account: {{ UserProfile?.account }}</p>
     </ion-item>
     <ion-item>
-      <p>Account Type: {{ UserProfile?.authority_type }}</p>
-    </ion-item>
-    <ion-item>
       <p>Email1: {{ UserProfile?.email1 }}</p>
     </ion-item>
     <ion-item>
       <p>Email2: {{ UserProfile?.email2 }}</p>
     </ion-item>
     <ion-item>
-      <p>Employment Status: {{ UserProfile?.employment_status }}</p>
+      <p>Employment Status: {{ empStatusName }}</p>
     </ion-item>
     <ion-item>
-      <p>Employment Type: {{ UserProfile?.employment_type }}</p>
+      <p>Employment Type: {{ empTypeName }}</p>
     </ion-item>
     <ion-item>
       <p>Own Department: {{ UserProfile?.own_depart }}</p>
@@ -75,13 +72,13 @@
       <p>Sale Representative: {{ UserProfile?.sales_rep_name }}</p>
     </ion-item>
     <ion-item>
-      <p>Hired Date: {{ UserProfile?.hired_date }}</p>
+      <p>Hired Date: {{ UserProfile?.hired_date | date }}</p>
     </ion-item>
     <ion-item>
       <p>Position: {{ UserProfile?.position_name }}</p>
     </ion-item>
     <ion-item>
-      <p>Authority: {{ UserProfile?.authority_type }}</p>
+      <p>Authority: {{ authorityName }}</p>
     </ion-item>
     <ion-item>
       <p>Social Number (SSN/SIN): {{ UserProfile?.social_securty_num }}</p>

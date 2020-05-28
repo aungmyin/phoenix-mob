@@ -26,8 +26,12 @@
         <p>Contract Period: {{ clinfo?.start_contract_date | date }} to {{ clinfo?.end_contract_date | date }} </p>
       </ion-item>
       <ion-item>
-        <p>during working hours:  </p>
+        <p>Contract Type: {{ contractTypeName }} </p>
       </ion-item>
+      <ion-item>
+        <p>During working hours: {{ workingHour?.min_width_time }}h ~ {{ workingHour?.max_width_time }}h </p>
+      </ion-item>
+      
      <!--<ion-item>
         <p>Contract End: 
           <ion-datetime displayFormat="YYYY-MM-DD" value="{{ clinfo?.end_contract_date}}"></ion-datetime>
@@ -42,6 +46,14 @@
   <ion-list>
     <ion-item>
       <h4>Working Hours:</h4>
+    </ion-item>
+    <ion-item>
+      <div *ngFor="let p of workingPattern; let i=index;" >
+        <p *ngIf="p.pattern_flg == 1">
+          {{ p.pattern }} {{ p.start_time }} ~ {{ p.end_time }} Break Time: {{ p.break_time }}min {{ p.working_time }}h
+        </p>
+        
+      </div>
     </ion-item>
   </ion-list>
   

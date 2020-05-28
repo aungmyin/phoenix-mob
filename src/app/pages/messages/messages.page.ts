@@ -19,6 +19,11 @@ export class MessagesPage implements OnInit {
 
   public UserProfile: any;
   memberNo: String;
+  fmmemberNo: String;
+  author_type: any = [];
+  authorityName: String;
+  empTypeName: String;
+  empStatusName: String;
 
   constructor(private httpService: HttpService, private router: Router, private authService: AuthService, private menu: MenuController) { 
     this.listItems = [  
@@ -63,16 +68,67 @@ export class MessagesPage implements OnInit {
 
       this.memberNo = this.UserProfile.member_no;
 
-      if( this.memberNo.toString().length == 3 ) {
-        this.memberNo = "0" + this.memberNo;
-      } else if (this.memberNo.toString().length == 2) {
-        this.memberNo = "00" + this.memberNo;
-      } else if (this.memberNo.toString().length == 1) {
-        this.memberNo = "000" + this.memberNo;
-      } else {
-        this.memberNo = this.memberNo;
-      }
+      this.memberNoFormat(this.memberNo);
+
+      this.authority(this.UserProfile.authority_type);
+
+      this.employmentType(this.UserProfile.employment_type);
+
+      this.employmentStatus(this.UserProfile.employment_status);
+
     } );
+  }
+
+  memberNoFormat(mbno: String) {
+    if( mbno.toString().length == 3 ) {
+      this.fmmemberNo = "0" + mbno;
+    } else if (mbno.toString().length == 2) {
+      this.fmmemberNo = "00" + mbno;
+    } else if (mbno.toString().length == 1) {
+      this.fmmemberNo = "000" + mbno;
+    } else {
+      this.fmmemberNo = mbno;
+    }
+  }
+
+  authority(authId: Number) {
+    if(authId == 2) {
+      this.authorityName = "Admin User";
+    } else if(authId == 3) {
+      this.authorityName = "Manage User";
+    } else if(authId == 4) {
+      this.authorityName = "Basic User";
+    } else {
+      this.authorityName = "";
+    }
+  }
+
+  employmentType(empId: Number) {
+    if(empId == 0) {
+      this.empTypeName = "Executives";
+    } else if(empId == 1) {
+      this.empTypeName = "Regular Employees";
+    } else if(empId == 2) {
+      this.empTypeName = "Contract Employees";
+    } else if(empId == 3) {
+      this.empTypeName = "Part Time";
+    } else if(empId == 4) {
+      this.empTypeName = "Side Job";
+    } else {
+      this.empTypeName = "";
+    }
+  }
+
+  employmentStatus(empStatus: Number) {
+    if(empStatus == 1) {
+      this.empStatusName = "Enrolled";
+    } else if(empStatus == 2) {
+      this.empStatusName = "Suspended";
+    } else if(empStatus == 3) {
+      this.empStatusName = "Retired";
+    } else {
+      this.empStatusName = "";
+    }
   }
 
  
