@@ -13,7 +13,7 @@ export class HttpService {
   post(serviceName: string, data: any) {
     const headers = new HttpHeaders();
     const options = { headers: headers, withCredintials: false };
-    const url = environment.apiUrl + serviceName;
+    const url = environment.apiUrlfeed + serviceName;
     
     return this.http.post(url, JSON.stringify(data), options);
   }

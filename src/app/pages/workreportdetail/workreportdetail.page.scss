@@ -21,6 +21,9 @@ table {
   .minwidth{
     min-width: 135px;
   }
+  .middlewidth{
+    min-width: 200px;
+  }
   .firstWidth{
     width: auto;
   }
@@ -29,5 +32,15 @@ tr:nth-child(even){background-color: #f2f2f2}
 
 .borderOne {
   border: 1px solid #000000;
-  padding: 5px;
+  padding: 3px;
+}
+.borderOneCol {
+  border: 1px solid #000000;
+  padding: 1px;
+}
+.borderOnewidth {
+  border: 1px solid #000000;
+  padding: 3px;
+  width: 87px;
+  height: 30px;
 }

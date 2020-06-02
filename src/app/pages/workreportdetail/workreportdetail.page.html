@@ -17,39 +17,65 @@
       <thead>
         <tr>
           <th scope="col" class="firstWidth">#</th>
-          <th scope="col" class="minwidth">Working Hour</th>
-          <th scope="col" class="minwidth">Deducation</th>
-          <th scope="col" class="minwidth">End Time</th>
+          <th scope="col" class="minwidth">Work Hour</th>
+          <th scope="col" class="minwidth">Break Time</th>
           <th scope="col" class="minwidth">Night Break</th>
-          <th scope="col" class="minwidth">Night Work Time</th>
+          <th scope="col" class="minwidth">Working Time</th>
           <th scope="col" class="minwidth">Over Time</th>
+          <th scope="col" class="minwidth">Night Work Time</th>
+          <th scope="col" class="minwidth">Deducation</th>
+          <th scope="col" >Att Type</th>
           <th scope="col" class="minwidth">Reason</th>
-          <th scope="col" class="minwidth">Report Date</th>
-          <th scope="col" class="minwidth">Check In</th>
-          <th scope="col" class="minwidth">Total Break</th>
-          <th scope="col" class="minwidth">Total Work Time</th>
-          <th scope="col" class="minwidth">Att Type</th>
         </tr>
       </thead>
     <tr *ngFor="let r of wkreport_detail; let i = index" >
       <td>{{ r.report_date | date: 'MM/dd' }}</td>
-      <td><ion-select slot="end" value="{{r.atendance_type}}" name="custWkReport" placeholder="Select One" >
-        <ion-select-option *ngFor="let p of workPattern" value="{{ p.pattern }}">勤務時間_パタン{{ p.pattern }}</ion-select-option>
-      </ion-select> </td>
-      <td>{{r.deduction_time}}</td>
-      <td>{{r.end_time}}</td>
-      <td>{{r.night_break_time}}</td>
-      <td>{{r.night_work_time}}</td>
-      <td>{{r.orver_work_time}}</td>
-      <td>{{r.reason}}</td>
-      <td>{{r.report_date | date}}</td>
-      <td>{{r.start_time}}</td>
-      <td>{{r.total_break_time}}</td>
-      <td>{{r.total_work_time}}</td>
       <td>
-        <ion-select slot="end" value="{{r.atendance_type}}" name="custWkReport" placeholder="Select One" >
+        <div *ngIf="r.atendance_type == 0">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-select class="borderOnewidth" style="width: 100%" value="{{r.atendance_type}}" name="custWkReport" placeholder="-" >
+                  <ion-select-option *ngFor="let p of workPatternExist" value="{{ p.pattern }}">勤務時間_パタン{{ p.pattern }}</ion-select-option>
+                </ion-select> 
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-input class="borderOneCol" name="starttime"  value="{{r.start_time}}" type="text"></ion-input>
+              </ion-col>
+              <ion-col>
+                <ion-input  class="borderOneCol" name="endtime"  value="{{r.end_time}}" type="text"></ion-input>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </td>
+      <td>
+        <ion-input slot="col" class="borderOnewidth" name="totalbreaktime"  value="{{r.total_break_time}}" type="text"></ion-input>
+      </td>
+      <td>
+        <ion-input slot="col" class="borderOnewidth" name="night_breaktime"  value="{{r.night_break_time}}" type="text"></ion-input>
+      </td>
+      <td>
+        <ion-input slot="col" class="borderOnewidth" name="total_work_time"  value="{{r.total_work_time}}" type="text"></ion-input>
+      </td>
+      <td>
+        <ion-input slot="col" class="borderOnewidth" name="orver_work_time"  value="{{r.orver_work_time}}" type="text"></ion-input>
+      </td>
+      <td>
+        <ion-input slot="col" class="borderOnewidth" name="night_work_time"  value="{{r.night_work_time}}" type="text"></ion-input>
+      </td>
+      <td>
+        <ion-input slot="col" class="borderOnewidth" name="deduction_time"  value="{{r.deduction_time}}" type="text"></ion-input>
+      </td>
+      <td>
+        <ion-select style="width: 150px" class="borderOnewidth" value="{{r.atendance_type}}" name="custWkReport" placeholder="Select One" >
           <ion-select-option *ngFor="let a of attendance_type" value="{{ a.id }}">{{ a.value }}</ion-select-option>
         </ion-select> 
+      </td>
+      <td>
+        <ion-textarea  name="deduction_time" style="border: 1px solid #cccccc;" value="{{r.reason}}" type="text"></ion-textarea>
       </td>
     </tr>
   </table>

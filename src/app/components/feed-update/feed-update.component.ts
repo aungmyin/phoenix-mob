@@ -19,7 +19,9 @@ export class FeedUpdateComponent implements OnInit {
 
   constructor( private feedService: FeedService, private toastService: ToastService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("hello");
+  }
 
   validateInputs() {
     console.log(this.postData);

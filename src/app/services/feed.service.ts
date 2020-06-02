@@ -14,7 +14,7 @@ export class FeedService {
   changeFeedData(data: any) {
     this.feedData$.next(data);
   }
-
+  //get latest data
   getCurrentFeedData() {
     return this.feedData$.getValue();
   }

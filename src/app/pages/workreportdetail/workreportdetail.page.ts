@@ -34,6 +34,7 @@ export class WorkreportdetailPage implements OnInit {
   wkReport: any;
   attendance_type: any = [];
   workPattern: any;
+  workPatternExist: any = [];
 
   displayUserData: any;
 
@@ -104,10 +105,18 @@ export class WorkreportdetailPage implements OnInit {
     this.authService.getWorkReportDetail( this.postData ).subscribe( (res: any) => {
       //console.log(res);
       this.wkreport_detail = res.work_report_detail;
+
       this.wkReport = res.work_report;
       this.workPattern = res.project_info.working_hour;
       
-      console.log(this.workPattern);
+      //to display exist work pattern
+      for (let index = 0; index < 6; index++) {
+        if(this.workPattern[index]['pattern_flg'] == 1) {
+          this.workPatternExist[index] = this.workPattern[index];
+        }
+      }
+      console.log(this.workPatternExist);
+
       this.wkreport_detail_date = res.work_report_detail[0]['report_date'];
     });
   }

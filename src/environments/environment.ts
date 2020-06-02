@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  apiUrlfeed: 'https://api.thewallscript.com/restful/',
   apiUrl: 'http://localhost:8084/'
 };
 
