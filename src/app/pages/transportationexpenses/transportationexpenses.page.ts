@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class TransportationexpensesPage implements OnInit {
 
- public postData = {
+  postData = {
     year: '2020',
     month: '05',
     workreport_id: '29558',
