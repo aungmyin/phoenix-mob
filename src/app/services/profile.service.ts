@@ -15,7 +15,7 @@ export class ProfileService {
     this.profileData$.next(data);
   }
 
-  profileData(userid: Number): Observable<any> {
-    return this.httpService.getUserData("/employee_detail/employee_info", 1602);
+  profileData(userid: any): Observable<any> {
+    return this.httpService.getUserData("/employee_detail/employee_info", userid);
   }
 }
