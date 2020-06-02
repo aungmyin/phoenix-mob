@@ -7,6 +7,8 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class HttpService {
+  
+  memberID: any;
 
   constructor(private http: HttpClient) { }
 
@@ -30,8 +32,7 @@ export class HttpService {
   }
 
   getWorkReportDetail(serviceName: string, data: any) {
-    console.log(data.member_id);
-    
+    //console.log(data + "http data");
     const headers = new HttpHeaders({
       'Access-Control-Allow-Origin': "*"    
     });

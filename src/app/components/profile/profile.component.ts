@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.authService.userData$.subscribe( (res: any) => {
-     // console.log(res.email);
+      console.log(res.email);
       this.displayUserData = res;
       this.getCurrentUserProfile();
     });
@@ -42,11 +42,11 @@ export class ProfileComponent implements OnInit {
         this.UserProfile = res.show_detail;
         //member no format
         this.memberNoFormat(this.UserProfile.member_no);
-
+        // authority type display text
         this.authority(this.UserProfile.authority_type);
-
+        // employment type display by text
         this.employmentType(this.UserProfile.employment_type);
-
+        //employment status display by text dfdf
         this.employmentStatus(this.UserProfile.employment_status);
 
      });
@@ -107,7 +107,7 @@ export class ProfileComponent implements OnInit {
 
  
   changePasswordAction() {
-    this.router.navigate(['changepassword']);
+    this.router.navigate(['home/changepassword']);
   }
 
 }

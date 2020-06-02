@@ -1,0 +1,32 @@
+<ion-list>
+  <ion-item >
+    <h3>Member Information</h3>
+  </ion-item>
+</ion-list>
+<ion-list>
+  <ion-item >
+    <p>Employee ID: YTS_{{ memberNo }} </p>
+  </ion-item>
+  <ion-item >
+    <p>Employee Name: {{ mbInfo?.first_name }} {{ mbInfo?.last_name }} </p>
+  </ion-item>
+  <ion-item >
+    <p>Own Department: {{ mbInfo?.unit_name }} </p>
+  </ion-item>
+  <ion-item>
+    <p>Status: </p>
+    <ion-select slot="end" value="{{ mbInfo?.status }}" placeholder="Select One" >
+      <ion-select-option *ngFor="let o of own_depart" value="{{ o.id }}">{{ o.value }}</ion-select-option>
+    </ion-select> 
+  </ion-item>
+  
+  <ion-item>
+    <ion-label>Transportation Expenses: </ion-label>
+    <ion-select slot="end" value="{{compareTranEx}}" placeholder="Select One" >
+      <ion-select-option *ngFor="let t of tran_expen" value="{{ t.id }}">{{ t.value }}</ion-select-option>
+    </ion-select> 
+  </ion-item>
+</ion-list>
+<ion-item>
+  <p>Note: {{ mbInfo?.note }} </p>
+</ion-item>

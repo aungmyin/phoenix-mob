@@ -22,7 +22,7 @@ export class AuthService {
     this.storageService.get(AuthConstants.AUTH).then(res => {
       console.log(res);
       this.userData$.next(res);
-    })
+    });
   }
 
   getUserDatail(userId: String): Observable<any> {
