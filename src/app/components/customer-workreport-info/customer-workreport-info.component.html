@@ -1,0 +1,37 @@
+<form>
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Customer Name</ion-label>
+      <ion-input autocomplete="off" name="customerName" type="text" value="{{ customerWorkReport?.client_name }}" [(ngModel)]="postData.customerName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Project Name</ion-label>
+      <ion-input autocomplete="off" name="projectName" value="{{projectInfo?.project_name}}" type="email" [(ngModel)]="postData.projectName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Contract Period</ion-label>
+      <ion-input value="{{projectInfo?.start_contract_date | date}} ~ {{projectInfo?.end_contract_date | date}}" autocomplete="off" name="contractPeriod" type="text" [(ngModel)]="postData.contractPeriod"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Customer Work Report: </ion-label>
+      <ion-select slot="end" value="{{projectInfo?.client_report_flg}}" name="custWkReport" placeholder="Select One" >
+        <ion-select-option *ngFor="let r of report_flgs" value="{{ r.id }}">{{ r.value }}</ion-select-option>
+      </ion-select> 
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Client Work Report (PDF)</ion-label>
+      <ion-input slot="end" name="contractPeriod" type="file" accept="image/*" [(ngModel)]="postData.contractPeriod"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked">Actual Working Hours (Total)</ion-label>
+      <ion-input value="{{projectInfo?.customer_working_time}}" autocomplete="off" name="actWorkHour" type="text" [(ngModel)]="postData.actWorkHour"></ion-input>
+    </ion-item>
+
+  </ion-list>
+  <ion-button expand="block" share="round" style="margin: 10px" color="success" >Store</ion-button>
+</form>

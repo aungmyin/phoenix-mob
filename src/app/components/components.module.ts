@@ -13,10 +13,11 @@ import { ProfileComponent } from './profile/profile.component';
 import { MemberInfoComponent } from './member-info/member-info.component';
 import { ClientinfoComponent } from './clientinfo/clientinfo.component';
 import { WorkreportDetailInfoComponent } from './workreport-detail-info/workreport-detail-info.component';
+import { CustomerWorkreportInfoComponent } from './customer-workreport-info/customer-workreport-info.component';
 
 @NgModule({
-  declarations: [SlidesComponent, StartComponent, LogoComponent, FeedCardComponent, FeedUpdateComponent, TimeagoComponent, ExpandableComponent, ProfileComponent, MemberInfoComponent, ClientinfoComponent, WorkreportDetailInfoComponent ],
-  exports: [SlidesComponent, StartComponent, LogoComponent, FeedCardComponent, FeedUpdateComponent, TimeagoComponent, ExpandableComponent, ProfileComponent, MemberInfoComponent, ClientinfoComponent, WorkreportDetailInfoComponent],
+  declarations: [SlidesComponent, StartComponent, LogoComponent, FeedCardComponent, FeedUpdateComponent, TimeagoComponent, ExpandableComponent, ProfileComponent, MemberInfoComponent, ClientinfoComponent, WorkreportDetailInfoComponent, CustomerWorkreportInfoComponent ],
+  exports: [SlidesComponent, StartComponent, LogoComponent, FeedCardComponent, FeedUpdateComponent, TimeagoComponent, ExpandableComponent, ProfileComponent, MemberInfoComponent, ClientinfoComponent, WorkreportDetailInfoComponent, CustomerWorkreportInfoComponent],
   imports: [
     CommonModule,
     IonicModule, // <- do not forget to add this import

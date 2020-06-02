@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { CustomerwkreportPageRoutingModule } from './customerwkreport-routing.module';
 
 import { CustomerwkreportPage } from './customerwkreport.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CustomerwkreportPageRoutingModule
+    CustomerwkreportPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [CustomerwkreportPage]
 })
