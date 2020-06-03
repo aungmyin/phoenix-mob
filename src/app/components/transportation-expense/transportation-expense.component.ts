@@ -104,11 +104,11 @@ export class TransportationExpenseComponent implements OnInit {
 
   getTransporationExpen() {
     this.postData.member_id = this.displayUserData['email'];
-    console.log(this.postData + "Post Datas");
+    //console.log(this.postData + "Post Datas");
     this.transportService.transportExpenseData( this.postData ).subscribe( (res: any) => {
-      console.log(res);
+      //console.log(res);
       this.tranSportExpense = res.transport_expense;
-      console.log(this.tranSportExpense);
+      //console.log(this.tranSportExpense);
     });
   }
 
