@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { ActivatedRoute } from '@angular/router';
+import { ClientinfoService } from 'src/app/services/clientinfo.service';
 
 @Component({
   selector: 'app-client',
@@ -9,60 +11,34 @@ import { AuthService } from 'src/app/services/auth.service';
 export class ClientPage implements OnInit {
   
   postData = {
-    year: '2020',
-    month: '5',
-    workreport_id: '29558',
+    year: '',
+    month: '',
     member_id: ''
   }
 
-  project_info: any;
-  working_hours: any;
 
-  displayUserData: any;
-  workingHour: any;
-  workingPattern: any;
-  contractTypeName: String;
-  indiv_contractid: String;
+  newDate: any;
+  newMonth: any;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private route: ActivatedRoute, private clientService: ClientinfoService) { }
 
   ngOnInit() {
-    this.authService.userData$.subscribe( (res: any) => {
-       //console.log("hello from client " + res);
-       this.displayUserData = res;
-     });
-
-    this.getWorkReportDetailByEmpID();
-  }
-
-  getWorkReportDetailByEmpID() {
-    this.postData.member_id = this.displayUserData['email'];
-
-    this.authService.getWorkReportDetail( this.postData ).subscribe( (res: any) => {
-      console.log(res);
-      this.project_info = res.customer_work_report;
-      this.indiv_contractid = res.project_info.project_infos[0];
-
-      this.workingHour = res.work_report;
-      this.workingPattern = res.project_info.working_hour;
-
-      console.log(this.workingPattern);
-      this.getContractTypeById(res.customer_work_report[0]['client_report_flg']);
-
-      //this.working_hours = res.customer_work_report.project_info.working_hour;
+    //for getting parameters
+    this.route.queryParams.subscribe(params => {
+      this.postData.year = params["year"];
+      this.postData.month = params["month"];
+      console.log(this.postData.year + this.postData.month + " parameter");
     });
-  }
 
-  getContractTypeById(contractId: Number) {
-    if( contractId == 1 ) {
-      this.contractTypeName = "Monthly Contract";
-    } else if ( contractId == 2 ) {
-      this.contractTypeName = "Fixed Contract";
-    } else if (contractId == 3) {
-      this.contractTypeName = "Time Contract";
-    } else {
-      this.contractTypeName = "";
+    if(!this.postData.year) {
+      this.newDate = new Date().getFullYear();
+      this.newMonth = new Date().getMonth();
+      this.postData.year = this.newDate;
+      this.postData.month = this.newMonth + 1;
+     // console.log(this.newDate + this.newMonth + "current year");
     }
+
+
   }
 
 }

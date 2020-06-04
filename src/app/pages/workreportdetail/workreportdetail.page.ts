@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-workreportdetail',
@@ -9,9 +10,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class WorkreportdetailPage implements OnInit {
 
   postData = {
-    year: '2020',
-    month: '5',
-    workreport_id: '29558',
+    year: '',
+    month: '',
     member_id: '',
     totalWH: '',
     totalOverTime: '',
@@ -38,14 +38,21 @@ export class WorkreportdetailPage implements OnInit {
 
   displayUserData: any;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.authService.userData$.subscribe( (res: any) => {
-      this.displayUserData = res;
+    //for getting parameters
+    this.route.queryParams.subscribe(params => {
+      this.postData.year = params["year"];
+      this.postData.month = params["month"];
+      console.log(this.postData.year + this.postData.month + " parameter");
     });
 
-    this.getWorkReportDetailByEmpID();
+    this.authService.userData$.subscribe( (res: any) => {
+      this.displayUserData = res;
+      this.getWorkReportDetailByEmpID();
+    });
+
 
     this.attendance_type = [
       {

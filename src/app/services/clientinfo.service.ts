@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpService } from './http.service';
 
 @Injectable({
@@ -11,7 +11,7 @@ export class ClientinfoService {
 
   constructor(private httpService: HttpService) { }
 
-  clientData(data: any) {
+  clientData(data: any): Observable<any> {
     return this.httpService.getWorkReportDetail("basic_user/basic_user_workreport_detail", data);
   }
 }

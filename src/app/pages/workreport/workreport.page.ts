@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-workreport',
@@ -11,11 +13,14 @@ import { AuthService } from 'src/app/services/auth.service';
 export class WorkreportPage implements OnInit {
 
   postData = {
-    year: '2020',
-    month: '5',
+    year: '',
+    month: '',
     workreport_id: '29558',
     member_id: ''
   }
+
+  newDate: any;
+  newMonth: any;
 
   wReportData: any;
   project_info: any;
@@ -31,13 +36,24 @@ export class WorkreportPage implements OnInit {
 
   displayUserData: any;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    //for tomorrow
-   /* this.route.paramMap.subscribe(params => {
-      this.userType = params.get("userType")
-    }); */
+    //for getting parameters
+    this.route.queryParams.subscribe(params => {
+      this.postData.year = params["year"];
+      this.postData.month = params["month"];
+      console.log(this.postData.year + this.postData.month + " parameter");
+    });
+
+    if(!this.postData.year) {
+      this.newDate = new Date().getFullYear();
+      this.newMonth = new Date().getMonth();
+      this.postData.year = this.newDate;
+      this.postData.month = this.newMonth + 1;
+     // console.log(this.newDate + this.newMonth + "current year");
+    }
+
     this.authService.userData$.subscribe( (res: any) => {
      // console.log("hello from wk " + res.email);
       this.displayUserData = res;
@@ -86,7 +102,7 @@ export class WorkreportPage implements OnInit {
   }
 
   searchWkReportAction() {
-
+    console.log(this.postData.year + this.postData.month);
   }
 
   getWorkReportDetailByEmpID() {
@@ -117,6 +133,10 @@ export class WorkreportPage implements OnInit {
 
 
     });
+  }
+
+  goMoreInfo(urls: String) {
+      this.router.navigate([urls], { queryParams: { 'year': this.postData.year, 'month': this.postData.month } });
   }
 
   unread() {

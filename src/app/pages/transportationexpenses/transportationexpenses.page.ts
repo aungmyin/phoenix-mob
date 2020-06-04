@@ -32,8 +32,9 @@ export class TransportationexpensesPage implements OnInit {
   constructor(private authService: AuthService, private renderer: Renderer2) { }
 
   ngOnInit() {
+    
     this.authService.userData$.subscribe( (res: any) => {
-     console.log("hello Transport " + res.email);
+     //console.log("hello Transport " + res.email);
       this.displayUserData = res;
     });
 

@@ -23,20 +23,20 @@
   </ion-grid>
   <app-member-info></app-member-info>
   <ion-list>
-    <ion-item >
-      <a routerLink="/home/client">Client Information</a>
+    <ion-item (click)="goMoreInfo('/home/client')" >
+      <p>Client Information</p>
       <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
     </ion-item>
-    <ion-item >
-      <a routerLink="/home/workreportdetail">Work Report Detail</a> 
+    <ion-item (click)="goMoreInfo('/home/workreportdetail')">
+      <p>Work Report Detail</p> 
       <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
     </ion-item>
-    <ion-item >
-      <a routerLink="/home/customerwkreport">Customer Work Report</a> 
+    <ion-item (click)="goMoreInfo('/home/customerwkreport')">
+      <p>Customer Work Report</p> 
       <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
     </ion-item>
-    <ion-item >
-      <a routerLink="/home/transportationexpenses">Transportation Expenses</a> 
+    <ion-item (click)="goMoreInfo('/home/transportationexpenses')">
+      <p>Transportation Expenses</p> 
       <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
     </ion-item>
   </ion-list>

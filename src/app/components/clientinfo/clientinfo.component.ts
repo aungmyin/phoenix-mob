@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { HttpService } from 'src/app/services/http.service';
 import { ClientinfoService } from 'src/app/services/clientinfo.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-clientinfo',
@@ -20,15 +20,32 @@ export class ClientinfoComponent implements OnInit {
   project_info: any;
   working_hours: any;
 
+  newDate: any;
+  newMonth: any;
+
   displayUserData: any;
   workingHour: any;
   workingPattern: any;
   contractTypeName: String;
   indiv_contractid: String;
 
-  constructor(private authService: AuthService, private clientInfoService: ClientinfoService) { }
+  constructor(private authService: AuthService, private route: ActivatedRoute, private clientInfoService: ClientinfoService) { }
 
   ngOnInit() {
+     //for getting parameters
+     this.route.queryParams.subscribe(params => {
+      this.postData.year = params["year"];
+      this.postData.month = params["month"];
+      console.log(this.postData.year + this.postData.month + " parameter");
+    });
+
+    if(!this.postData.year) {
+      this.newDate = new Date().getFullYear();
+      this.newMonth = new Date().getMonth();
+      this.postData.year = this.newDate;
+      this.postData.month = this.newMonth + 1;
+     // console.log(this.newDate + this.newMonth + "current year");
+    }
     this.authService.userData$.subscribe( (res: any) => {
       //console.log("hello from client " + res);
       this.displayUserData = res;
