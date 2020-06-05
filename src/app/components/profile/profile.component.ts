@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.authService.userData$.subscribe( (res: any) => {
-      console.log(res.email);
+      //console.log(res.email);
       this.displayUserData = res;
       this.getCurrentUserProfile();
     });
@@ -38,7 +38,7 @@ export class ProfileComponent implements OnInit {
 
      //console.log(this.displayUserData.email + "user id");
      this.profileService.profileData(this.displayUserData.email).subscribe( (res: any) => {
-        console.log(res.show_detail);
+        //console.log(res.show_detail);
         this.UserProfile = res.show_detail;
         //member no format
         this.memberNoFormat(this.UserProfile.member_no);

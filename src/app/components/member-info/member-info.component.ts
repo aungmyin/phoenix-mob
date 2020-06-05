@@ -97,11 +97,9 @@ export class MemberInfoComponent implements OnInit {
       } else {
         this.memberNo = this.memberNo;
       }
-        //console.log(this.memberNo.toString().length);
-     
+      //console.log(this.memberNo.toString().length);
 
       this.compareTranEx = this.mbInfo['dairy_transrate_flg'];
-
 
     });
   }

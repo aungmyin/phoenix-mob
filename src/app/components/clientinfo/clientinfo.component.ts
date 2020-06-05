@@ -11,8 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 export class ClientinfoComponent implements OnInit {
 
   postData = {
-    year: '2020',
-    month: '5',
+    year: '',
+    month: '',
     workreport_id: '29558',
     member_id: ''
   }
@@ -46,6 +46,7 @@ export class ClientinfoComponent implements OnInit {
       this.postData.month = this.newMonth + 1;
      // console.log(this.newDate + this.newMonth + "current year");
     }
+    
     this.authService.userData$.subscribe( (res: any) => {
       //console.log("hello from client " + res);
       this.displayUserData = res;

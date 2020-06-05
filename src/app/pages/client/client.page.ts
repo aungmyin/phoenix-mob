@@ -30,7 +30,7 @@ export class ClientPage implements OnInit {
       console.log(this.postData.year + this.postData.month + " parameter");
     });
 
-    if(!this.postData.year) {
+    if(!this.postData.year || this.postData.year.length == 0) {
       this.newDate = new Date().getFullYear();
       this.newMonth = new Date().getMonth();
       this.postData.year = this.newDate;

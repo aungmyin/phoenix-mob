@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { HttpService } from 'src/app/services/http.service';
 import { CustomerWorkreportInfoService } from 'src/app/services/customer-workreport-info.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-customer-workreport-info',
@@ -12,9 +13,8 @@ import { CustomerWorkreportInfoService } from 'src/app/services/customer-workrep
 export class CustomerWorkreportInfoComponent implements OnInit {
 
   postData = {
-    year: '2020',
-    month: '5',
-    workreport_id: '29558',
+    year: '',
+    month: '',
     member_id: '',
     customerName: '',
     projectName: '',
@@ -28,14 +28,32 @@ export class CustomerWorkreportInfoComponent implements OnInit {
   tran_expen: any = [];
   report_flgs: any = [];
 
+  newDate: any;
+  newMonth: any;
+
   compareTranEx: any;
   customerWorkReport: any;
   projectInfo: any;
   displayUserData: any;
 
-  constructor(private authService: AuthService, private customerService: CustomerWorkreportInfoService, private toastService: ToastService) { }
+  constructor(private authService: AuthService, private route: ActivatedRoute, private customerService: CustomerWorkreportInfoService, private toastService: ToastService) { }
 
   ngOnInit() {
+    //for getting parameters
+    this.route.queryParams.subscribe(params => {
+      this.postData.year = params["year"];
+      this.postData.month = params["month"];
+      console.log(this.postData.year + this.postData.month + " parameter");
+    });
+
+    if(!this.postData.year || this.postData.year.length == 0) {
+      this.newDate = new Date().getFullYear();
+      this.newMonth = new Date().getMonth();
+      this.postData.year = this.newDate;
+      this.postData.month = this.newMonth + 1;
+     // console.log(this.newDate + this.newMonth + "current year");
+    }
+
     this.authService.userData$.subscribe( (res: any) => {
       console.log(res + "sustomer");
       this.displayUserData = res;
@@ -55,7 +73,7 @@ export class CustomerWorkreportInfoComponent implements OnInit {
   }
 
   getWorkReportDetailByEmpID() {
-    this.postData.member_id = this.displayUserData.email;
+    this.postData.member_id = this.displayUserData['email'];
     
     this.customerService.getcustomerData( this.postData ).subscribe( (res: any) => {
       

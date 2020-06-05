@@ -1,0 +1,13 @@
+<ion-grid>
+  <ion-row>
+    <ion-col class="primary" >
+      <ion-input name="year"  class="input-style" type="text" [(ngModel)]="postData.year"></ion-input>
+    </ion-col>
+    <ion-col>
+      <ion-input name="year" class="input-style" type="text" [(ngModel)]="postData.month"></ion-input>
+    </ion-col>
+    <ion-col>
+      <ion-button expand="block" share="round" class="btn-style-search" color="success" (click)="searchWkReportAction()">Search</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>

@@ -1,0 +1,29 @@
+.input-style{
+    border: 1px solid #000000 !important;
+    margin-top: 3px !important;
+    text-align: center !important;
+}
+.btn-style-search{
+    margin: 5px 10px 10px;
+}
+
+.table-responsive{
+    overflow-x:auto;
+    overflow-y:auto;
+    height: 300px;
+    margin: 15px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even){background-color: #f2f2f2}
