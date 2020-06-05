@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { ClientinfoService } from 'src/app/services/clientinfo.service';
 import { ActivatedRoute } from '@angular/router';
@@ -13,12 +13,12 @@ export class ClientinfoComponent implements OnInit {
   postData = {
     year: '',
     month: '',
-    workreport_id: '29558',
     member_id: ''
   }
 
   project_info: any;
   working_hours: any;
+  client_info: any;
 
   newDate: any;
   newMonth: any;
@@ -30,6 +30,8 @@ export class ClientinfoComponent implements OnInit {
   indiv_contractid: String;
 
   constructor(private authService: AuthService, private route: ActivatedRoute, private clientInfoService: ClientinfoService) { }
+  
+  @Input() loginUser: any;
 
   ngOnInit() {
      //for getting parameters
@@ -46,33 +48,34 @@ export class ClientinfoComponent implements OnInit {
       this.postData.month = this.newMonth + 1;
      // console.log(this.newDate + this.newMonth + "current year");
     }
-    
-    this.authService.userData$.subscribe( (res: any) => {
-      //console.log("hello from client " + res);
-      this.displayUserData = res;
 
-      this.getWorkReportDetailByEmpID();
+    this.clientInfoService.clientData$.subscribe((res: any) => {
+      this.client_info = res.project_infos;
     });
-
    
   }
-
+  //get content
   getWorkReportDetailByEmpID() {
-    this.postData.member_id = this.displayUserData['email'];
+    this.postData.member_id = this.loginUser.email;
 
-    this.clientInfoService.clientData( this.postData ).subscribe( (res: any) => {
-      console.log(res);
-      this.project_info = res.customer_work_report;
-      this.indiv_contractid = res.project_info.project_infos[0];
-
-      this.workingHour = res.work_report;
-      this.workingPattern = res.project_info.working_hour;
-
-      console.log(this.workingPattern);
-      this.getContractTypeById(res.customer_work_report[0]['client_report_flg']);
-
-      //this.working_hours = res.customer_work_report.project_info.working_hour;
-    });
+    if(this.postData.member_id) {
+      this.clientInfoService.clientData( this.postData ).subscribe( (res: any) => {
+        console.log(res);
+  
+        this.clientInfoService.changeClientData( res );
+        this.project_info = res.customer_work_report;
+        this.indiv_contractid = res.project_info.project_infos[0];
+  
+        this.workingHour = res.work_report;
+        this.workingPattern = res.project_info.working_hour;
+  
+        console.log(this.workingPattern);
+        this.getContractTypeById(res.customer_work_report[0]['client_report_flg']);
+  
+        //this.working_hours = res.customer_work_report.project_info.working_hour;
+      });
+    }
+    
   }
 
   getContractTypeById(contractId: Number) {

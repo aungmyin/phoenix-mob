@@ -41,7 +41,7 @@ export class FeedPage implements OnInit {
    if (this.postData.user_id && this.postData.token) {
       this.feedSerive.feedData(this.postData).subscribe(
         (res: any) => {
-          //console.log(res.feedData);
+          //console.log(res.feedData); refresh data
           this.feedSerive.changeFeedData(res.feedData);
         },
         (error: any) => {

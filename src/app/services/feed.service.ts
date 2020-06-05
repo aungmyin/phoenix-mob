@@ -10,7 +10,7 @@ export class FeedService {
   feedData$ = new BehaviorSubject<any>(['']);
 
   constructor(private httpService: HttpService ) { }
-
+  //update data
   changeFeedData(data: any) {
     this.feedData$.next(data);
   }

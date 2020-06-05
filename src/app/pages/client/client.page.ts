@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { ClientinfoService } from 'src/app/services/clientinfo.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-client',
@@ -16,11 +17,15 @@ export class ClientPage implements OnInit {
     member_id: ''
   }
 
-
+  authUser:any;
   newDate: any;
   newMonth: any;
 
-  constructor(private authService: AuthService, private route: ActivatedRoute, private clientService: ClientinfoService) { }
+  constructor(
+    private auth: AuthService, 
+    private toastService: ToastService, 
+    private route: ActivatedRoute, 
+    private clientService: ClientinfoService) { }
 
   ngOnInit() {
     //for getting parameters
@@ -38,7 +43,31 @@ export class ClientPage implements OnInit {
      // console.log(this.newDate + this.newMonth + "current year");
     }
 
+    this.auth.userData$.subscribe((res: any) => {
+      this.authUser = res;
+      this.getClientData();
+    });
 
+
+  }
+
+  getClientData() {
+    this.postData.member_id = this.authUser.email;
+    
+    //console.log(this.postData);
+   if (this.postData.member_id) {
+      this.clientService.clientData(this.postData).subscribe(
+        (res: any) => {
+          console.log(res.project_info); //refresh data
+          this.clientService.changeClientData(res.project_info);
+        },
+        (error: any) => {
+          this.toastService.presentToast('Network Issue.');
+        }
+      );
+    } else {
+      this.toastService.presentToast("loading ...");
+    }
   }
 
 }
