@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { MemberInfoService } from 'src/app/services/member-info.service';
 
@@ -10,9 +10,8 @@ import { MemberInfoService } from 'src/app/services/member-info.service';
 export class MemberInfoComponent implements OnInit {
 
   postData = {
-    year: '2020',
-    month: '5',
-    workreport_id: '29558',
+    year: '',
+    month: '',
     member_id: ''
   }
 
@@ -28,18 +27,20 @@ export class MemberInfoComponent implements OnInit {
   compareTranEx: any;
   itemExpandedHeight: number = 200;
   displayUserData: any;
+  memberInfo: any;
 
   constructor(private authService: AuthService, private memberService: MemberInfoService) { }
 
+  @Input() loginUser: any;
+
   ngOnInit() {
-    this.authService.userData$.subscribe( (res: any) => {
-       //console.log("hello from mb info " + res.email);
-       this.displayUserData = res;
+    
+    this.memberService.memberData$.subscribe((res: any) => {
+      this.mbInfo = res;
+      this.memberNo = res.member_no;
+      this.compareTranEx = res.dairy_transrate_flg;
+    });
 
-       this.getMemberDetailByEmpID();
-     });
-
-     
 
     this.items = [
       {expanded: false},
@@ -76,32 +77,24 @@ export class MemberInfoComponent implements OnInit {
     ]
   }
 
-  getMemberDetailByEmpID() {
-    //console.log(this.displayUserData);
-    this.postData.member_id = this.displayUserData.email;
+  /* getMemberDetailByEmpID() {
+    console.log(this.loginUser);
+    this.postData.member_id = this.loginUser.email;
     console.log(this.postData + "mb info");
     this.memberService.memberData( this.postData ).subscribe( (res: any) => {
      console.log(res);
-      this.project_info = res.project_info.project_infos;
-      this.wkReportDetail = res.work_report_detail;
       this.mbInfo = res.member_info;
      
       this.memberNo = this.mbInfo.member_no;
       
-      if( this.memberNo.toString().length == 3 ) {
-        this.memberNo = "0" + this.memberNo;
-      } else if (this.memberNo.toString().length == 2) {
-        this.memberNo = "00" + this.memberNo;
-      } else if (this.memberNo.toString().length == 1) {
-        this.memberNo = "000" + this.memberNo;
-      } else {
-        this.memberNo = this.memberNo;
-      }
+      
       //console.log(this.memberNo.toString().length);
 
       this.compareTranEx = this.mbInfo['dairy_transrate_flg'];
 
     });
-  }
+  } */
+
+  
 
 }

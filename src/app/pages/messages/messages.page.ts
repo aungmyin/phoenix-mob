@@ -13,7 +13,13 @@ import { Router } from '@angular/router';
 export class MessagesPage implements OnInit {
   listItems: any;
 
-  displayUserData: any;
+  postData = {
+    year: '',
+    month: '',
+    member_id: ''
+  }
+
+  authUser: any;
 
   activeMenu: String;
 
@@ -40,12 +46,12 @@ export class MessagesPage implements OnInit {
    }
 
   ngOnInit() {
-    this.authService.userData$.subscribe( (res: any) => {
-      console.log(res.email);
-      this.displayUserData = res;
+    this.authService.userData$.subscribe((res: any) => {
+      this.authUser = res;
+      this.getCurrentUserProfile();
     });
 
-    this.getCurrentUserProfile();
+   // this.getCurrentUserProfile();
 
   }
 
@@ -61,9 +67,10 @@ export class MessagesPage implements OnInit {
   }
 
   getCurrentUserProfile() {
+    this.postData.member_id = this.authUser.email;
    // console.log(this.displayUserData.email);
-    this.authService.getUserDatail( this.displayUserData.email ).subscribe( (res: any) => {
-      console.log(res.show_detail);
+    this.authService.getUserDatail( this.authUser.email ).subscribe( (res: any) => {
+      //console.log(res.show_detail);
       this.UserProfile = res.show_detail;
 
       this.memberNo = this.UserProfile.member_no;

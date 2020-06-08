@@ -8,8 +8,8 @@
 </ion-header>
 
 <ion-content>
-  <app-workreport-search></app-workreport-search>
-  <app-member-info></app-member-info>
+  <app-workreport-search [loginUser]="authUser"></app-workreport-search>
+  <app-member-info [loginUser]="authUser"></app-member-info>
   <ion-list>
     <ion-item (click)="goMoreInfo('/home/client')" >
       <p>Client Information</p>

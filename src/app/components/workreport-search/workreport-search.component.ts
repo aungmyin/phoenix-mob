@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MemberInfoComponent } from '../member-info/member-info.component';
 import { MemberInfoService } from 'src/app/services/member-info.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-workreport-search',
@@ -9,11 +9,13 @@ import { MemberInfoService } from 'src/app/services/member-info.service';
   styleUrls: ['./workreport-search.component.scss'],
 })
 export class WorkreportSearchComponent implements OnInit {
+  
 
   postData = {
     year: '',
     month: '',
-    member_id: ''
+    member_id: '',
+    member_info: ''
   }
 
   displayUserData: any;
@@ -27,14 +29,16 @@ export class WorkreportSearchComponent implements OnInit {
   memberNo: any;
   compareTranEx: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private memberService: MemberInfoService) { }
-
+  constructor(private route: ActivatedRoute, private toastService: ToastService, private router: Router, private memberService: MemberInfoService) { }
+  @Input() loginUser: any;
+  
   ngOnInit() {
+    //console.log(this.loginUser + "wkrp search");
     //for getting parameters
     this.route.queryParams.subscribe(params => {
       this.postData.year = params["year"];
       this.postData.month = params["month"];
-      console.log(this.postData.year + this.postData.month + " parameter");
+      //console.log(this.postData.year + this.postData.month + " parameter");
     });
 
     if(!this.postData.year || this.postData.year.length == 0) {
@@ -50,7 +54,46 @@ export class WorkreportSearchComponent implements OnInit {
     console.log(this.postData.year + this.postData.month);
     this.router.navigate(['/home/workreport'], { queryParams: { 'year': this.postData.year, 'month': this.postData.month } });
     
-    this.getMemberDetailByEmpID();
+    this.workReportUpdateAction();
+  }
+
+  
+
+  validateInputs() {
+    
+    return (
+      this.postData.year && 
+      this.postData.month
+    );
+  }
+
+  workReportUpdateAction() {
+    this.postData.member_id = this.loginUser.email;
+    console.log(this.loginUser + "login");
+    if(this.validateInputs()) {
+      this.memberService.memberData(this.postData).subscribe( (res: any) => {
+        this.postData.member_info = '';
+        console.log(res.member_info + "mb data");
+        this.memberService.updateMemberData(res.member_info);
+      })
+    } else {
+      this.toastService.presentToast("member info can't empty");
+    }
+    
+  }
+
+  formatMemberNo(mbno: any) {
+    if( this.memberNo.toString().length == 3 ) {
+      this.memberNo = "0" + this.memberNo;
+    } else if (this.memberNo.toString().length == 2) {
+      this.memberNo = "00" + this.memberNo;
+    } else if (this.memberNo.toString().length == 1) {
+      this.memberNo = "000" + this.memberNo;
+    } else {
+      this.memberNo = this.memberNo;
+    }
+
+    return this.memberNo;
   }
 
   getMemberDetailByEmpID() {
@@ -70,20 +113,6 @@ export class WorkreportSearchComponent implements OnInit {
       this.compareTranEx = this.mbInfo['dairy_transrate_flg'];
 
     });
-  }
-
-  formatMemberNo(mbno: any) {
-    if( this.memberNo.toString().length == 3 ) {
-      this.memberNo = "0" + this.memberNo;
-    } else if (this.memberNo.toString().length == 2) {
-      this.memberNo = "00" + this.memberNo;
-    } else if (this.memberNo.toString().length == 1) {
-      this.memberNo = "000" + this.memberNo;
-    } else {
-      this.memberNo = this.memberNo;
-    }
-
-    return this.memberNo;
   }
 
 }

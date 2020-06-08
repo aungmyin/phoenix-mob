@@ -38,7 +38,7 @@ export class ClientinfoComponent implements OnInit {
      this.route.queryParams.subscribe(params => {
       this.postData.year = params["year"];
       this.postData.month = params["month"];
-      console.log(this.postData.year + this.postData.month + " parameter");
+      //console.log(this.postData.year + this.postData.month + " parameter");
     });
 
     if(!this.postData.year) {
@@ -60,7 +60,7 @@ export class ClientinfoComponent implements OnInit {
 
     if(this.postData.member_id) {
       this.clientInfoService.clientData( this.postData ).subscribe( (res: any) => {
-        console.log(res);
+       // console.log(res);
   
         this.clientInfoService.changeClientData( res );
         this.project_info = res.customer_work_report;

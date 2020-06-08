@@ -3,6 +3,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Route } from '@angular/compiler/src/core';
 import { HttpService } from 'src/app/services/http.service';
+import { MemberInfoService } from 'src/app/services/member-info.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-workreport',
@@ -30,9 +32,9 @@ export class WorkreportPage implements OnInit {
   compareTranEx: any;
   itemExpandedHeight: number = 200;
 
-  displayUserData: any;
+  authUser: any;
 
-  constructor(private authService: AuthService, private httpService: HttpService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private auth: AuthService, private toastService: ToastService, private memberInfo: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     //for getting parameters
@@ -42,13 +44,19 @@ export class WorkreportPage implements OnInit {
       console.log(this.postData.year + this.postData.month + " parameter");
     });
 
-    if(!this.postData.year) {
+    if(!this.postData.year || this.postData.year == '') {
       this.newDate = new Date().getFullYear();
       this.newMonth = new Date().getMonth();
       this.postData.year = this.newDate;
       this.postData.month = this.newMonth + 1;
-     // console.log(this.newDate + this.newMonth + "current year");
+      console.log(this.newDate + this.newMonth + "current year");
     }
+
+    this.auth.userData$.subscribe((res: any) => {
+      this.authUser = res;
+     // console.log(this.authUser);
+      this.getWorkReportData();
+    });
 
     this.items = [
       {expanded: false},
@@ -67,6 +75,25 @@ export class WorkreportPage implements OnInit {
     ];
 
 
+  }
+
+  getWorkReportData() {
+    this.postData.member_id = this.authUser.email;
+    
+   // console.log(this.postData + "mingalar");
+   if (this.postData.member_id) {
+      this.memberInfo.memberData(this.postData).subscribe(
+        (res: any) => {
+         // console.log(res.member_info); //refresh data
+          this.memberInfo.changeMemberData(res.member_info);
+        },
+        (error: any) => {
+          this.toastService.presentToast('Network Issue.');
+        }
+      );
+    } else {
+      this.toastService.presentToast("loading ...");
+    }
   }
 
   expandedItem(item: any) {

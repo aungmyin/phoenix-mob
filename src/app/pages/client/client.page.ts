@@ -32,7 +32,7 @@ export class ClientPage implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.postData.year = params["year"];
       this.postData.month = params["month"];
-      console.log(this.postData.year + this.postData.month + " parameter");
+      //console.log(this.postData.year + this.postData.month + " parameter");
     });
 
     if(!this.postData.year || this.postData.year.length == 0) {
