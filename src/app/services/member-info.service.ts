@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpService } from './http.service';
 
 @Injectable({
@@ -16,7 +16,7 @@ export class MemberInfoService {
     this.memberData$.next(data);
   }
 
-  memberData(data: any) {
+  memberData(data: any): Observable<any> {
     return this.httpService.getWorkReportDetail("basic_user/basic_user_workreport_detail", data);
   }
 
@@ -26,13 +26,14 @@ export class MemberInfoService {
   }
 
   updateMemberData(newdata: any) {
-    let data = [];
-    data.push(newdata);
+    //let data = [];
+   // data.push(newdata);
 
-    let currentMbData = this.getCurrentMbData();
-    let newMbUpdateData = data.concat(currentMbData);
-    
-    this.changeMemberData(newMbUpdateData);
+    //let currentMbData = this.getCurrentMbData();
+    //let newMbUpdateData = data.concat(currentMbData);
+    //let newMbUpdateData = currentMbData;
+    //console.log(newdata);
+    this.changeMemberData(newdata);
   }
   
 }

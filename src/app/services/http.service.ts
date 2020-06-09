@@ -32,7 +32,7 @@ export class HttpService {
   }
 
   getWorkReportDetail(serviceName: string, data: any) {
-    //console.log(data + "http data");
+    //console.log(data.year + data.month + data.member_id + "http data");
     const headers = new HttpHeaders({
       'Access-Control-Allow-Origin': "*"    
     });

@@ -34,7 +34,7 @@ export class MemberInfoComponent implements OnInit {
   constructor(private authService: AuthService, private memberService: MemberInfoService) { }
 
   ngOnInit() {
-    
+    this.postData.member_info = '';
     this.memberService.memberData$.subscribe((res: any) => {
       this.postData.member_info = res;
       this.memberNo = res.member_no;

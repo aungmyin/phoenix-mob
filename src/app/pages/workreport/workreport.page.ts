@@ -14,7 +14,8 @@ import { ToastService } from 'src/app/services/toast.service';
 
 
 export class WorkreportPage implements OnInit {
-
+  public authUser: any;
+  
   postData = {
     year: '',
     month: '',
@@ -24,7 +25,6 @@ export class WorkreportPage implements OnInit {
   newDate: any;
   newMonth: any;
 
-
   items: any = [];
   tran_expen: any = [];
   yeardropdown: any = [];
@@ -32,7 +32,6 @@ export class WorkreportPage implements OnInit {
   compareTranEx: any;
   itemExpandedHeight: number = 200;
 
-  public authUser: any;
 
   constructor(private auth: AuthService, private toastService: ToastService, private memberInfo: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
 

@@ -57,9 +57,17 @@ export class WorkreportSearchComponent implements OnInit {
   }
 
   searchWkReportAction() {
-    console.log(this.postData.year + this.postData.month);
-
-    this.workReportUpdateAction();
+    this.postData.member_id = this.authUser.email;
+    //console.log(this.postData.month + " login");
+    if(this.validateInputs()) {
+      this.memberService.memberData(this.postData).subscribe( (res: any) => {
+        this.postData.member_info = '';
+        console.log(res.member_info);
+        this.memberService.updateMemberData(res.member_info);
+      })
+    } else {
+      this.toastService.presentToast("date can't empty");
+    }
 
     this.router.navigate(['/home/workreport'], { queryParams: { 'year': this.postData.year, 'month': this.postData.month } });
     
