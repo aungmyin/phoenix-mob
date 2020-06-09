@@ -32,7 +32,7 @@ export class WorkreportPage implements OnInit {
   compareTranEx: any;
   itemExpandedHeight: number = 200;
 
-  authUser: any;
+  public authUser: any;
 
   constructor(private auth: AuthService, private toastService: ToastService, private memberInfo: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
 
@@ -44,7 +44,7 @@ export class WorkreportPage implements OnInit {
       console.log(this.postData.year + this.postData.month + " parameter");
     });
 
-    if(!this.postData.year || this.postData.year == '') {
+    if(!this.postData.year || this.postData.year === '') {
       this.newDate = new Date().getFullYear();
       this.newMonth = new Date().getMonth();
       this.postData.year = this.newDate;
@@ -77,6 +77,20 @@ export class WorkreportPage implements OnInit {
 
   }
 
+  doRefresh(event) {
+    console.log('Begin async operation');
+    this.auth.userData$.subscribe((res: any) => {
+      this.authUser = res;
+     // console.log(this.authUser);
+      this.getWorkReportData();
+      event.target.complete();
+    });
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      
+    }, 5000);
+  }
+
   getWorkReportData() {
     this.postData.member_id = this.authUser.email;
     
@@ -101,7 +115,7 @@ export class WorkreportPage implements OnInit {
   }
 
   goMoreInfo(urls: String) {
-      this.router.navigate([urls], { queryParams: { 'year': this.postData.year, 'month': this.postData.month } });
+    this.router.navigate([urls], { queryParams: { 'year': this.postData.year, 'month': this.postData.month } });
   }
 
   unread() {

@@ -54,6 +54,9 @@ export class ClientinfoComponent implements OnInit {
     });
    
   }
+
+ 
+
   //get content
   getWorkReportDetailByEmpID() {
     this.postData.member_id = this.loginUser.email;

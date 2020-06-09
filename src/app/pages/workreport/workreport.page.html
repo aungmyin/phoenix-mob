@@ -8,6 +8,13 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content 
+    pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing..."></ion-refresher-content>
+  </ion-refresher>
   <app-workreport-search [loginUser]="authUser"></app-workreport-search>
   <app-member-info [loginUser]="authUser"></app-member-info>
   <ion-list>

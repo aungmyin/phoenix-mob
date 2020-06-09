@@ -8,14 +8,14 @@
     <p>Employee ID: YTS_{{ memberNo }} </p>
   </ion-item>
   <ion-item >
-    <p>Employee Name: {{ mbInfo?.first_name }} {{ mbInfo?.last_name }} </p>
+    <p>Employee Name: {{ postData.member_info?.first_name }} {{ mbInfo?.last_name }} </p>
   </ion-item>
   <ion-item >
-    <p>Own Department: {{ mbInfo?.unit_name }} </p>
+    <p>Own Department: {{ postData.member_info?.unit_name }} </p>
   </ion-item>
   <ion-item>
     <p>Status: </p>
-    <ion-select slot="end" value="{{ mbInfo?.status }}" placeholder="Select One" >
+    <ion-select slot="end" value="{{ postData.member_info?.status }}" placeholder="Select One" >
       <ion-select-option *ngFor="let o of own_depart" value="{{ o.id }}">{{ o.value }}</ion-select-option>
     </ion-select> 
   </ion-item>
@@ -28,5 +28,5 @@
   </ion-item>
 </ion-list>
 <ion-item>
-  <p>Note: {{ mbInfo?.note }} </p>
+  <p>Note: {{ postData.member_info?.note }} </p>
 </ion-item>

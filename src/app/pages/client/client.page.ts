@@ -51,6 +51,19 @@ export class ClientPage implements OnInit {
 
   }
 
+  doRefresh(event) {
+    console.log('Begin async operation');
+    this.auth.userData$.subscribe((res: any) => {
+      this.authUser = res;
+      this.getClientData();
+      event.target.complete();
+    });
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      
+    }, 5000);
+  }
+
   getClientData() {
     this.postData.member_id = this.authUser.email;
     

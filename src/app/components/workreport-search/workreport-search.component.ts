@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MemberInfoService } from 'src/app/services/member-info.service';
 import { ToastService } from 'src/app/services/toast.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-workreport-search',
@@ -10,6 +11,7 @@ import { ToastService } from 'src/app/services/toast.service';
 })
 export class WorkreportSearchComponent implements OnInit {
   
+  @Input() loginUser: any;
 
   postData = {
     year: '',
@@ -18,10 +20,10 @@ export class WorkreportSearchComponent implements OnInit {
     member_info: ''
   }
 
-  displayUserData: any;
-
   newDate: any;
   newMonth: any;
+
+  authUser: any;
 
   project_info: any;
   wkReportDetail: any;
@@ -29,9 +31,8 @@ export class WorkreportSearchComponent implements OnInit {
   memberNo: any;
   compareTranEx: any;
 
-  constructor(private route: ActivatedRoute, private toastService: ToastService, private router: Router, private memberService: MemberInfoService) { }
-  @Input() loginUser: any;
-  
+  constructor(private route: ActivatedRoute, private auth: AuthService, private toastService: ToastService, private router: Router, private memberService: MemberInfoService) { }
+
   ngOnInit() {
     //console.log(this.loginUser + "wkrp search");
     //for getting parameters
@@ -48,13 +49,21 @@ export class WorkreportSearchComponent implements OnInit {
       this.postData.month = this.newMonth + 1;
      // console.log(this.newDate + this.newMonth + "current year");
     }
+
+    this.auth.userData$.subscribe((res: any) => {
+      this.authUser = res;
+     // console.log(this.authUser);
+    });
   }
 
   searchWkReportAction() {
     console.log(this.postData.year + this.postData.month);
+
+    this.workReportUpdateAction();
+
     this.router.navigate(['/home/workreport'], { queryParams: { 'year': this.postData.year, 'month': this.postData.month } });
     
-    this.workReportUpdateAction();
+    
   }
 
   
@@ -68,12 +77,12 @@ export class WorkreportSearchComponent implements OnInit {
   }
 
   workReportUpdateAction() {
-    this.postData.member_id = this.loginUser.email;
-    console.log(this.loginUser + "login");
+    this.postData.member_id = this.authUser.email;
+    console.log(this.postData + " login");
     if(this.validateInputs()) {
       this.memberService.memberData(this.postData).subscribe( (res: any) => {
         this.postData.member_info = '';
-        console.log(res.member_info + "mb data");
+        console.log(res.member_info + " mb data");
         this.memberService.updateMemberData(res.member_info);
       })
     } else {
@@ -97,12 +106,12 @@ export class WorkreportSearchComponent implements OnInit {
   }
 
   getMemberDetailByEmpID() {
-    //console.log(this.displayUserData);
-    this.postData.member_id = this.displayUserData.email;
-   // console.log(this.postData + "mb info");
+    
+    this.postData.member_id = this.authUser.email;
     this.project_info ='';
+    console.log(this.postData);
     this.memberService.memberData( this.postData ).subscribe( (res: any) => {
-      //console.log(res);
+      console.log(res);
       this.project_info = res.project_info.project_infos;
       this.wkReportDetail = res.work_report_detail;
       this.mbInfo = res.member_info;

@@ -8,11 +8,13 @@ import { MemberInfoService } from 'src/app/services/member-info.service';
   styleUrls: ['./member-info.component.scss'],
 })
 export class MemberInfoComponent implements OnInit {
+  @Input() loginUser: any;
 
   postData = {
     year: '',
     month: '',
-    member_id: ''
+    member_id: '',
+    member_info: ''
   }
 
   wReportData: any;
@@ -31,12 +33,10 @@ export class MemberInfoComponent implements OnInit {
 
   constructor(private authService: AuthService, private memberService: MemberInfoService) { }
 
-  @Input() loginUser: any;
-
   ngOnInit() {
     
     this.memberService.memberData$.subscribe((res: any) => {
-      this.mbInfo = res;
+      this.postData.member_info = res;
       this.memberNo = res.member_no;
       this.compareTranEx = res.dairy_transrate_flg;
     });
