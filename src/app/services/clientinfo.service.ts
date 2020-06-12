@@ -18,4 +18,8 @@ export class ClientinfoService {
   clientData(data: any): Observable<any> {
     return this.httpService.getWorkReportDetail("basic_user/basic_user_workreport_detail", data);
   }
+
+  updateClientData(newdata: any) {
+    this.changeClientData(newdata);
+  }
 }

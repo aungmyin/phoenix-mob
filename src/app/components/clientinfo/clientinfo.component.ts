@@ -23,7 +23,6 @@ export class ClientinfoComponent implements OnInit {
   newDate: any;
   newMonth: any;
 
-  displayUserData: any;
   workingHour: any;
   workingPattern: any;
   contractTypeName: String;
@@ -48,7 +47,7 @@ export class ClientinfoComponent implements OnInit {
       this.postData.month = this.newMonth + 1;
      // console.log(this.newDate + this.newMonth + "current year");
     }
-
+    this.client_info = "";
     this.clientInfoService.clientData$.subscribe((res: any) => {
       this.client_info = res.project_infos;
     });

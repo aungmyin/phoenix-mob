@@ -43,7 +43,7 @@ export class WorkreportPage implements OnInit {
       console.log(this.postData.year + this.postData.month + " parameter");
     });
 
-    if(!this.postData.year || this.postData.year === '') {
+    if(!this.postData.year || this.postData.year == '') {
       this.newDate = new Date().getFullYear();
       this.newMonth = new Date().getMonth();
       this.postData.year = this.newDate;
@@ -97,7 +97,7 @@ export class WorkreportPage implements OnInit {
    if (this.postData.member_id) {
       this.memberInfo.memberData(this.postData).subscribe(
         (res: any) => {
-         // console.log(res.member_info); //refresh data
+          console.log(res.member_info); //refresh data
           this.memberInfo.changeMemberData(res.member_info);
         },
         (error: any) => {

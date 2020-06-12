@@ -55,6 +55,19 @@ export class MessagesPage implements OnInit {
 
   }
 
+  doRefresh(event) {
+    console.log('Begin async operation');
+    this.authService.userData$.subscribe((res: any) => {
+      this.authUser = res;
+      this.getCurrentUserProfile();
+      event.target.complete();
+    });
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      
+    }, 3000);
+  }
+
   onRenderItems(event) {  
     console.log(`Move item from ${event.detail.from} to ${event.detail.to}`);   
     const draggedItem = this.listItems.splice(event.detail.from, 1)[0];  
@@ -68,7 +81,7 @@ export class MessagesPage implements OnInit {
 
   getCurrentUserProfile() {
     this.postData.member_id = this.authUser.email;
-   // console.log(this.displayUserData.email);
+    console.log(this.postData);
     this.authService.getUserDatail( this.authUser.email ).subscribe( (res: any) => {
       //console.log(res.show_detail);
       this.UserProfile = res.show_detail;

@@ -11,7 +11,16 @@ export class TransportationExpenseService {
 
   constructor(private httpService: HttpService) { }
 
+  changeTransportData(data: any) {
+    this.transportExpenseData$.next(data);
+  }
   transportExpenseData(data: any) {
+    console.log(data);
     return this.httpService.getWorkReportDetail("basic_user/basic_user_workreport_detail", data);
   }
+
+  updateTransportExpense(newdata: any) {
+    this.changeTransportData(newdata);
+  }
+
 }

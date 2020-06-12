@@ -61,7 +61,7 @@ export class ClientPage implements OnInit {
     setTimeout(() => {
       console.log('Async operation has ended');
       
-    }, 5000);
+    }, 3000);
   }
 
   getClientData() {
@@ -69,15 +69,17 @@ export class ClientPage implements OnInit {
     
     //console.log(this.postData);
    if (this.postData.member_id) {
+      
       this.clientService.clientData(this.postData).subscribe(
         (res: any) => {
           console.log(res.project_info); //refresh data
-          this.clientService.changeClientData(res.project_info);
+          this.clientService.updateClientData(res.project_info);
         },
         (error: any) => {
           this.toastService.presentToast('Network Issue.');
         }
       );
+
     } else {
       this.toastService.presentToast("loading ...");
     }

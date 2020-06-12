@@ -22,6 +22,7 @@ export class MemberInfoComponent implements OnInit {
   wkReportDetail: any;
   mbInfo: any;
   memberNo: String;
+  fmmemberNo: any;
 
   items: any = [];
   tran_expen: any = [];
@@ -34,10 +35,11 @@ export class MemberInfoComponent implements OnInit {
   constructor(private authService: AuthService, private memberService: MemberInfoService) { }
 
   ngOnInit() {
-    this.postData.member_info = '';
+    //this.postData.member_info = '';
     this.memberService.memberData$.subscribe((res: any) => {
-      this.postData.member_info = res;
-      this.memberNo = res.member_no;
+     // console.log(res);
+      this.mbInfo = res;
+      this.memberNoFormat(res.member_no);
       this.compareTranEx = res.dairy_transrate_flg;
     });
 
@@ -75,6 +77,19 @@ export class MemberInfoComponent implements OnInit {
         value: 'Accepted'
       }
     ]
+  }
+
+  memberNoFormat(mbno: Number) {
+    if( mbno < 10 ) {
+      this.fmmemberNo = "000" + mbno;
+    } else if (mbno < 100) {
+      this.fmmemberNo = "00" + mbno;
+    } else if (mbno < 1000) {
+      this.fmmemberNo = "0" + mbno;
+    } else {
+      this.fmmemberNo = mbno;
+    }
+    //console.log(this.fmmemberNo + "member no.")
   }
 
   /* getMemberDetailByEmpID() {

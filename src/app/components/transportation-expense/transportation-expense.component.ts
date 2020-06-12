@@ -33,7 +33,7 @@ export class TransportationExpenseComponent implements OnInit {
 
   @ViewChild('addtable', {static: false}) table: ElementRef;
 
-  constructor(private authService: AuthService, private route: ActivatedRoute, private renderer: Renderer2, private transportService: TransportationExpenseService) { }
+  constructor(private authService: AuthService, private tranSportSerivce: TransportationExpenseService, private route: ActivatedRoute, private renderer: Renderer2, private transportService: TransportationExpenseService) { }
 
   ngOnInit() {
     //for getting parameters
@@ -51,12 +51,16 @@ export class TransportationExpenseComponent implements OnInit {
      // console.log(this.newDate + this.newMonth + "current year");
     }
 
-    this.authService.userData$.subscribe( (res: any) => {
-      console.log("hello Transport " + res.email);
-       this.displayUserData = res;
- 
-       this.getTransporationExpen();
-     });
+    this.tranSportExpense = "";
+    this.tranSportSerivce.transportExpenseData$.subscribe((res: any) => {
+      //console.log(res);
+      if(res.use_date == null) {
+        this.tranSportExpense = '';
+      } else {
+        this.tranSportExpense = res;
+      }
+      
+    });
  
      this.tran_expen = [
        {
@@ -120,7 +124,7 @@ export class TransportationExpenseComponent implements OnInit {
  
   }
 
-  getTransporationExpen() {
+ /* getTransporationExpen() {
     this.postData.member_id = this.displayUserData['email'];
     //console.log(this.postData + "Post Datas");
     this.transportService.transportExpenseData( this.postData ).subscribe( (res: any) => {
@@ -128,7 +132,7 @@ export class TransportationExpenseComponent implements OnInit {
       this.tranSportExpense = res.transport_expense;
       //console.log(this.tranSportExpense);
     });
-  }
+  } */
 
   storeAction() {
 
