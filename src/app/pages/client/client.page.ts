@@ -73,7 +73,7 @@ export class ClientPage implements OnInit {
       this.clientService.clientData(this.postData).subscribe(
         (res: any) => {
           console.log(res.project_info); //refresh data
-          this.clientService.updateClientData(res.project_info);
+          this.clientService.updateClientData(res);
         },
         (error: any) => {
           this.toastService.presentToast('Network Issue.');

@@ -32,7 +32,7 @@ export class MemberInfoService {
     //let currentMbData = this.getCurrentMbData();
     //let newMbUpdateData = data.concat(currentMbData);
     //let newMbUpdateData = currentMbData;
-    //console.log(newdata);
+    console.log(newdata);
     this.changeMemberData(newdata);
   }
   

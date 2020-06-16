@@ -47,13 +47,14 @@ export class ClientinfoComponent implements OnInit {
       this.postData.month = this.newMonth + 1;
      // console.log(this.newDate + this.newMonth + "current year");
     }
-    this.client_info = "";
+    
     this.clientInfoService.clientData$.subscribe((res: any) => {
+      this.client_info = "";
+     // console.log(this.postData);
       this.client_info = res.project_infos;
     });
    
   }
-
  
 
   //get content

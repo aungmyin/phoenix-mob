@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { MemberInfoService } from 'src/app/services/member-info.service';
 
@@ -18,8 +19,6 @@ export class MemberInfoComponent implements OnInit {
   }
 
   wReportData: any;
-  project_info: any;
-  wkReportDetail: any;
   mbInfo: any;
   memberNo: String;
   fmmemberNo: any;
@@ -29,18 +28,17 @@ export class MemberInfoComponent implements OnInit {
   own_depart: any = [];
   compareTranEx: any;
   itemExpandedHeight: number = 200;
-  displayUserData: any;
+  comp_sName: String;
   memberInfo: any;
 
-  constructor(private authService: AuthService, private memberService: MemberInfoService) { }
+  constructor(private authService: AuthService, private memberService: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     //this.postData.member_info = '';
     this.memberService.memberData$.subscribe((res: any) => {
-     // console.log(res);
-      this.mbInfo = res;
-      this.memberNoFormat(res.member_no);
-      this.compareTranEx = res.dairy_transrate_flg;
+      this.comp_sName = res.company_name_short;
+      this.mbInfo = res.member_info;
+      console.log(res.member_info);
     });
 
 
@@ -89,8 +87,10 @@ export class MemberInfoComponent implements OnInit {
     } else {
       this.fmmemberNo = mbno;
     }
-    //console.log(this.fmmemberNo + "member no.")
+
+    return this.fmmemberNo;
   }
+
 
   /* getMemberDetailByEmpID() {
     console.log(this.loginUser);

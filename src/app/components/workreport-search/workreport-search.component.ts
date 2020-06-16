@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { MemberInfoService } from 'src/app/services/member-info.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -61,9 +61,8 @@ export class WorkreportSearchComponent implements OnInit {
     //console.log(this.postData.month + " login");
     if(this.validateInputs()) {
       this.memberService.memberData(this.postData).subscribe( (res: any) => {
-        this.postData.member_info = '';
-        console.log(res.member_info);
-        this.memberService.updateMemberData(res.member_info);
+        //console.log(res.member_info);
+        this.memberService.updateMemberData(res);
       })
     } else {
       this.toastService.presentToast("date can't empty");
@@ -74,29 +73,12 @@ export class WorkreportSearchComponent implements OnInit {
     
   }
 
-  
-
   validateInputs() {
     
     return (
       this.postData.year && 
       this.postData.month
     );
-  }
-
-  workReportUpdateAction() {
-    this.postData.member_id = this.authUser.email;
-    console.log(this.postData + " login");
-    if(this.validateInputs()) {
-      this.memberService.memberData(this.postData).subscribe( (res: any) => {
-        this.postData.member_info = '';
-        console.log(res.member_info + " mb data");
-        this.memberService.updateMemberData(res.member_info);
-      })
-    } else {
-      this.toastService.presentToast("member info can't empty");
-    }
-    
   }
 
   formatMemberNo(mbno: any) {

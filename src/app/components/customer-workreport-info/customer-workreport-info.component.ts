@@ -60,11 +60,11 @@ export class CustomerWorkreportInfoComponent implements OnInit {
     }); */
 
     this.postData.member_id = this.loginUser.email;
-    
+    console.log(this.loginUser.member_id);
     this.customerService.getcustomerData( this.postData ).subscribe( (res: any) => {
       
-      this.customerWorkReport = res.customer_work_report[0];
-      this.projectInfo = res.project_info.project_infos[0];
+      //dthis.customerWorkReport = res.customer_work_report[0];
+      //this.projectInfo = res.project_info.project_infos[0];
       console.log(res);
     },
     (error: any) => {

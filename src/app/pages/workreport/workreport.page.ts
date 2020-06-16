@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { Route } from '@angular/compiler/src/core';
 import { HttpService } from 'src/app/services/http.service';
 import { MemberInfoService } from 'src/app/services/member-info.service';
@@ -19,7 +19,8 @@ export class WorkreportPage implements OnInit {
   postData = {
     year: '',
     month: '',
-    member_id: ''
+    member_id: '',
+    member_info: ''
   }
 
   newDate: any;
@@ -32,6 +33,20 @@ export class WorkreportPage implements OnInit {
   compareTranEx: any;
   itemExpandedHeight: number = 200;
 
+  user = {
+    name: 'Simon Grimm',
+    website: 'www.ionicacademy.com',
+    address: {
+      zip: 48149,
+      city: 'Muenster',
+      country: 'DE'
+    },
+    interests: [
+      'Ionic', 'Angular', 'YouTube', 'Sports'
+    ]
+  };
+
+  data: any;
 
   constructor(private auth: AuthService, private toastService: ToastService, private memberInfo: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
 
@@ -87,7 +102,7 @@ export class WorkreportPage implements OnInit {
     setTimeout(() => {
       console.log('Async operation has ended');
       
-    }, 5000);
+    }, 3000);
   }
 
   getWorkReportData() {
@@ -97,8 +112,10 @@ export class WorkreportPage implements OnInit {
    if (this.postData.member_id) {
       this.memberInfo.memberData(this.postData).subscribe(
         (res: any) => {
-          console.log(res.member_info); //refresh data
-          this.memberInfo.changeMemberData(res.member_info);
+          this.postData.member_info = "";
+         // console.log(res); //refresh data
+         this.postData.member_info = res;
+          this.memberInfo.changeMemberData(res);
         },
         (error: any) => {
           this.toastService.presentToast('Network Issue.');
@@ -114,7 +131,17 @@ export class WorkreportPage implements OnInit {
   }
 
   goMoreInfo(urls: String) {
-    this.router.navigate([urls], { queryParams: { 'year': this.postData.year, 'month': this.postData.month } });
+    this.getWorkReportData();
+    //console.log(this.postData.member_info);
+    let navigationExtras: NavigationExtras = {
+      state: {
+        special: this.postData.member_info,
+        'year': this.postData.year,
+        'month': this.postData.month
+      }
+    };
+    
+    this.router.navigate([urls], navigationExtras);
   }
 
   unread() {
