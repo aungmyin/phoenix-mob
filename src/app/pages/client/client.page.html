@@ -8,12 +8,72 @@
 </ion-header>
 
 <ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  <!--<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content 
     pullingIcon="chevron-down-circle-outline"
       pullingText="Pull to refresh"
       refreshingSpinner="circles"
       refreshingText="Refreshing..."></ion-refresher-content>
   </ion-refresher>
-  <app-clientinfo [loginUser]="authUser"></app-clientinfo>
+  <app-clientinfo [loginUser]="authUser"></app-clientinfo> -->
+  <ion-item >
+    <h3>Client Information</h3>
+  </ion-item>
+  <ion-list>
+    <ion-item>{{ postData.year }} {{ postData.month }}</ion-item>
+  </ion-list>
+  <ion-list *ngFor="let clinfo of data; let i = index">
+    <ion-item-sliding>
+      <ion-item >
+        <p>Individual Contract No.: {{ clinfo?.individual_contract_no }}</p>
+      </ion-item>
+      <ion-item >
+        <p>Company Name: {{ clinfo?.client_name }}</p>
+      </ion-item>
+      <ion-item>
+        <p>Project Name: {{ clinfo?.project_name }}</p>
+      </ion-item>
+      <ion-item>
+        <p>Contract Period: {{ clinfo?.start_contract_date | date }} to {{ clinfo?.end_contract_date | date }} </p>
+      </ion-item>
+      <ion-item >
+        <p>Contract Type: <span *ngFor="let f of clientrpflg; let i = index">{{ getContractTypeById(f.client_report_flg) }}</span>  </p>
+      </ion-item>
+      <ion-item>
+        <p>During working hours: {{ workingHour?.min_width_time }}h ~ {{ workingHour?.max_width_time }}h </p>
+      </ion-item>
+      
+    <!--<ion-item>
+        <p>Contract End: 
+          <ion-datetime displayFormat="YYYY-MM-DD" value="{{ clinfo?.end_contract_date}}"></ion-datetime>
+        </p>
+      </ion-item>-->
+      <ion-item-options side="end">
+        <ion-item-option >Unread</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+    
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <h4>Working Hours:</h4>
+    </ion-item>
+    <ion-item>
+      <div *ngFor="let p of workingPattern; let i=index;" >
+        <p *ngIf="p.pattern_flg == 1">
+          {{ p.pattern }} {{ p.start_time }} ~ {{ p.end_time }} Break Time: {{ p.break_time }}min {{ p.working_time }}h
+        </p>
+        
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngFor="let w of working_hours; let i = index">
+    <ion-item>
+      <ion-checkbox slot="start" color="primary" ></ion-checkbox>
+      Break Time {{ w.pattern }} <br/>
+      {{ w.start_time }}~{{ w.end_time }} Break Time {{ w.break_time }} {{ w.working_time }}h  </ion-item>
+  </ion-list>
+
+  
 </ion-content>

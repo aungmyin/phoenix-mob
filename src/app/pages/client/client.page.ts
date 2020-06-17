@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClientinfoService } from 'src/app/services/clientinfo.service';
 import { ToastService } from 'src/app/services/toast.service';
 
@@ -21,21 +21,32 @@ export class ClientPage implements OnInit {
   newDate: any;
   newMonth: any;
 
+  contractTypeName: String;
+  workingHour: any;
+  data: any;
+  projectInfo: any;
+  clientrpflg: any;
+
   constructor(
     private auth: AuthService, 
     private toastService: ToastService, 
     private route: ActivatedRoute, 
+    private router: Router,
     private clientService: ClientinfoService) {
-      
-     }
+      this.route.queryParams.subscribe(params => {
+        if (this.router.getCurrentNavigation().extras.state) {
+          this.projectInfo = this.router.getCurrentNavigation().extras.state.special;
+          this.clientrpflg = this.router.getCurrentNavigation().extras.state.clientrpflg;
+          this.postData.year = this.router.getCurrentNavigation().extras.state.year;
+          this.postData.month = this.router.getCurrentNavigation().extras.state.month;
+
+          this.data = this.projectInfo.project_infos;
+        }
+      });
+    }
 
   ngOnInit() {
-    //for getting parameters
-    this.route.queryParams.subscribe(params => {
-      this.postData.year = params["year"];
-      this.postData.month = params["month"];
-      //console.log(this.postData.year + this.postData.month + " parameter");
-    });
+   
 
     if(!this.postData.year || this.postData.year.length == 0) {
       this.newDate = new Date().getFullYear();
@@ -45,14 +56,25 @@ export class ClientPage implements OnInit {
      // console.log(this.newDate + this.newMonth + "current year");
     }
 
-    this.auth.userData$.subscribe((res: any) => {
+    /* this.auth.userData$.subscribe((res: any) => {
       this.authUser = res;
       this.getClientData();
-    });
+    }); */
 
   }
 
-  doRefresh(event) {
+  getContractTypeById(contractId: Number) {
+    if( contractId == 1 ) {
+      this.contractTypeName = "Monthly Contract";
+    } else if ( contractId == 2 ) {
+      this.contractTypeName = "Fixed Contract";
+    } else if (contractId == 3) {
+      this.contractTypeName = "Time Contract";
+    } else {
+      this.contractTypeName = "-";
+    }
+  }
+  /* doRefresh(event) {
     console.log('Begin async operation');
     this.auth.userData$.subscribe((res: any) => {
       this.authUser = res;
@@ -63,9 +85,9 @@ export class ClientPage implements OnInit {
       console.log('Async operation has ended');
       
     }, 3000);
-  }
+  } */
 
-  getClientData() {
+  /* getClientData() {
     this.postData.member_id = this.authUser.email;
     
     //console.log(this.postData);
@@ -85,6 +107,6 @@ export class ClientPage implements OnInit {
     }
 
     //this.ngOnInit();
-  }
+  } */
 
 }

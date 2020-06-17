@@ -57,6 +57,8 @@ export class WorkreportPage implements OnInit {
 
   data: any;
   newData: any;
+  customerWorkReport: any;
+  clientRpFlg: any;
 
   constructor(private auth: AuthService, private toastService: ToastService, private customerInfo: CustomerWorkreportInfoService, private memberInfo: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
 
@@ -163,13 +165,28 @@ export class WorkreportPage implements OnInit {
   }
 
   goMoreInfoFirst(urls: String) {
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-        "year": this.postData.year,
-        "month": this.postData.month
-      }
-    };
-    this.router.navigate([urls], navigationExtras);
+    this.postData.member_id = this.authUser.email;
+    //console.log(this.postData.month + " login");
+    
+    this.customerInfo.getcustomerData(this.postData).subscribe( (res: any) => {
+      this.newData = res;
+      this.customerWorkReport = res.customer_work_report[0];
+      this.clientRpFlg = res.customer_work_report;
+  
+      console.log(this.newData.project_info);
+      this.customerInfo.updateCustomerData(res);
+
+      let navigationExtras: NavigationExtras = {
+        state: {
+          special: this.newData.project_info,
+          clientrpflg: this.clientRpFlg,
+          year: this.postData.year,
+          month: this.postData.month
+        }
+      };
+    
+      this.router.navigate([urls], navigationExtras);
+    });
   }
 
   unread() {
