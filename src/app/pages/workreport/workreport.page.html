@@ -18,11 +18,11 @@
   <app-workreport-search [loginUser]="authUser"></app-workreport-search>
   <app-member-info [loginUser]="authUser"></app-member-info>
   <ion-list>
-    <ion-item (click)="goMoreInfo('/home/client')" >
+    <ion-item (click)="goMoreInfoFirst('/home/client')" >
       <p>Client Information</p>
       <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
     </ion-item>
-    <ion-item (click)="goMoreInfo('/home/workreportdetail')">
+    <ion-item (click)="goMoreInfoFirst('/home/workreportdetail')">
       <p>Work Report Detail</p> 
       <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
     </ion-item>
@@ -30,7 +30,7 @@
       <p>Customer Work Report</p> 
       <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
     </ion-item>
-    <ion-item (click)="goMoreInfo('/home/transportationexpenses')">
+    <ion-item (click)="goMoreInfoFirst('/home/transportationexpenses')">
       <p>Transportation Expenses</p> 
       <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
     </ion-item>

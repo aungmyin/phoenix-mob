@@ -77,12 +77,12 @@ export class TransportationexpensesPage implements OnInit {
   getTransportData() {
     this.postData.member_id = this.authUser.email;
     
-    //console.log(this.postData);
+    console.log(this.postData);
    if (this.postData.member_id) {
     //console.log(this.postData.member_id + "mb id have exist");
       this.transportServ.transportExpenseData(this.postData).subscribe(
         (res: any) => {
-         // console.log(res.transport_expense); //refresh data
+          //console.log(res.transport_expense); //refresh data
           this.transportServ.updateTransportExpense(res.transport_expense);
         },
         (error: any) => {

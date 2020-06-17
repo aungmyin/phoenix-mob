@@ -5,6 +5,7 @@ import { Route } from '@angular/compiler/src/core';
 import { HttpService } from 'src/app/services/http.service';
 import { MemberInfoService } from 'src/app/services/member-info.service';
 import { ToastService } from 'src/app/services/toast.service';
+import { CustomerWorkreportInfoService } from 'src/app/services/customer-workreport-info.service';
 
 @Component({
   selector: 'app-workreport',
@@ -21,6 +22,14 @@ export class WorkreportPage implements OnInit {
     month: '',
     member_id: '',
     member_info: ''
+  }
+
+  customer = {
+    client_name: '',
+    project_name: '',
+    contract_period: '',
+    client_report_flg: '',
+    customer_working_time: '',
   }
 
   newDate: any;
@@ -47,8 +56,9 @@ export class WorkreportPage implements OnInit {
   };
 
   data: any;
+  newData: any;
 
-  constructor(private auth: AuthService, private toastService: ToastService, private memberInfo: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private auth: AuthService, private toastService: ToastService, private customerInfo: CustomerWorkreportInfoService, private memberInfo: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     //for getting parameters
@@ -112,9 +122,9 @@ export class WorkreportPage implements OnInit {
    if (this.postData.member_id) {
       this.memberInfo.memberData(this.postData).subscribe(
         (res: any) => {
-          this.postData.member_info = "";
-         // console.log(res); //refresh data
-         this.postData.member_info = res;
+          //console.log(res); //refresh data
+          this.data = res;
+
           this.memberInfo.changeMemberData(res);
         },
         (error: any) => {
@@ -131,16 +141,34 @@ export class WorkreportPage implements OnInit {
   }
 
   goMoreInfo(urls: String) {
-    this.getWorkReportData();
-    //console.log(this.postData.member_info);
+    this.postData.member_id = this.authUser.email;
+    //console.log(this.postData.month + " login");
+    
+    this.customerInfo.getcustomerData(this.postData).subscribe( (res: any) => {
+      this.newData = res;
+      //console.log(this.newData.customer_work_report);
+      this.customerInfo.updateCustomerData(res);
+
+      let navigationExtras: NavigationExtras = {
+        state: {
+          special: this.newData.customer_work_report,
+          year: this.postData.year,
+          month: this.postData.month
+        }
+      };
+    
+      this.router.navigate([urls], navigationExtras);
+    });
+    
+  }
+
+  goMoreInfoFirst(urls: String) {
     let navigationExtras: NavigationExtras = {
-      state: {
-        special: this.postData.member_info,
-        'year': this.postData.year,
-        'month': this.postData.month
+      queryParams: {
+        "year": this.postData.year,
+        "month": this.postData.month
       }
     };
-    
     this.router.navigate([urls], navigationExtras);
   }
 

@@ -50,8 +50,8 @@ export class ClientinfoComponent implements OnInit {
     
     this.clientInfoService.clientData$.subscribe((res: any) => {
       this.client_info = "";
-     // console.log(this.postData);
       this.client_info = res.project_infos;
+     // console.log(res.project_info);
     });
    
   }

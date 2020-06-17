@@ -25,7 +25,9 @@ export class ClientPage implements OnInit {
     private auth: AuthService, 
     private toastService: ToastService, 
     private route: ActivatedRoute, 
-    private clientService: ClientinfoService) { }
+    private clientService: ClientinfoService) {
+      
+     }
 
   ngOnInit() {
     //for getting parameters
@@ -48,7 +50,6 @@ export class ClientPage implements OnInit {
       this.getClientData();
     });
 
-
   }
 
   doRefresh(event) {
@@ -69,11 +70,10 @@ export class ClientPage implements OnInit {
     
     //console.log(this.postData);
    if (this.postData.member_id) {
-      
       this.clientService.clientData(this.postData).subscribe(
         (res: any) => {
           console.log(res.project_info); //refresh data
-          this.clientService.updateClientData(res);
+          this.clientService.updateClientData(res.project_info);
         },
         (error: any) => {
           this.toastService.presentToast('Network Issue.');
@@ -83,6 +83,8 @@ export class ClientPage implements OnInit {
     } else {
       this.toastService.presentToast("loading ...");
     }
+
+    //this.ngOnInit();
   }
 
 }

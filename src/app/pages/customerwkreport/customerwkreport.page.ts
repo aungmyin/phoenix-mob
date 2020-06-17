@@ -10,7 +10,7 @@ import { ToastService } from 'src/app/services/toast.service';
   styleUrls: ['./customerwkreport.page.scss'],
 })
 export class CustomerwkreportPage implements OnInit {
-
+  
   postData = {
     year: '',
     month: '',
@@ -31,7 +31,15 @@ export class CustomerwkreportPage implements OnInit {
   customerReports: any;  
   report_flgs: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private auth: AuthService, private toastService: ToastService, private customerServe: CustomerWorkreportInfoService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private auth: AuthService, private toastService: ToastService, private customerServe: CustomerWorkreportInfoService) {
+    this.route.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        this.data = this.router.getCurrentNavigation().extras.state.special;
+        this.postData.year = this.router.getCurrentNavigation().extras.state.year;
+        this.postData.month = this.router.getCurrentNavigation().extras.state.month;
+      }
+    });
+   }
 
   ngOnInit() {
    
@@ -46,13 +54,6 @@ export class CustomerwkreportPage implements OnInit {
       }
     ];
 
-    //for getting parameters
-    this.route.queryParams.subscribe(params => {
-      this.postData.year = params["year"];
-      this.postData.month = params["month"];
-      //console.log(this.postData.year + this.postData.month + " parameter");
-    });
-
     if(!this.postData.year || this.postData.year.length == 0) {
       this.newDate = new Date().getFullYear();
       this.newMonth = new Date().getMonth();
@@ -61,19 +62,18 @@ export class CustomerwkreportPage implements OnInit {
      // console.log(this.newDate + this.newMonth + "current year");
     }
 
-    this.customerReports = "";
    
-    this.route.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation().extras.state) {
-        this.data = '';
-        this.data = this.router.getCurrentNavigation().extras.state.special;
-        this.postData.year = this.router.getCurrentNavigation().extras.state.year;
-        this.postData.month = this.router.getCurrentNavigation().extras.state.month;
-        this.customerReports = this.data.customer_work_report;
-        console.log(this.data);
-        console.log("hello customer");
-      }
-    });
+    // this.route.queryParams.subscribe(params => {
+    //   if (this.router.getCurrentNavigation().extras.state) {
+    //     this.data = '';
+    //     this.data = this.router.getCurrentNavigation().extras.state.special;
+    //     this.postData.year = this.router.getCurrentNavigation().extras.state.year;
+    //     this.postData.month = this.router.getCurrentNavigation().extras.state.month;
+    //     this.customerReports = this.data.customer_work_report;
+    //     console.log(this.data);
+    //     console.log("hello customer");
+    //   }
+    // });
 
     
   }
