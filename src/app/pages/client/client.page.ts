@@ -26,6 +26,8 @@ export class ClientPage implements OnInit {
   data: any;
   projectInfo: any;
   clientrpflg: any;
+  wkPattern: any;
+  wkingHour: any;
 
   constructor(
     private auth: AuthService, 
@@ -37,10 +39,14 @@ export class ClientPage implements OnInit {
         if (this.router.getCurrentNavigation().extras.state) {
           this.projectInfo = this.router.getCurrentNavigation().extras.state.special;
           this.clientrpflg = this.router.getCurrentNavigation().extras.state.clientrpflg;
+          this.wkPattern = this.router.getCurrentNavigation().extras.state.workingPattern;
+          this.wkingHour = this.router.getCurrentNavigation().extras.state.workingHour;
           this.postData.year = this.router.getCurrentNavigation().extras.state.year;
           this.postData.month = this.router.getCurrentNavigation().extras.state.month;
 
           this.data = this.projectInfo.project_infos;
+
+          console.log(this.wkingHour);
         }
       });
     }

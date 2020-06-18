@@ -22,22 +22,26 @@
   <ion-list>
     <ion-item>{{ postData.year }} {{ postData.month }}</ion-item>
   </ion-list>
-  <ion-list *ngFor="let clinfo of data; let i = index">
+  <ion-list *ngFor="let clinfo of data;">
     <ion-item-sliding>
       <ion-item >
-        <p>Individual Contract No.: {{ clinfo?.individual_contract_no }}</p>
+        <p>Individual Contract No.: {{ clinfo.individual_contract_no }}</p>
       </ion-item>
       <ion-item >
-        <p>Company Name: {{ clinfo?.client_name }}</p>
+        <p>Company Name: {{ clinfo.client_name }}</p>
       </ion-item>
       <ion-item>
-        <p>Project Name: {{ clinfo?.project_name }}</p>
+        <p>Project Name: {{ clinfo.project_name }}</p>
       </ion-item>
       <ion-item>
-        <p>Contract Period: {{ clinfo?.start_contract_date | date }} to {{ clinfo?.end_contract_date | date }} </p>
+        <p>Contract Period: {{ clinfo.start_contract_date | date }} to {{ clinfo.end_contract_date | date }} </p>
       </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-list>
+    <ion-item-sliding>
       <ion-item >
-        <p>Contract Type: <span *ngFor="let f of clientrpflg; let i = index">{{ getContractTypeById(f.client_report_flg) }}</span>  </p>
+        <p>Contract Type: <span >{{ getContractTypeById(clientrpflg?.client_report_flg) }}</span>  </p>
       </ion-item>
       <ion-item>
         <p>During working hours: {{ workingHour?.min_width_time }}h ~ {{ workingHour?.max_width_time }}h </p>
@@ -54,26 +58,26 @@
     </ion-item-sliding>
     
   </ion-list>
+
   <ion-list>
     <ion-item>
       <h4>Working Hours:</h4>
     </ion-item>
     <ion-item>
-      <div *ngFor="let p of workingPattern; let i=index;" >
+      <div *ngFor="let p of wkPattern; let i=index;" >
         <p *ngIf="p.pattern_flg == 1">
           {{ p.pattern }} {{ p.start_time }} ~ {{ p.end_time }} Break Time: {{ p.break_time }}min {{ p.working_time }}h
         </p>
-        
       </div>
     </ion-item>
   </ion-list>
 
-  <ion-list *ngFor="let w of working_hours; let i = index">
+  <ion-list >
     <ion-item>
       <ion-checkbox slot="start" color="primary" ></ion-checkbox>
-      Break Time {{ w.pattern }} <br/>
-      {{ w.start_time }}~{{ w.end_time }} Break Time {{ w.break_time }} {{ w.working_time }}h  </ion-item>
+      Break Time {{ wkingHour?.pattern }} <br/>
+      {{ wkingHour?.start_time }}~{{ wkingHour?.end_time }} Break Time {{ wkingHour?.break_time }} {{ wkingHour?.working_time }}h  
+    </ion-item>
   </ion-list>
-
   
 </ion-content>

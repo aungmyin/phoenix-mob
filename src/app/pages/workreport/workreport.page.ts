@@ -59,6 +59,8 @@ export class WorkreportPage implements OnInit {
   newData: any;
   customerWorkReport: any;
   clientRpFlg: any;
+  workingPattern: any;
+  workingHour: any;
 
   constructor(private auth: AuthService, private toastService: ToastService, private customerInfo: CustomerWorkreportInfoService, private memberInfo: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
 
@@ -172,6 +174,8 @@ export class WorkreportPage implements OnInit {
       this.newData = res;
       this.customerWorkReport = res.customer_work_report[0];
       this.clientRpFlg = res.customer_work_report;
+      this.workingPattern = res.project_info.working_hour;
+      this.workingHour = res.work_report;
   
       console.log(this.newData.project_info);
       this.customerInfo.updateCustomerData(res);
@@ -180,6 +184,8 @@ export class WorkreportPage implements OnInit {
         state: {
           special: this.newData.project_info,
           clientrpflg: this.clientRpFlg,
+          workingPattern: this.workingPattern,
+          workingHour: this.workingHour,
           year: this.postData.year,
           month: this.postData.month
         }
