@@ -17,6 +17,8 @@ export class FeedPage implements OnInit {
     token: ''
   };
 
+  curtime: any;
+
   constructor(
     private auth: AuthService,
     private feedSerive: FeedService,
@@ -29,6 +31,10 @@ export class FeedPage implements OnInit {
       this.authUser = res;
       //this.getFeedData();
     });
+
+    this.curtime = new Date().toJSON("HH:mm");
+
+    console.log( this.curtime );
 
   }
 

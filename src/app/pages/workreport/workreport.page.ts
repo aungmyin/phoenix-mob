@@ -42,25 +42,19 @@ export class WorkreportPage implements OnInit {
   compareTranEx: any;
   itemExpandedHeight: number = 200;
 
-  user = {
-    name: 'Simon Grimm',
-    website: 'www.ionicacademy.com',
-    address: {
-      zip: 48149,
-      city: 'Muenster',
-      country: 'DE'
-    },
-    interests: [
-      'Ionic', 'Angular', 'YouTube', 'Sports'
-    ]
-  };
-
   data: any;
   newData: any;
   customerWorkReport: any;
   clientRpFlg: any;
   workingPattern: any;
   workingHour: any;
+
+  wkreport_detail: any;
+  wkReport: any;
+  workPattern: any;
+  workPatternExist: any;
+  wkreport_detail_date: any;
+  tranSportExpense: any;
 
   constructor(private auth: AuthService, private toastService: ToastService, private customerInfo: CustomerWorkreportInfoService, private memberInfo: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
 
@@ -166,7 +160,7 @@ export class WorkreportPage implements OnInit {
     
   }
 
-  goMoreInfoFirst(urls: String) {
+  goMoreInfoClient(urls: String) {
     this.postData.member_id = this.authUser.email;
     //console.log(this.postData.month + " login");
     
@@ -193,6 +187,57 @@ export class WorkreportPage implements OnInit {
     
       this.router.navigate([urls], navigationExtras);
     });
+  }
+
+  goMoreInfoWorkReport(urls: String) {
+    this.postData.member_id = this.authUser.email;
+    //console.log(this.postData.month + " login");
+    
+    this.customerInfo.getcustomerData(this.postData).subscribe( (res: any) => {
+
+      this.wkreport_detail = res.work_report_detail;
+      this.wkReport = res.work_report;
+      this.workPattern = res.project_info.working_hour;
+      this.wkreport_detail_date = res.work_report_detail[0]['report_date'];
+  
+      this.customerInfo.updateCustomerData(res);
+
+      let navigationExtras: NavigationExtras = {
+        state: {
+          special: this.wkreport_detail,
+          wkReport: this.wkReport,
+          workPattern: this.workPattern,
+          wkreport_detail_date: this.wkreport_detail_date,
+          workingHour: this.workingHour,
+          year: this.postData.year,
+          month: this.postData.month
+        }
+      };
+    
+      this.router.navigate([urls], navigationExtras);
+    });
+  }
+
+  goMoreInfoTranExp(urls: String) {
+    this.postData.member_id = this.authUser.email;
+    //console.log(this.postData.month + " login");
+    
+    this.customerInfo.getcustomerData(this.postData).subscribe( (res: any) => {
+      this.tranSportExpense = res;
+      //console.log(this.tranSportExpense.transport_expense);
+      this.customerInfo.updateCustomerData(res);
+
+      let navigationExtras: NavigationExtras = {
+        state: {
+          special: this.tranSportExpense.transport_expense,
+          year: this.postData.year,
+          month: this.postData.month
+        }
+      };
+    
+      this.router.navigate([urls], navigationExtras);
+    });
+    
   }
 
   unread() {

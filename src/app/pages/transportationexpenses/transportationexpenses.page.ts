@@ -1,6 +1,6 @@
 import { Component, Renderer2, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TransportationExpenseService } from 'src/app/services/transportation-expense.service';
 import { ToastService } from 'src/app/services/toast.service';
 
@@ -33,20 +33,23 @@ export class TransportationexpensesPage implements OnInit {
 
   newDate: any;
   newMonth: any;
+  newData: any;
 
   @ViewChild('addtable', {static: false}) table: ElementRef;
 
-  constructor(private authService: AuthService, private transportServ: TransportationExpenseService, private toastService: ToastService , private route: ActivatedRoute, private renderer: Renderer2) { }
+  constructor(private authService: AuthService, private router: Router, private transportServ: TransportationExpenseService, private toastService: ToastService , private route: ActivatedRoute, private renderer: Renderer2) {
+    if (this.router.getCurrentNavigation().extras.state) {
+      this.tranSportExpense = this.router.getCurrentNavigation().extras.state.special;
+      this.postData.year = this.router.getCurrentNavigation().extras.state.year;
+      this.postData.month = this.router.getCurrentNavigation().extras.state.month;
+
+    console.log(this.tranSportExpense);
+   }
+  }
 
   ngOnInit() {
     //for getting parameters
-    this.route.queryParams.subscribe(params => {
-      this.postData.year = params["year"];
-      this.postData.month = params["month"];
-      console.log(this.postData.year + this.postData.month + " parameter");
-    });
-
-    if(!this.postData.year) {
+    if(!this.postData.year || this.postData.year.length == 0) {
       this.newDate = new Date().getFullYear();
       this.newMonth = new Date().getMonth();
       this.postData.year = this.newDate;
@@ -54,10 +57,10 @@ export class TransportationexpensesPage implements OnInit {
      // console.log(this.newDate + this.newMonth + "current year");
     }
 
-    this.authService.userData$.subscribe((res: any) => {
+    /* this.authService.userData$.subscribe((res: any) => {
       this.authUser = res;
       this.getTransportData();
-    });
+    }); */
     
   }
 
@@ -93,6 +96,35 @@ export class TransportationexpensesPage implements OnInit {
     } else {
       this.toastService.presentToast("loading ...");
     }
+  }
+
+  removeAction() {
+    console.log("remove");
+  }
+
+  storeAction() {
+    console.log("store action");
+  }
+
+  addAction() {
+    let count = 0;
+    let currentDate = new Date();
+    console.log("add html");
+    this.compareTranEx = this.tran_expen;
+    const p: HTMLElement = this.renderer.createElement('tr');
+    p.className = "aClassName"+count;
+    p.innerHTML = "<td ><ion-datetime value='"+currentDate+"' displayFormat='dd-MM-YYYY' ></ion-datetime></td>";
+    p.innerHTML += "<td ><ion-input type='text' name='destination' ></ion-input></td>";
+    p.innerHTML += "<td ><ion-select name='selectone' value='1' placeholder='Select One'><ion-select-option value='1' selected>Bus</ion-select-option><ion-select-option value='2'>Train</ion-select-option><ion-select-option value='3'>Taxi</ion-select-option><ion-select-option value='4'>Air Plane</ion-select-option><ion-select-option value='5'>Other</ion-select-option></ion-select></td>";
+    p.innerHTML += "<td ><ion-input type='text' name='destination' ></ion-input></td>";
+    p.innerHTML += "<td ><ion-input type='text' name='destination' ></ion-input></td>";
+    p.innerHTML += "<td ><ion-select name='rourte_type' value='1' placeholder='Select One'><ion-select-option value='1' selected>One-way</ion-select-option><ion-select-option value='2'>Round-Trip</ion-select-option></ion-select></td>";
+    p.innerHTML += "<td ><ion-select name='print_flg' value='1' placeholder='Select One'><ion-select-option value='1' selected>No</ion-select-option><ion-select-option value='2'>Yes</ion-select-option></ion-select></td>";
+    p.innerHTML += "<td ><ion-input type='text' name='destination' ></ion-input></td>";
+    p.innerHTML += "<td ><ion-select name='demand_type' value='1' placeholder='Select One'><ion-select-option value='1' selected>in house</ion-select-option><ion-select-option value='2'>Customer</ion-select-option></ion-select></td>";
+    p.innerHTML += "<td ><ion-button expand='block' share='round' style='margin: 10px' color='warning' (click)='removeAction()' >Remove</ion-input></td>";
+    this.renderer.appendChild(this.table.nativeElement, p);
+    
   }
 
 }
