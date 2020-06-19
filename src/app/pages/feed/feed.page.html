@@ -1,20 +1,67 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <ion-buttons slot="start" style="color:#707070">
       <ion-menu-button ></ion-menu-button>
     </ion-buttons>
-    <ion-title>Home</ion-title>
+    <ion-buttons slot="end" class="btn-help">
+      <span style="color: #3ea0e6;">Help</span> 
+      <ion-icon name="help-circle-outline" style="width: 23px; height: 23px; color: #3ea0e6;"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item>
+  <div class="moring">Good Morning,</div>
+  <div class="username">
+    <h1>{{ authUser?.name }}</h1>
+  </div>
+  <ion-list lines="none" class="nextview-blk">
+    <ion-item class="application">
+      Applications
+    </ion-item>
+    <ion-item class="link-pages">
+      Web Report Application
+      <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+  </ion-list>
+  <ion-list lines="none" class="nextview-blk">
+    <ion-item class="application">
+      Applications
+    </ion-item>
+    <ion-item class="link-pages">
+      Transporation Expenses
+      <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+  </ion-list>
+  <ion-list lines="none" class="nextview-blk">
+    <ion-item class="application">
+      Applications
+    </ion-item>
+    <ion-item class="link-pages">
+      Customer Web Report
+      <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+  </ion-list>
+  <ion-list lines="none" class="nextview-blk">
+    <ion-item class="link-pages">
+      Your Profile
+      <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+  </ion-list>
+  <ion-list lines="none" class="nextview-blk bggray">
+    <ion-item class="link-pages bggray">
+      <ion-icon slot="start" style="font-size: 22px;" name="call-sharp"></ion-icon>
+      Contact your representative
+    </ion-item>
+  </ion-list>
+  
+  <!--<ion-item>
     <h2>Welcome to {{ authUser?.name }}</h2>
   </ion-item>
   <div style="text-align: center;">
     <app-logo></app-logo>
   </div>
   {{ curtime }}
-  <!--<app-feed-update [loginUser]="authUser"></app-feed-update>
+  <app-feed-update [loginUser]="authUser"></app-feed-update>
   <app-feed-card [loginUser]="authUser"></app-feed-card>-->
 </ion-content>
