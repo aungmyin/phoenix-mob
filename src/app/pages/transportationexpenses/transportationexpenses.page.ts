@@ -1,6 +1,6 @@
 import { Component, Renderer2, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { TransportationExpenseService } from 'src/app/services/transportation-expense.service';
 import { ToastService } from 'src/app/services/toast.service';
 
@@ -37,14 +37,22 @@ export class TransportationexpensesPage implements OnInit {
 
   @ViewChild('addtable', {static: false}) table: ElementRef;
 
-  constructor(private authService: AuthService, private router: Router, private transportServ: TransportationExpenseService, private toastService: ToastService , private route: ActivatedRoute, private renderer: Renderer2) {
-    if (this.router.getCurrentNavigation().extras.state) {
-      this.tranSportExpense = this.router.getCurrentNavigation().extras.state.special;
-      this.postData.year = this.router.getCurrentNavigation().extras.state.year;
-      this.postData.month = this.router.getCurrentNavigation().extras.state.month;
+  constructor(
+    private authService: AuthService, 
+    private router: Router, 
+    private route: ActivatedRoute,
+    private transportServ: TransportationExpenseService, 
+    private toastService: ToastService,
+    private renderer: Renderer2) {
+      this.route.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        this.tranSportExpense = this.router.getCurrentNavigation().extras.state.special;
+        this.postData.year = this.router.getCurrentNavigation().extras.state.year;
+        this.postData.month = this.router.getCurrentNavigation().extras.state.month;
 
-    console.log(this.tranSportExpense);
-   }
+      console.log(this.tranSportExpense);
+      }
+    });
   }
 
   ngOnInit() {

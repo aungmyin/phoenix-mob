@@ -6,6 +6,7 @@ import { HttpService } from 'src/app/services/http.service';
 import { MemberInfoService } from 'src/app/services/member-info.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { CustomerWorkreportInfoService } from 'src/app/services/customer-workreport-info.service';
+import { TransportationExpenseService } from 'src/app/services/transportation-expense.service';
 
 @Component({
   selector: 'app-workreport',
@@ -56,7 +57,14 @@ export class WorkreportPage implements OnInit {
   wkreport_detail_date: any;
   tranSportExpense: any;
 
-  constructor(private auth: AuthService, private toastService: ToastService, private customerInfo: CustomerWorkreportInfoService, private memberInfo: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
+  constructor(
+    private auth: AuthService, 
+    private toastService: ToastService, 
+    private customerInfo: CustomerWorkreportInfoService, 
+    private memberInfo: MemberInfoService, 
+    private route: ActivatedRoute, 
+    private router: Router,
+    private transportServ: TransportationExpenseService,) { }
 
   ngOnInit() {
     //for getting parameters
@@ -141,7 +149,7 @@ export class WorkreportPage implements OnInit {
   goMoreInfo(urls: String) {
     this.postData.member_id = this.authUser.email;
     //console.log(this.postData.month + " login");
-    
+    //search by date again
     this.customerInfo.getcustomerData(this.postData).subscribe( (res: any) => {
       this.newData = res;
       //console.log(this.newData.customer_work_report);
@@ -162,8 +170,7 @@ export class WorkreportPage implements OnInit {
 
   goMoreInfoClient(urls: String) {
     this.postData.member_id = this.authUser.email;
-    //console.log(this.postData.month + " login");
-    
+    //search by date again
     this.customerInfo.getcustomerData(this.postData).subscribe( (res: any) => {
       this.newData = res;
       this.customerWorkReport = res.customer_work_report[0];
@@ -183,7 +190,7 @@ export class WorkreportPage implements OnInit {
           year: this.postData.year,
           month: this.postData.month
         }
-      };
+      }; 
     
       this.router.navigate([urls], navigationExtras);
     });
@@ -192,7 +199,7 @@ export class WorkreportPage implements OnInit {
   goMoreInfoWorkReport(urls: String) {
     this.postData.member_id = this.authUser.email;
     //console.log(this.postData.month + " login");
-    
+    //search by date again
     this.customerInfo.getcustomerData(this.postData).subscribe( (res: any) => {
 
       this.wkreport_detail = res.work_report_detail;
@@ -221,15 +228,15 @@ export class WorkreportPage implements OnInit {
   goMoreInfoTranExp(urls: String) {
     this.postData.member_id = this.authUser.email;
     //console.log(this.postData.month + " login");
-    
+    //search by date again
     this.customerInfo.getcustomerData(this.postData).subscribe( (res: any) => {
-      this.tranSportExpense = res;
-      //console.log(this.tranSportExpense.transport_expense);
+      this.newData = res;
+      //console.log(this.newData.customer_work_report);
       this.customerInfo.updateCustomerData(res);
 
       let navigationExtras: NavigationExtras = {
         state: {
-          special: this.tranSportExpense.transport_expense,
+          special: this.newData.transport_expense,
           year: this.postData.year,
           month: this.postData.month
         }
@@ -237,6 +244,25 @@ export class WorkreportPage implements OnInit {
     
       this.router.navigate([urls], navigationExtras);
     });
+    /* this.postData.member_id = this.authUser.email;
+    //console.log(this.postData.month + " login");
+    //search by date again
+    this.transportServ.transportExpenseData(this.postData).subscribe( (res: any) => {
+      this.tranSportExpense = res;
+      //console.log(this.tranSportExpense.transport_expense);
+      console.log(this.postData); 
+      this.transportServ.updateTransportExpense(res);
+
+      let navigationExtras: NavigationExtras = {
+        state: {
+          special: res.transport_expense,
+          year: this.postData.year,
+          month: this.postData.month
+        }
+      };
+    
+      this.router.navigate([urls], navigationExtras);
+    }); */
     
   }
 
