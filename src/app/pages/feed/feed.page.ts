@@ -36,7 +36,7 @@ export class FeedPage implements OnInit {
       //this.getFeedData();
     });
 
-    this.curtime = formatDate(new Date(), 'hh', 'en');
+    this.curtime = formatDate(new Date(), 'HH', 'en');
 
     console.log( this.curtime );
 

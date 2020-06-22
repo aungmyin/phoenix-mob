@@ -1,35 +1,76 @@
 <ion-app>
-  <ion-menu side="start" menuId="first" contentId="content">
-    <ion-header>
+  <ion-menu side="start"  menuId="first" contentId="content">
+   <!--<ion-header>
       <ion-toolbar>
         <ion-title>Phoenix</ion-title>
       </ion-toolbar>
-    </ion-header>
+    </ion-header>-->
   
-    <ion-content paddding='true' >
+    <ion-content paddding='true' class="my-side-menu">
       <ion-list>
-        <ion-item (click)='navigateToLoginPage()'>
-          <ion-icon name="home" slot="start"></ion-icon>
+        <ion-item lines="none" (click)="closeMenu()" class="menu-display">
+          <ion-icon name="close-outline" class="txtwhite xbgsize"></ion-icon>
+        </ion-item>
+      </ion-list>
+      <ion-list class="menu-display">
+        <ion-item (click)='navigateToLoginPage()' class="txtwhite bgsize" lines="none">
           Home
         </ion-item>
-        
-        <ion-item *ngIf="authUser?.name" (click)="changePasswordAction()" >
-          <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+      </ion-list>
+      <ion-list lines="none" class="menu-display" (click)="gotoWorkReportAction()">
+        <ion-item class="txtwhite">
+          Applications
+        </ion-item>
+        <ion-item class="txtwhite bgsize">
+          Web Report Application
+        </ion-item>
+      </ion-list>
+      <ion-list lines="none" class="menu-display" (click)="gotoWorkReportAction()">
+        <ion-item class="txtwhite">
+          Applications
+        </ion-item>
+        <ion-item class="txtwhite bgsize">
+          Transporation Expenses
+        </ion-item>
+      </ion-list>
+      <ion-list lines="none" class="menu-display" (click)="gotoWorkReportAction()">
+        <ion-item class="txtwhite">
+          Applications
+        </ion-item>
+        <ion-item class="txtwhite bgsize">
+          Customer Work Report
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-item (click)='navigateToLoginPage()' class="txtwhite bgsize menu-display" lines="none">
           My Profile
         </ion-item>
-        <ion-item (click)="gotoWorkReportAction()">
-          <ion-icon name="alarm-outline" slot="start"></ion-icon>
-          Work Report
+      </ion-list>
+      <ion-list lines="none" class="menu-display" (click)="gotoWorkReportAction()">
+        <ion-item class="txtwhite">
+          Help
         </ion-item>
-        <ion-item (click)="logoutAction()" *ngIf="authUser?.name" >
-          <ion-icon name="log-out" slot="start"></ion-icon>
+        <ion-item class="txtwhite bgsize">
+          User Guide
+        </ion-item>
+        <ion-item class="txtwhite bgsize">
+          FAQ
+        </ion-item>
+        <ion-item class="txtwhite bgsize">
+          Inquiry
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-item (click)="logoutAction()" *ngIf="authUser?.name" class="txtwhite bgsize menu-display" lines="none">
           Logout
         </ion-item>
-        <ion-item  *ngIf="!authUser?.name"  >
-          <ion-icon name="log-out" slot="start"></ion-icon>
+      </ion-list>
+      <ion-list>
+        <ion-item (click)="logoutAction()" *ngIf="!authUser?.name" class="txtwhite bgsize menu-display" lines="none">
           Login
         </ion-item>
       </ion-list>
+     
     </ion-content>
   </ion-menu> 
   <ion-router-outlet id="content"></ion-router-outlet>
