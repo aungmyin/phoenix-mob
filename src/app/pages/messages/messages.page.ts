@@ -24,7 +24,7 @@ export class MessagesPage implements OnInit {
   activeMenu: String;
 
   public UserProfile: any;
-  memberNo: String;
+  memberNo: any;
   fmmemberNo: String;
   author_type: any = [];
   authorityName: String;
@@ -50,8 +50,6 @@ export class MessagesPage implements OnInit {
       this.authUser = res;
       this.getCurrentUserProfile();
     });
-
-   // this.getCurrentUserProfile();
 
   }
 

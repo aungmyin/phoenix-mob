@@ -53,7 +53,7 @@ export class AppComponent {
     //window.location.href="/login";
   }
 
-  changePasswordAction() {
+  gotProfileAction() {
     this.router.navigate(['home/messages']);
     this.closeMenu();
   }

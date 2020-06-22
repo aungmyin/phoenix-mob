@@ -38,12 +38,12 @@ export class ProfileComponent implements OnInit {
 
   getCurrentUserProfile() {
 
-     //console.log(this.displayUserData.email + "user id");
+     console.log(this.displayUserData.email + "user id");
      this.profileService.profileData(this.displayUserData.email).subscribe( (res: any) => {
         //console.log(res.show_detail);
         this.UserProfile = res.show_detail;
         //member no format
-        this.memberNoFormat(this.UserProfile.member_no);
+        this.memberNoFormat(res.show_detail.member_no);
         // authority type display text
         this.authority(this.UserProfile.authority_type);
         // employment type display by text
