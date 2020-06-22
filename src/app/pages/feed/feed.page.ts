@@ -3,6 +3,8 @@ import { FeedService } from 'src/app/services/feed.service';
 import { AuthService } from './../../services/auth.service';
 import { ToastService } from './../../services/toast.service';
 import { MenuController } from '@ionic/angular';
+import {formatDate} from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-feed',
@@ -18,12 +20,14 @@ export class FeedPage implements OnInit {
   };
 
   curtime: any;
+  greetingmsg: String;
 
   constructor(
     private auth: AuthService,
     private feedSerive: FeedService,
     private toastService: ToastService,
-    private menu: MenuController
+    private menu: MenuController,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -32,12 +36,29 @@ export class FeedPage implements OnInit {
       //this.getFeedData();
     });
 
-    this.curtime = new Date().toJSON("HH:mm");
+    this.curtime = formatDate(new Date(), 'hh', 'en');
 
     console.log( this.curtime );
 
+    this.greetingMessage();
+
   }
 
+  greetingMessage() {
+
+    if (this.curtime <= 11) {
+      this.greetingmsg = "Good Morning,";
+    } else if (this.curtime <= 16) {
+      this.greetingmsg = "Good Afternoon,";
+    } else {
+      this.greetingmsg = "Good Evening,";
+    }
+
+  }
+
+  gotoPagesAction(urls: String) {
+    this.router.navigate([urls]);
+  }
 
   getFeedData() {
     this.postData.user_id = this.authUser.user_id;

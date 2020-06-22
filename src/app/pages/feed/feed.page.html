@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start" style="color:#707070">
-      <ion-menu-button ></ion-menu-button>
+    <ion-buttons slot="start" >
+      <ion-menu-button style="color:#707070"></ion-menu-button>
     </ion-buttons>
     <ion-buttons slot="end" class="btn-help">
       <span style="color: #3ea0e6;">Help</span> 
@@ -11,7 +11,7 @@
 </ion-header>
 
 <ion-content>
-  <div class="moring">Good Morning,</div>
+  <div class="moring">{{ greetingmsg }}</div>
   <div class="username">
     <h1>{{ authUser?.name }}</h1>
   </div>
@@ -43,13 +43,13 @@
     </ion-item>
   </ion-list>
   <ion-list lines="none" class="nextview-blk">
-    <ion-item class="link-pages">
+    <ion-item class="link-pages" (click)="gotoPagesAction('home/messages')">
       Your Profile
       <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
     </ion-item>
   </ion-list>
-  <ion-list lines="none" class="nextview-blk bggray">
-    <ion-item class="link-pages bggray">
+  <ion-list lines="none"  class="nextview-blk bggray">
+    <ion-item color="newColor" class="link-pages">
       <ion-icon slot="start" style="font-size: 22px;" name="call-sharp"></ion-icon>
       Contact your representative
     </ion-item>

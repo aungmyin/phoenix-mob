@@ -240,7 +240,9 @@
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  white: #ffffff,
+  dark:       #222,
+  newColor: #eeeeee
 );
 
   ion-title.title-large {
@@ -260,5 +262,13 @@
   }
   .itemcenter {
     margin: 0 auto;
+  }
+
+  .btn-help{
+      padding: 0px 10px;
+      background: #cbe9ff;
+      border-radius: 13px;
+      margin: 5px;
+      border: 1px solid #3ea0e6;
   }
 }

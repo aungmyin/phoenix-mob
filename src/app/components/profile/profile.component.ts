@@ -32,6 +32,8 @@ export class ProfileComponent implements OnInit {
       this.displayUserData = res;
       this.getCurrentUserProfile();
     });
+
+    this.authority(this.loginUser);
   }
 
   getCurrentUserProfile() {
