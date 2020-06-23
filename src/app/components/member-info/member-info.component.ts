@@ -30,6 +30,7 @@ export class MemberInfoComponent implements OnInit {
   itemExpandedHeight: number = 200;
   comp_sName: String;
   memberInfo: any;
+  status_dly: String;
 
   constructor(private authService: AuthService, private memberService: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
 
@@ -38,7 +39,8 @@ export class MemberInfoComponent implements OnInit {
     this.memberService.memberData$.subscribe((res: any) => {
       this.comp_sName = res.company_name_short;
       this.mbInfo = res.member_info;
-      console.log(res.member_info);
+      //this.statusDly(this.mbInfo);
+      console.log(this.mbInfo);
     });
 
 
@@ -89,6 +91,22 @@ export class MemberInfoComponent implements OnInit {
     }
 
     return this.fmmemberNo;
+  }
+
+  statusDly(status: Number) {
+    if (status == 0) {
+      this.status_dly = "Not prducted";
+    } else if (status == 1) {
+      this.status_dly = "Not applied";
+    } else if (status == 2) {
+      this.status_dly = "Applied";
+    } else if (status == 3) {
+      this.status_dly = "Remand";
+    } else if (status == 4) {
+      this.status_dly = "Accepted";
+    } else {
+      this.status_dly = "-";
+    }
   }
 
 

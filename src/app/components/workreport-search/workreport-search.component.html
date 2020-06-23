@@ -1,15 +1,27 @@
 
- 
-  <ion-grid>
-  <ion-row>
-    <ion-col color="primary" >
-      <ion-input name="year"  class="input-style" type="text" [(ngModel)]="postData.year"></ion-input>
-    </ion-col>
-    <ion-col>
-      <ion-input name="year" class="input-style" type="text" [(ngModel)]="postData.month"></ion-input>
-    </ion-col>
-    <ion-col>
-      <ion-button expand="block" share="round" class="btn-style-search" color="success" (click)="searchWkReportAction()">Search</ion-button>
-    </ion-col>
-  </ion-row>
+ <ion-list>
+  <ion-item lines="none" >
+    <p>Applications <br>
+      <span style="font-size: 1.5em; font-weight: bold; color: #707070;">Work Report Application {{ postData.year}}/{{ postData.month }}</span> 
+    </p>
+
+  </ion-item>
+</ion-list>
+ <ion-grid>
+ <ion-row>
+   <ion-col color="primary" >
+     <ion-select class="borderOnewidth" [(ngModel)]="postData.year" style="width: 100%" value="{{postData.year}}" name="year" placeholder="-" >
+       <ion-select-option *ngFor="let y of yearlist" value="{{ y.value }}">{{ y.value }}</ion-select-option>
+     </ion-select>
+   </ion-col>
+   <ion-col size='1'><p class="postline">/</p></ion-col>
+   <ion-col >
+     <ion-select class="borderOnewidth" [(ngModel)]="postData.month" style="width: 100%" value="{{postData.month}}" name="month" placeholder="-" >
+       <ion-select-option *ngFor="let m of monthlist" value="{{ m.value }}">{{ m.value }}</ion-select-option>
+     </ion-select>
+   </ion-col>
+   <ion-col size='4' >
+     <ion-button expand="block"  share="round" [ngStyle]="{'background-color':'#f2fffd'}" color="white" class="bd1-color"  (click)="searchWkReportAction()">Search</ion-button>
+   </ion-col>
+ </ion-row>
 </ion-grid>

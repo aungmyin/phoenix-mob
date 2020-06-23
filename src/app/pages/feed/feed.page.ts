@@ -4,7 +4,8 @@ import { AuthService } from './../../services/auth.service';
 import { ToastService } from './../../services/toast.service';
 import { MenuController } from '@ionic/angular';
 import {formatDate} from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
+import { CustomerWorkreportInfoService } from 'src/app/services/customer-workreport-info.service';
 
 @Component({
   selector: 'app-feed',
@@ -15,19 +16,25 @@ export class FeedPage implements OnInit {
   public authUser: any;
 
   postData = {
-    user_id: '',
-    token: ''
+    member_id: '',
+    year: '',
+    month: ''
   };
 
   curtime: any;
   greetingmsg: String;
+  newData: any;
+  newDate: any;
+  newMonth: any;
 
   constructor(
     private auth: AuthService,
     private feedSerive: FeedService,
     private toastService: ToastService,
     private menu: MenuController,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
+    private customerServices: CustomerWorkreportInfoService
   ) {}
 
   ngOnInit() {
@@ -35,6 +42,21 @@ export class FeedPage implements OnInit {
       this.authUser = res;
       //this.getFeedData();
     });
+
+    //for getting parameters
+    this.route.queryParams.subscribe(params => {
+      this.postData.year = params["year"];
+      this.postData.month = params["month"];
+      console.log(this.postData.year + this.postData.month + " parameter");
+    });
+
+    if(!this.postData.year || this.postData.year == '') {
+      this.newDate = new Date().getFullYear();
+      this.newMonth = new Date().getMonth();
+      this.postData.year = this.newDate;
+      this.postData.month = this.newMonth + 1;
+      console.log(this.newDate + this.newMonth + "current year");
+    }
 
     this.curtime = formatDate(new Date(), 'HH', 'en');
 
@@ -60,7 +82,30 @@ export class FeedPage implements OnInit {
     this.router.navigate([urls]);
   }
 
-  getFeedData() {
+  //customer workreport data
+  goMoreInfo(urls: String) {
+    this.postData.member_id = this.authUser.email;
+    //console.log(this.postData.month + " login");
+    //search by date again
+    this.customerServices.getcustomerData(this.postData).subscribe( (res: any) => {
+      this.newData = res;
+      //console.log(this.newData.customer_work_report);
+      this.customerServices.updateCustomerData(res);
+
+      let navigationExtras: NavigationExtras = {
+        state: {
+          special: this.newData.customer_work_report,
+          year: this.postData.year,
+          month: this.postData.month
+        }
+      };
+    
+      this.router.navigate([urls], navigationExtras);
+    });
+    
+  }
+
+ /* getFeedData() {
     this.postData.user_id = this.authUser.user_id;
     this.postData.token = this.authUser.token;
     
@@ -78,6 +123,6 @@ export class FeedPage implements OnInit {
     } else {
       this.toastService.presentToast("loading ...");
     }
-  }
+  }*/
 
 }

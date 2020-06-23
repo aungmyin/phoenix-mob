@@ -1,6 +1,9 @@
 <ion-list>
-  <ion-item >
-    <h3>Member Information</h3>
+  <ion-item>
+    <p class="fontstyle">Status: <span></span></p>
+    <ion-select slot="end" value="{{ mbInfo?.stauts }}" placeholder="Select One" >
+      <ion-select-option *ngFor="let o of own_depart" value="{{ o.id }}">{{ o.value }}</ion-select-option>
+    </ion-select> 
   </ion-item>
 </ion-list>
 <ion-list>
@@ -15,12 +18,6 @@
   </ion-item>
   <ion-item >
     <p>Own Department: {{ mbInfo?.unit_name }} </p>
-  </ion-item>
-  <ion-item>
-    <p>Status: </p>
-    <ion-select slot="end" value="{{ mbInfo?.stauts }}" placeholder="Select One" >
-      <ion-select-option *ngFor="let o of own_depart" value="{{ o.id }}">{{ o.value }}</ion-select-option>
-    </ion-select> 
   </ion-item>
   
   <ion-item>
