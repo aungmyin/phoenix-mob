@@ -1,11 +1,53 @@
-<ion-list>
-  <ion-item>
-    <p class="fontstyle">Status: <span></span></p>
-    <ion-select slot="end" value="{{ mbInfo?.stauts }}" placeholder="Select One" >
-      <ion-select-option *ngFor="let o of own_depart" value="{{ o.id }}">{{ o.value }}</ion-select-option>
+<ion-list lines="none">
+  <ion-item >
+    <p class="fontstyle">Status: <span class="statusVal">{{ mbInfo?.status_name }}</span></p>
+  </ion-item>
+</ion-list>
+<ion-list lines="none" class="nextview-blk">
+  <ion-item class="link-pages" color="newColor" >
+    Customer Information
+    <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+  </ion-item>
+</ion-list>
+<ion-list class="bottomline" lines="none">
+  <ion-item >
+    <p class="fontstyle"></p>Transportation Expenses:
+    <ion-select slot="end" value="{{mbInfo?.dairy_transrate_flg}}" placeholder="Select One" >
+      <ion-select-option *ngFor="let t of tran_expen" value="{{ t.id }}">{{ t.value }}</ion-select-option>
     </ion-select> 
   </ion-item>
 </ion-list>
+<div class="table-responsive">
+  <table class="table"> 
+    <thead>
+      <tr>
+        <th scope="col" class="firstWidth">
+          <div class="btn-style active">
+            Work Report
+          </div>
+        </th>
+        <th scope="col" class="minwidth">
+          <div class="btn-style" style="min-width: 250px;">
+            Transportation Expenses
+          </div>
+        </th>
+        <th scope="col" class="minwidth">
+          <div class="btn-style" style="min-width: 230px;">
+            Customer Work Report
+          </div>
+        </th>
+      </tr>
+    </thead>
+  </table>
+</div>
+
+<ion-list lines="none" class="nextview-blk">
+  <ion-item class="link-pages" color="newColor" >
+    Customer Information
+    <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+  </ion-item>
+</ion-list>
+
 <ion-list>
   <ion-item >
     <p>Employee ID: {{ comp_sName }}_{{ memberNoFormat(mbInfo?.member_no) }} </p>
