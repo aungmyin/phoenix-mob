@@ -41,13 +41,70 @@
   </table>
 </div>
 
-<ion-list lines="none" class="nextview-blk">
-  <ion-item class="link-pages" color="newColor" >
-    Customer Information
-    <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+<ion-list lines="none" class="filter-blk">
+  <ion-item class="filter-pages" color="newColor" >
+    Filter:
+    <ion-icon slot="end" name="chevron-up-outline" style="font-size: 15px;"></ion-icon>
+    <!-- <ion-icon slot="end" name="chevron-down-outline" style="font-size: 13px;"></ion-icon> -->
   </ion-item>
+  <ul class="checklist">
+    <li *ngFor="let entry of checkBoxList">
+      <ion-checkbox class="checkbox-style" slot="start" [(ngModel)]="entry.isChecked"></ion-checkbox>
+      {{entry.val}}
+    </li>
+  </ul>
+  <ul class="checklist">
+    <li>
+      <ion-icon slot="start" name="list-outline"></ion-icon>
+      <ion-label style="margin-left: 5px;">List</ion-label>
+    </li>
+    <li>
+      <ion-icon slot="start" name="calendar-outline"></ion-icon>
+      <ion-label style="margin-left: 5px;">Calendar</ion-label>
+    </li>
+  </ul>
+  <div style="border-top: 1px dashed #f0f0f0;clear: both; height: 5px;">&nbsp;</div>
+  <ul class="checklist">
+    <li>
+      <ion-icon slot="start" name="expand-outline"></ion-icon>
+      <ion-label style="margin-left: 5px;">Expand dates</ion-label>
+    </li>
+    <li>
+      <ion-icon slot="start" name="contract-outline"></ion-icon>
+      <ion-label style="margin-left: 5px;">Collapse dates</ion-label>
+    </li>
+  </ul>
+  <!-- <ion-item *ngFor="let entry of checkBoxList">
+    <ion-label>{{entry.val}}</ion-label>
+    <ion-checkbox slot="start" [(ngModel)]="entry.isChecked"></ion-checkbox>
+  </ion-item> -->
 </ion-list>
 
+<ion-list>
+  <ion-item>
+    <ul class="checklist">
+      <li>
+        <ion-label style="color: #cccccc;">Jump to: </ion-label>
+      </li>
+      <li>
+        <ion-label >Total</ion-label>
+      </li>
+      <li>
+        <ion-label >Result</ion-label>
+      </li>
+    </ul>
+  </ion-item>
+</ion-list>
+<ion-list lines="none" class="date-container">
+  <ion-item class="date-blk" color="newColor" >
+    <ion-icon slot="start" name="alert-outline"></ion-icon>
+    <p>
+      <span class="datetitle">2020/6/1 Monday</span><br>
+      <span> Working hour not entered</span>
+    </p>
+    <ion-icon slot="end" style="font-size: 24px;" name="chevron-up-outline"></ion-icon>
+  </ion-item>
+</ion-list>
 <ion-list>
   <ion-item >
     <p>Employee ID: {{ comp_sName }}_{{ memberNoFormat(mbInfo?.member_no) }} </p>

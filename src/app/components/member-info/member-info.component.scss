@@ -12,6 +12,30 @@
     background: #f2fffd;
 }
 
+.filter-blk{
+    padding: 5px;
+    border: 1px solid #f0f0f0;
+    margin: 15px;
+    border-radius: 20px;
+}
+
+.date-container {
+    padding: 5px;
+    background: #d6f2ec;
+    border: 1px solid #f0f0f0;
+    margin: 15px;
+    border-radius: 20px;
+}
+.datetitle{
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #7f7270;
+}
+
+.date-blk {
+    background: #d6f2ec;
+}
+
 .bottomline {
     border-bottom: 2px dashed #717070;
     margin: 0 15px;
@@ -22,6 +46,32 @@
     color: #717070;
     font-weight: 500;
     background: #f2fffd;
+    font-size: 1.2rem;
+}
+ul.checklist{
+    list-style-type: none;
+    margin: 0 0 0 11px;
+    padding: 0;
+    width: 100%;
+}
+
+.checklist li {
+    list-style: none;
+    float: left;
+    padding: 9px;
+    vertical-align: middle;
+    font-size: 16.5px;
+}
+
+.checkbox-style {
+    width: 17px;
+    height: 17px;
+}
+
+.filter-pages{
+    font-size: 21px;
+    color: #717070;
+    font-weight: 500;
     font-size: 1.2rem;
 }
 

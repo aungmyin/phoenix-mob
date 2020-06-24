@@ -31,6 +31,8 @@ export class MemberInfoComponent implements OnInit {
   comp_sName: String;
   memberInfo: any;
   status_dly: String;
+  checkBoxList: any;
+  checkBoxList2: any;
 
   constructor(private authService: AuthService, private memberService: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
 
@@ -59,6 +61,14 @@ export class MemberInfoComponent implements OnInit {
         value: 'Yes'
       }
     ];
+
+    this.checkBoxList = [
+      { val: 'Work hour not entered', isChecked: true },
+      { val: 'Weekend', isChecked: false },
+      { val: 'All', isChecked: false }
+    ];
+
+   
 
     this.own_depart = [
       { id: 0,
