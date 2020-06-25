@@ -21,7 +21,7 @@
   <app-workreport-search [loginUser]="authUser"></app-workreport-search>
  
   <app-member-info [loginUser]="authUser"></app-member-info>
-  <ion-list>
+  <!--<ion-list>
     <ion-item (click)="goMoreInfoClient('/home/client')" >
       <p>Client Information</p>
       <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
@@ -39,7 +39,7 @@
       <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
     </ion-item>
   </ion-list>
-  <p>&nbsp;</p>
+  <p>&nbsp;</p> -->
   <!--<ion-list>
     <ion-item (click)="expandedItem(item)"  *ngFor="let item of items; let i = index">
       
@@ -54,3 +54,20 @@
     </ion-item>
   </ion-list>-->
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4" >
+          <ion-button class="ftbtnColor" color="ftbtnColor">Store Changes</ion-button>
+        </ion-col>
+        <ion-col size="4">
+          <ion-button class="ftbtngrayColor" color="ftbtnColor">Apply Report</ion-button>
+        </ion-col>
+        <ion-col size="4" >
+          <ion-button class="ftbtngrayColor" color="ftbtnColor">Apply Expenses</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
