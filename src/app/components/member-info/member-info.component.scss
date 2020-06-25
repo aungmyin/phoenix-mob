@@ -26,14 +26,73 @@
     margin: 15px;
     border-radius: 20px;
 }
+.date-gray-container {
+    padding: 5px;
+    background: #f2f2f2;
+    border: 1px solid #f0f0f0;
+    margin: 15px;
+    border-radius: 20px;
+}
+.date-weekend-container {
+    padding: 5px;
+    background: #e3e3e3;
+    border: 1px solid #f0f0f0;
+    margin: 15px;
+    border-radius: 20px;
+}
+.date-white-container {
+    background: #ffffff;
+    border: 1px solid #f0f0f0;
+    margin: 15px;
+    border-radius: 20px;
+}
 .datetitle{
     font-size: 1.3rem;
     font-weight: 600;
     color: #7f7270;
 }
 
+.textcenter {
+    text-align: center;
+}
+
+/* .round {
+    --width: 84px;
+    height: 43px;
+    --border-radius: 10px;
+    --vertical-align: middle;
+    --padding-start: 15px;
+    --padding-end: 15px;
+    --background-color: #ffffff;
+    font-size: 20px;
+} */
+
+.bd1-color {
+    border: 1px solid #2ec1a3;
+    border-radius: 10px;
+    background-color: #ffffff;
+    font-size: 17px;
+    padding: 12px 5px 12px 5px;
+    color: #2ec1a3;
+}
+
 .date-blk {
     background: #d6f2ec;
+}
+.date-gray-blk {
+    background: #f2f2f2;
+}
+.date-weekend-blk {
+    background: #e3e3e3;
+}
+.date-white-blk {
+    background: #ffffff;
+    border-bottom: 1px solid #eeeeee;
+    padding: 5px;
+}
+.total-blk {
+    padding: 15px; 
+    font-size: medium;
 }
 
 .bottomline {

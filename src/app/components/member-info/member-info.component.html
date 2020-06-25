@@ -6,7 +6,7 @@
 <ion-list lines="none" class="nextview-blk">
   <ion-item class="link-pages" color="newColor" >
     Customer Information
-    <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+    <ion-icon slot="end" style="font-size: 24px;" name="chevron-forward-outline"></ion-icon>
   </ion-item>
 </ion-list>
 <ion-list class="bottomline" lines="none">
@@ -105,6 +105,114 @@
     <ion-icon slot="end" style="font-size: 24px;" name="chevron-up-outline"></ion-icon>
   </ion-item>
 </ion-list>
+
+<ion-list lines="none" class="date-gray-container">
+  <ion-item class="date-gray-blk" color="newColor" >
+    <ion-icon slot="start" name="alert-outline"></ion-icon>
+    <p>
+      <span class="datetitle">2020/6/1 Monday</span><br>
+      <span> Working hour not entered</span>
+    </p>
+    <ion-icon slot="end" style="font-size: 24px;" name="chevron-up-outline"></ion-icon>
+  </ion-item>
+</ion-list>
+
+<ion-list lines="none" class="date-weekend-container">
+  <ion-item class="date-weekend-blk" color="newColor" >
+    <ion-icon slot="start" name="alert-outline"></ion-icon>
+    <p>
+      <span class="datetitle">2020/6/1 Monday</span><br>
+      <span> Working hour not entered</span>
+    </p>
+    <ion-icon slot="end" style="font-size: 24px;" name="chevron-up-outline"></ion-icon>
+  </ion-item>
+</ion-list>
+
+<ion-list lines="none" class="date-white-container">
+  <ion-item class="date-white-blk" color="newColor" >
+    Total
+    <ion-icon slot="end" style="font-size: 24px;" name="chevron-up-outline"></ion-icon>
+  </ion-item>
+  <ion-grid class="total-blk">
+    <ion-row>
+      <ion-col size="8">Working Hours</ion-col>
+      <ion-col size="4" class="textcenter">0</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">Overtime</ion-col>
+      <ion-col size="4" class="textcenter">0</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">Late Night Working Hours</ion-col>
+      <ion-col size="4" class="textcenter">0</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">Deduction Hours</ion-col>
+      <ion-col size="4" class="textcenter">0</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-list>
+
+<ion-list lines="none" class="date-white-container">
+  <ion-item class="date-white-blk" color="newColor" >
+    Result
+    <ion-icon slot="end" style="font-size: 24px;" name="chevron-up-outline"></ion-icon>
+  </ion-item>
+  <ion-grid class="total-blk">
+    <ion-row>
+      <ion-col size="8">Working Hours</ion-col>
+      <ion-col size="4" class="textcenter">0</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">Overtime</ion-col>
+      <ion-col size="4" class="textcenter">0</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">Overtime Payments</ion-col>
+      <ion-col size="4" class="textcenter">0</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">Late Night Working Hours</ion-col>
+      <ion-col size="4" class="textcenter">0</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">Deduction Hours</ion-col>
+      <ion-col size="4" class="textcenter">0</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">Exercise of Paid Holidays</ion-col>
+      <ion-col size="4" class="textcenter">0</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">Exercise of Paid Half Holidays</ion-col>
+      <ion-col size="4" class="textcenter">0</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">Total</ion-col>
+      <ion-col size="4" class="textcenter">0</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">Absenteeism Days</ion-col>
+      <ion-col size="4" class="textcenter">0</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">Closing Dates</ion-col>
+      <ion-col size="4" class="textcenter">0</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-list>
+<ion-grid>
+  <ion-row>
+    <ion-col size="8">&nbsp;</ion-col>
+    <ion-col size="4" >
+      <ion-button expand="block"  share="round" [ngStyle]="{'background-color':'#ffffff'}" color="white" class="bd1-color" >
+      <ion-icon slot="start" [ngStyle]="{'color':'#2ec1a3; font-size: 20px'}" name="cloud-download-outline"></ion-icon>
+      Download</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
 <ion-list>
   <ion-item >
     <p>Employee ID: {{ comp_sName }}_{{ memberNoFormat(mbInfo?.member_no) }} </p>
