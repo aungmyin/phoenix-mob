@@ -3,7 +3,7 @@
     <p class="fontstyle">Status: <span class="statusVal">{{ mbInfo?.status_name }}</span></p>
   </ion-item>
 </ion-list>
-<ion-list lines="none" class="nextview-blk">
+<ion-list lines="none" class="nextview-blk" (click)="goMoreInfoClient('/home/client')">
   <ion-item class="link-pages" color="newColor" >
     Customer Information
     <ion-icon slot="end" style="font-size: 24px;" name="chevron-forward-outline"></ion-icon>
@@ -95,16 +95,17 @@
     </ul>
   </ion-item>
 </ion-list>
-<ion-list lines="none" class="date-container">
-  <ion-item class="date-blk" color="newColor" >
+<ion-list lines="none" class="date-container" *ngFor="let item of information; let i = index ">
+  <ion-item tappable (click)="toggleSection(i)" [ngClass]="{'section-active': item.open, 'section': !item.open}" class="date-blk" color="newColor" >
     <ion-icon slot="start" style="color: #707070;" name="alert-outline"></ion-icon>
     <p>
-      <span class="datetitle">2020/6/1 Monday</span><br>
+      <span class="datetitle">{{ item.report_date | date: 'yyyy/MM/dd EEEE' }}</span><br>
       <span> Working hour not entered</span>
     </p>
-    <ion-icon slot="end" style="font-size: 24px;color: #707070;" name="chevron-up-outline"></ion-icon>
+    <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="!item.open" name="chevron-down-outline"></ion-icon>
+    <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="item.open" name="chevron-up-outline"></ion-icon>
   </ion-item>
-  <ion-grid class="total-blk">
+  <ion-grid class="total-blk" [ngStyle]="!item.open ? {'display': 'none'} : {'display': 'block', 'padding': '15px'}"  >
     <ion-row>
       <ion-col size="5">
         <span style="margin-top: 5px;">Work Hours</span> 
@@ -215,7 +216,7 @@
       <span class="datetitle">2020/6/1 Monday</span><br>
       <span> Working hour not entered</span>
     </p>
-    <ion-icon slot="end" style="font-size: 24px;color: #707070;" name="chevron-up-outline"></ion-icon>
+    <ion-icon slot="end" style="font-size: 24px;color: #707070;" name="chevron-down-outline"></ion-icon>
   </ion-item>
 </ion-list>
 
@@ -226,7 +227,7 @@
       <span class="datetitle">2020/6/1 Monday</span><br>
       <span> Working hour not entered</span>
     </p>
-    <ion-icon slot="end" style="font-size: 24px;color: #707070;" name="chevron-up-outline"></ion-icon>
+    <ion-icon slot="end" style="font-size: 24px;color: #707070;" name="chevron-down-outline"></ion-icon>
   </ion-item>
 </ion-list>
 

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { MemberInfoService } from 'src/app/services/member-info.service';
+import { CustomerWorkreportInfoService } from 'src/app/services/customer-workreport-info.service';
 
 @Component({
   selector: 'app-member-info',
@@ -17,6 +18,8 @@ export class MemberInfoComponent implements OnInit {
     member_id: '',
     member_info: ''
   }
+
+  panelOpenState = false;
 
   wReportData: any;
   mbInfo: any;
@@ -34,15 +37,44 @@ export class MemberInfoComponent implements OnInit {
   checkBoxList: any;
   checkBoxList2: any;
 
-  constructor(private authService: AuthService, private memberService: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
+  newData: any;
+  customerWorkReport: any;
+  clientRpFlg: any;
+  workingPattern: any;
+  workingHour: any;
+  newDate: any;
+  newMonth: any;
+
+  information: any=[];
+  automaticClose: false;
+
+  constructor(private authService: AuthService, private customerInfo: CustomerWorkreportInfoService, private memberService: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    //for getting parameters
+    this.route.queryParams.subscribe(params => {
+      this.postData.year = params["year"];
+      this.postData.month = params["month"];
+      console.log(this.postData.year + this.postData.month + " parameter");
+    });
+
+    if(!this.postData.year || this.postData.year == '') {
+      this.newDate = new Date().getFullYear();
+      this.newMonth = new Date().getMonth();
+      this.postData.year = this.newDate;
+      this.postData.month = this.newMonth + 1;
+      console.log(this.newDate + this.newMonth + "current year");
+    }
+
     //this.postData.member_info = '';
     this.memberService.memberData$.subscribe((res: any) => {
       this.comp_sName = res.company_name_short;
       this.mbInfo = res.member_info;
+      this.information = res.work_report_detail;
       //this.statusDly(this.mbInfo);
-      console.log(this.mbInfo);
+      console.log(this.information);
+
+      //this.information[1].open = true;
     });
 
 
@@ -87,6 +119,11 @@ export class MemberInfoComponent implements OnInit {
         value: 'Accepted'
       }
     ]
+
+  }
+
+  toggleSection(index) {
+    this.information[index].open = !this.information[index].open;
   }
 
   memberNoFormat(mbno: Number) {
@@ -117,6 +154,36 @@ export class MemberInfoComponent implements OnInit {
     } else {
       this.status_dly = "-";
     }
+  }
+
+
+  goMoreInfoClient(urls: String) {
+    this.postData.member_id = this.loginUser.email;
+    console.log(this.postData);
+    //search by date again
+    this.customerInfo.getcustomerData(this.postData).subscribe( (res: any) => {
+      this.newData = res;
+      this.customerWorkReport = res.customer_work_report[0];
+      this.clientRpFlg = res.customer_work_report;
+      this.workingPattern = res.project_info.working_hour;
+      this.workingHour = res.work_report;
+  
+     // console.log(this.newData.project_info);
+      this.customerInfo.updateCustomerData(res);
+
+      let navigationExtras: NavigationExtras = {
+        state: {
+          special: this.newData.project_info,
+          clientrpflg: this.clientRpFlg,
+          workingPattern: this.workingPattern,
+          workingHour: this.workingHour,
+          year: this.postData.year,
+          month: this.postData.month
+        }
+      }; 
+    
+      this.router.navigate([urls], navigationExtras);
+    });
   }
 
 
