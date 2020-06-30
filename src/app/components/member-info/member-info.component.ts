@@ -45,8 +45,9 @@ export class MemberInfoComponent implements OnInit {
   newDate: any;
   newMonth: any;
 
-  information: any=[];
+  information: any;
   automaticClose: false;
+  total:boolean;
 
   constructor(private authService: AuthService, private customerInfo: CustomerWorkreportInfoService, private memberService: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
 
@@ -63,7 +64,7 @@ export class MemberInfoComponent implements OnInit {
       this.newMonth = new Date().getMonth();
       this.postData.year = this.newDate;
       this.postData.month = this.newMonth + 1;
-      console.log(this.newDate + this.newMonth + "current year");
+      //console.log(this.newDate + this.newMonth + "current year");
     }
 
     //this.postData.member_info = '';
@@ -72,7 +73,7 @@ export class MemberInfoComponent implements OnInit {
       this.mbInfo = res.member_info;
       this.information = res.work_report_detail;
       //this.statusDly(this.mbInfo);
-      console.log(this.information);
+      //console.log(this.information);
 
       //this.information[1].open = true;
     });
@@ -100,7 +101,6 @@ export class MemberInfoComponent implements OnInit {
       { val: 'All', isChecked: false }
     ];
 
-   
 
     this.own_depart = [
       { id: 0,
@@ -154,6 +154,11 @@ export class MemberInfoComponent implements OnInit {
     } else {
       this.status_dly = "-";
     }
+  }
+
+  isWeekEnd(wkday: any) {
+    var date = new Date(wkday);
+    return date.getDay() === 6 || date.getDay() === 0;
   }
 
 
