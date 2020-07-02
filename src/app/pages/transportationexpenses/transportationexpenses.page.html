@@ -1,13 +1,17 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start" >
-      <ion-back-button defaultHref="/home/workreport?year={{ postData.year }}&month={{ postData.month }}" text="" icon="chevron-back-outline"></ion-back-button>
+      <ion-menu-button style="color:#707070"></ion-menu-button>
     </ion-buttons>
-    <ion-title>Transportation Expenses</ion-title>
+    <ion-buttons slot="end" class="btn-help">
+      <span style="color: #3ea0e6;">Help</span> 
+      <ion-icon name="help-circle-outline" style="width: 23px; height: 23px; color: #3ea0e6;"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <app-workreport-search [loginUser]="authUser"></app-workreport-search>
   <ion-item style="background: blueviolet;">
     <h3>Transportation Expenses</h3>
   </ion-item>

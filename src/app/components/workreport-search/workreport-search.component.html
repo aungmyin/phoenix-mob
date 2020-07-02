@@ -10,13 +10,13 @@
  <ion-grid>
  <ion-row>
    <ion-col color="primary" >
-     <ion-select class="borderOnewidth" [(ngModel)]="postData.year" style="width: 100%" value="{{postData.year}}" name="year" placeholder="-" >
+     <ion-select class="borderOnewidth" [(ngModel)]="postData.year" style="width: 100%"  name="year" placeholder="-" >
        <ion-select-option *ngFor="let y of yearlist" value="{{ y.value }}">{{ y.value }}</ion-select-option>
      </ion-select>
    </ion-col>
    <ion-col size='1'><p class="postline">/</p></ion-col>
    <ion-col >
-     <ion-select class="borderOnewidth" [(ngModel)]="postData.month" style="width: 100%" value="{{postData.month}}" name="month" placeholder="-" >
+     <ion-select class="borderOnewidth" [(ngModel)]="postData.month" style="width: 100%" name="month" placeholder="-" >
        <ion-select-option *ngFor="let m of monthlist" value="{{ m.value }}">{{ m.value }}</ion-select-option>
      </ion-select>
    </ion-col>

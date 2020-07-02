@@ -231,7 +231,7 @@ export class WorkreportPage implements OnInit {
     //search by date again
     this.customerInfo.getcustomerData(this.postData).subscribe( (res: any) => {
       this.newData = res;
-      //console.log(this.newData.customer_work_report);
+      console.log(this.newData.customer_work_report);
       this.customerInfo.updateCustomerData(res);
 
       let navigationExtras: NavigationExtras = {
