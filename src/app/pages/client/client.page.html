@@ -1,9 +1,12 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-buttons slot="start" >
-      <ion-back-button defaultHref="/home/workreport?year={{ postData.year }}&month={{ postData.month }}" text="" icon="chevron-back-outline"></ion-back-button>
+    <ion-buttons slot="start" style="margin-right: 5px;">
+      <ion-back-button defaultHref="/home/workreport?year={{ postData.year }}&month={{ postData.month }}" text="" style="color: #707070;" icon="chevron-back-outline"></ion-back-button>
     </ion-buttons>
-    <ion-title>Client</ion-title>
+    <ion-buttons slot="end" class="btn-help">
+      <span style="color: #3ea0e6;">Help</span> 
+      <ion-icon name="help-circle-outline" style="width: 23px; height: 23px; color: #3ea0e6;"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -16,50 +19,80 @@
       refreshingText="Refreshing..."></ion-refresher-content>
   </ion-refresher>
   <app-clientinfo [loginUser]="authUser"></app-clientinfo> -->
-  <ion-item >
-    <h3>Client Information</h3>
-  </ion-item>
   <ion-list>
-    <ion-item>{{ postData.year }} {{ postData.month }}</ion-item>
+    <ion-item lines="none" >
+      <p>Applications <br>
+        <span class="titlefont">Client Information</span> 
+      </p>
+  
+    </ion-item>
   </ion-list>
-  <ion-list *ngFor="let clinfo of data;">
+  
+  <ion-list class="topblk" lines="none">
+    
+    <ion-grid >
+      <ion-row>
+        <ion-col size="1"><ion-icon name="create-outline" style="font-size: 1.4rem;"></ion-icon></ion-col>
+        <ion-col size="11">
+          <p style="margin-top: 0px;">
+           <span style="font-size: 1.1rem;">Edit Customer Info</span> <br>
+If there is any incompleteness in customer
+information, please contact your
+representative.
+
+          </p>
+        </ion-col>
+      </ion-row>
+      <ion-row class="rowitem">
+        <ion-col size="1">
+          <ion-icon name="trash-outline" style="font-size: 1.4rem;"></ion-icon>
+        </ion-col>
+        <ion-col size="11">
+           <span style="font-size: 1.1rem;">Delete Customer Info</span> 
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+  <ion-list *ngFor="let clinfo of data;" lines="none">
     <ion-item-sliding>
       <ion-item >
-        <p>Individual Contract No.: {{ clinfo.individual_contract_no }}</p>
+        <p><b>Individual Contract No.: </b><br>
+          {{ clinfo.individual_contract_no }}</p>
       </ion-item>
       <ion-item >
-        <p>Company Name: {{ clinfo.client_name }}</p>
+        <p><b>Customer Name:</b><br> 
+          {{ clinfo.client_name }}</p>
       </ion-item>
       <ion-item>
-        <p>Project Name: {{ clinfo.project_name }}</p>
+        <p><b>Project Name:</b><br> 
+          {{ clinfo.project_name }}</p>
       </ion-item>
       <ion-item>
-        <p>Contract Period: {{ clinfo.start_contract_date | date }} to {{ clinfo.end_contract_date | date }} </p>
+        <p><b>Contract Period:</b> <br> 
+          {{ clinfo.start_contract_date | date }} ~ {{ clinfo.end_contract_date | date }} </p>
+      </ion-item>
+      <ion-item >
+        <p><b>Contract Type:</b><br> 
+          {{ getContractTypeById(clinfo.contract_type) }}  </p>
+      </ion-item>
+      <ion-item >
+        <p><b>During working hours:</b><br> 
+          {{ clinfo.min_width_time }}h ~ {{ clinfo.max_width_time }}h </p>
       </ion-item>
     </ion-item-sliding>
   </ion-list>
-  <ion-list>
-    <ion-item-sliding>
-      <ion-item >
-        <p>Contract Type: <span >{{ getContractTypeById(clientrpflg?.client_report_flg) }}</span>  </p>
-      </ion-item>
-      <ion-item>
-        <p>During working hours: {{ workingHour?.min_width_time }}h ~ {{ workingHour?.max_width_time }}h </p>
-      </ion-item>
-      
-    <!--<ion-item>
+
+  <!--<ion-item>
         <p>Contract End: 
           <ion-datetime displayFormat="YYYY-MM-DD" value="{{ clinfo?.end_contract_date}}"></ion-datetime>
         </p>
-      </ion-item>-->
+      </ion-item>
       <ion-item-options side="end">
         <ion-item-option >Unread</ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-    
-  </ion-list>
+      </ion-item-options>-->
+  
 
-  <ion-list>
+  <ion-list lines="none">
     <ion-item>
       <h4>Working Hours:</h4>
     </ion-item>
@@ -72,7 +105,7 @@
     </ion-item>
   </ion-list>
 
-  <ion-list >
+  <ion-list lines="none" style="margin-bottom: 20px;">
     <ion-item>
       <ion-checkbox slot="start" color="primary" ></ion-checkbox>
       Break Time {{ wkingHour?.pattern }} <br/>

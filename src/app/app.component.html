@@ -61,6 +61,11 @@
         </ion-item>
       </ion-list>
       <ion-list>
+        <ion-item (click)="goSettingAction()" *ngIf="authUser?.name" class="txtwhite bgsize menu-display" lines="none">
+          Settings
+        </ion-item>
+      </ion-list>
+      <ion-list>
         <ion-item (click)="logoutAction()" *ngIf="authUser?.name" class="txtwhite bgsize menu-display" lines="none">
           Logout
         </ion-item>

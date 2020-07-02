@@ -46,7 +46,7 @@ export class ClientPage implements OnInit {
 
           this.data = this.projectInfo.project_infos;
 
-          console.log(this.wkingHour);
+          console.log(this.projectInfo);
         }
       });
     }
@@ -79,6 +79,7 @@ export class ClientPage implements OnInit {
     } else {
       this.contractTypeName = "-";
     }
+    return this.contractTypeName;
   }
   /* doRefresh(event) {
     console.log('Begin async operation');

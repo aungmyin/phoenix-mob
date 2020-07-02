@@ -48,6 +48,10 @@ export class MemberInfoComponent implements OnInit {
   information: any;
   automaticClose: false;
   total:boolean;
+  attendance_type: any;
+  workPattern: any[];
+  workPatternExist: any[];
+  workinghour: any;
 
   constructor(private authService: AuthService, private customerInfo: CustomerWorkreportInfoService, private memberService: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
 
@@ -72,8 +76,16 @@ export class MemberInfoComponent implements OnInit {
       this.comp_sName = res.company_name_short;
       this.mbInfo = res.member_info;
       this.information = res.work_report_detail;
+      this.workPattern = res.project_info;
+      
+      //to display exist work pattern
+      /* for (let index = 0; index < 6; index++) {
+        if(this.workPattern[index]['pattern_flg'] == 1) {
+          this.workPatternExist[index] = this.workPattern[index];
+        }
+      } */
       //this.statusDly(this.mbInfo);
-      //console.log(this.information);
+     // console.log(this.workinghour);
 
       //this.information[1].open = true;
     });
@@ -96,9 +108,60 @@ export class MemberInfoComponent implements OnInit {
     ];
 
     this.checkBoxList = [
-      { val: 'Work hour not entered', isChecked: true },
+      { val: 'Work hour not entered', isChecked: false },
       { val: 'Weekend', isChecked: false },
-      { val: 'All', isChecked: false }
+      { val: 'All', isChecked: true }
+    ];
+
+    this.attendance_type = [
+      {
+        id: 0,
+        value: '-'
+      },
+      {
+        id: 1,
+        value: 'Public Holiday'
+      },
+      {
+        id: 2,
+        value: 'Shift Holiday'
+      },
+      {
+        id: 3,
+        value: 'Paid Holiday'
+      },
+      {
+        id: 4,
+        value: 'Half Holiday'
+      },
+      {
+        id: 5,
+        value: 'ABSENCE'
+      },
+      {
+        id: 6,
+        value: 'Delay'
+      },
+      {
+        id: 7,
+        value: 'Early'
+      },
+      {
+        id: 8,
+        value: 'Special Holiday'
+      },
+      {
+        id: 9,
+        value: 'Holiday Work'
+      },
+      {
+        id: 10,
+        value: 'Substitute Holiday'
+      },
+      {
+        id: 11,
+        value: 'Others'
+      }
     ];
 
 
