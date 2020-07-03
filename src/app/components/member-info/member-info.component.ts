@@ -35,7 +35,8 @@ export class MemberInfoComponent implements OnInit {
   memberInfo: any;
   status_dly: String;
   checkBoxList: any;
-  checkBoxList2: any;
+  tripTypeList: any;
+  voucherlist: any;
 
   newData: any;
   customerWorkReport: any;
@@ -111,6 +112,16 @@ export class MemberInfoComponent implements OnInit {
       { val: 'Work hour not entered', isChecked: false },
       { val: 'Weekend', isChecked: false },
       { val: 'All', isChecked: true }
+    ];
+
+    this.tripTypeList = [
+      { val: 'One-Way', isChecked: false },
+      { val: 'Round Trip', isChecked: true }
+    ];
+
+    this.voucherlist = [
+      { val: 'No', isChecked: false },
+      { val: 'Yes', isChecked: true }
     ];
 
     this.attendance_type = [

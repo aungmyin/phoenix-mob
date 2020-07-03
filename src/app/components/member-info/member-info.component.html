@@ -512,10 +512,13 @@
 
 <div id="transportext">
   <ion-list lines="none" class="date-container" >
-    <ion-item tappable  class="date-blk" color="newColor" >
-      <p style="margin: 10px auto;">
+    <!-- <ion-item tappable (click)="toggleSection(i)" [ngClass]="{'section-active': item.open, 'section': !item.open}" class="date-blk" color="newColor" > -->
+    <ion-item tappable (click)="toggleSection(90)"  class="date-blk" color="newColor" >
+      <p>
         <span class="datetitle">Transportation Expenses</span>
       </p>
+      <ion-icon slot="end" style="font-size: 24px;color: #707070;"  name="chevron-down-outline"></ion-icon>
+    <!-- <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="item.open" name="chevron-up-outline"></ion-icon> -->
     </ion-item>
     <ion-grid class="total-blk"  >
       <ion-row>
@@ -523,7 +526,7 @@
           <span style="margin-top: 5px;">Date</span> 
         </ion-col> 
         <ion-col size="6">
-          <ion-input class="worktime" type="text" value=""></ion-input>
+          <ion-datetime class="worktime" value="2019-10-01T15:43:40.394Z" display-timezone="utc"></ion-datetime>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -563,14 +566,26 @@
         <ion-col size="6">
           <span style="margin-top: 5px;">Trip Type</span> 
         </ion-col> 
-        <ion-col size="6"></ion-col>
+        <ion-col size="6">
+          <ul class="checklist">
+            <li *ngFor="let t of tripTypeList">
+              <ion-checkbox class="checkbox-style" slot="start" [(ngModel)]="t.isChecked"></ion-checkbox>
+              {{t.val}}
+            </li>
+          </ul>
+        </ion-col>
       </ion-row>
       <ion-row>
         <ion-col size="6">
           <span style="margin-top: 5px;">Voucher</span> 
         </ion-col> 
         <ion-col size="6">
-          <ion-input class="worktime" type="text" value=""></ion-input>
+          <ul class="checklist">
+            <li *ngFor="let v of voucherlist">
+              <ion-checkbox class="checkbox-style" slot="start" [(ngModel)]="v.isChecked"></ion-checkbox>
+              {{v.val}}
+            </li>
+          </ul>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -578,9 +593,7 @@
           <span style="margin-top: 5px;">Amount</span> 
         </ion-col> 
         <ion-col size="6">
-          <ion-select class="dropdownstyle" value="" placeholder="Select One" >
-            <ion-select-option *ngFor="let t of attendance_type" value="{{ t.id }}" >{{ t.value }}</ion-select-option>
-          </ion-select>
+          <ion-input type="number" class="worktime" value="333"></ion-input>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -588,9 +601,7 @@
           <span style="margin-top: 5px;">Billing</span> 
         </ion-col> 
         <ion-col size="6">
-          <ion-select class="dropdownstyle" value="" placeholder="Select One" >
-            <ion-select-option *ngFor="let t of attendance_type" value="{{ t.id }}" >{{ t.value }}</ion-select-option>
-          </ion-select>
+          <ion-input type="number" class="worktime" value="333"></ion-input>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -598,7 +609,7 @@
           <span style="margin-top: 5px;">Action</span> 
         </ion-col> 
         <ion-col size="6">
-          <ion-button class="worktime">Remove</ion-button>
+          <ion-button >Remove</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
