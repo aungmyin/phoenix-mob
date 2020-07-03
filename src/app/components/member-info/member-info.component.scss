@@ -25,6 +25,16 @@
     margin: 15px;
     border-radius: 20px;
 }
+
+.textcenter {
+    text-align: center;
+}
+
+.total-container {
+    border-top: 1px dashed #000000;
+    margin: 15px;
+    padding-top: 15px;
+}
 .date-gray-container {
     background: #f2f2f2;
     border: 1px solid #f0f0f0;
@@ -93,6 +103,21 @@
     border: 1px solid #feaa48;
     color: #feaa48;
     border-radius: 8px;
+}
+
+.addnewblg {
+    text-align: center;
+    color: #7f7270;
+}
+
+.addnewblg 
+
+.add-transport-btn {
+    border: 1px solid #9f9f9f;
+    color: #000000;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    margin: 15px 0;
 }
 
 .borderRadius {

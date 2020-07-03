@@ -623,6 +623,41 @@
     </ion-grid>
   </ion-list>
 </div>
+<div class="addnewblg">
+      <ion-button color="secondary" class="add-transport-btn" >
+          + Add another transporation expense
+      </ion-button>
+</div>
+<div class="totol-container">
+  <ion-list class="total-container">
+    <ion-grid>
+      <ion-row>
+        <ion-col>Total Amount</ion-col>
+        <ion-col>
+          <ion-input type="number" class="worktime borderRadius" value=""></ion-input>
+        </ion-col>
+        <ion-col class="textcenter" size="2">JPY</ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col>Customer Billing</ion-col>
+        <ion-col>
+          <ion-input type="number" class="worktime borderRadius" value=""></ion-input>
+        </ion-col>
+        <ion-col class="textcenter" size="2">JPY</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">&nbsp;</ion-col>
+        <ion-col size="6" style="padding-top: 15px;">
+          <div class="bd1-color">
+            <ion-icon slot="start"class="icon-style" name="cloud-download-outline"></ion-icon>
+            Download PDF
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+</div>
 <!--<ion-list>
   <ion-item >
     <p>Employee ID: {{ comp_sName }}_{{ memberNoFormat(mbInfo?.member_no) }} </p>
