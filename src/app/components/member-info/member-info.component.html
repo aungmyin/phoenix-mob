@@ -116,7 +116,7 @@
       </ion-col>
       <ion-col size="1" style="text-align: center;">-</ion-col>
       <ion-col size="3">
-        <ion-input class="worktime" type="text" value="{{ item.end_time }}"></ion-input>
+        <ion-input class="worktime borderRadius" type="text" value="{{ item.end_time }}"></ion-input>
       </ion-col>
       <ion-col size="5">
         
@@ -137,7 +137,7 @@
         <span style="margin-top: 5px;">Break Time</span> 
       </ion-col> 
       <ion-col size="2">
-        <ion-input style="border: 1px solid #e4e4e4; text-align: center; color: #707070" type="text" value="{{ item.total_break_time }}"></ion-input>
+        <ion-input class="worktime borderRadius" type="text" value="{{ item.total_break_time }}"></ion-input>
       </ion-col>
       <ion-col size="5">
         minutes
@@ -148,7 +148,7 @@
         <span style="margin-top: 5px;">Night Break Time</span> 
       </ion-col> 
       <ion-col size="2">
-        <ion-input style="border: 1px solid #e4e4e4; text-align: center; color: #707070" type="text" value="{{ item.night_break_time }}"></ion-input>
+        <ion-input class="worktime borderRadius" type="text" value="{{ item.night_break_time }}"></ion-input>
       </ion-col>
       <ion-col size="5">
         minutes
@@ -159,7 +159,7 @@
         <span style="margin-top: 5px;">Working Hours</span> 
       </ion-col> 
       <ion-col size="3">
-        <ion-input style="border: 1px solid #e4e4e4; text-align: center; color: #707070" type="text" value="{{ item.total_work_time }}"></ion-input>
+        <ion-input class="worktime borderRadius" type="text" value="{{ item.total_work_time }}"></ion-input>
       </ion-col>
       <ion-col size="4"></ion-col>
     </ion-row>
@@ -168,7 +168,7 @@
         <span style="margin-top: 5px;">Amount Overtime</span> 
       </ion-col> 
       <ion-col size="3">
-        <ion-input style="border: 1px solid #e4e4e4; text-align: center; color: #707070" type="text" value="{{ item.orver_work_time }}"></ion-input>
+        <ion-input class="worktime borderRadius" type="text" value="{{ item.orver_work_time }}"></ion-input>
       </ion-col>
       <ion-col size="4"></ion-col>
     </ion-row>
@@ -178,7 +178,7 @@
         <span style="margin-top: 5px;">Late Night Work</span> 
       </ion-col> 
       <ion-col size="3">
-        <ion-input style="border: 1px solid #e4e4e4; text-align: center; color: #707070" type="text" value="{{ item.night_work_time }}"></ion-input>
+        <ion-input class="worktime borderRadius" type="text" value="{{ item.night_work_time }}"></ion-input>
       </ion-col>
       <ion-col size="4"></ion-col>
     </ion-row>
@@ -187,7 +187,7 @@
         <span style="margin-top: 5px;">Deduction</span> 
       </ion-col> 
       <ion-col size="3">
-        <ion-input style="border: 1px solid #e4e4e4; text-align: center; color: #707070" type="text" value="{{ item.night_work_time }}"></ion-input>
+        <ion-input class="worktime borderRadius" type="text" value="{{ item.night_work_time }}"></ion-input>
       </ion-col>
       <ion-col size="4"></ion-col>
     </ion-row>
@@ -196,7 +196,7 @@
         <span style="margin-top: 5px;">Attendance Type</span> 
       </ion-col> 
       <ion-col size="7">
-        <ion-select class="dropdownstyle" value="{{ item.atendance_type }}" placeholder="Select One" >
+        <ion-select class="dropdownstyle borderRadius" value="{{ item.atendance_type }}" placeholder="Select One" >
           <ion-select-option *ngFor="let t of attendance_type" value="{{ t.id }}" >{{ t.value }}</ion-select-option>
         </ion-select>
       </ion-col>
@@ -206,7 +206,7 @@
         <span style="margin-top: 5px;">Reason</span> 
       </ion-col> 
       <ion-col size="7">
-        <ion-input style="border: 1px solid #e4e4e4; color: #707070" type="text" value="{{ item.reason }}"></ion-input>
+        <ion-input class="worktime borderRadius" type="text" value="{{ item.reason }}"></ion-input>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -238,7 +238,7 @@
         
       </ion-col> 
       <ion-col size="7">
-        <ion-select style="border: 1px solid #e4e4e4; color: #707070; padding: 5px; text-align: center; border-radius: 5px;" value="2" placeholder="Select One" >
+        <ion-select class="worktime borderRadius" value="2" placeholder="Select One" >
           <ion-select-option >Stardard Hour</ion-select-option>
           <ion-select-option >Stardard Hour</ion-select-option>
         </ion-select>
@@ -250,7 +250,7 @@
         <span style="margin-top: 5px;">Break Time</span> 
       </ion-col> 
       <ion-col size="2">
-        <ion-input style="border: 1px solid #e4e4e4; text-align: center; color: #707070" type="text" value="{{ item.total_break_time }}"></ion-input>
+        <ion-input class="worktime borderRadius" type="text" value="{{ item.total_break_time }}"></ion-input>
       </ion-col>
       <ion-col size="5">
         minutes
@@ -261,7 +261,7 @@
         <span style="margin-top: 5px;">Night Break Time</span> 
       </ion-col> 
       <ion-col size="2">
-        <ion-input style="border: 1px solid #e4e4e4; text-align: center; color: #707070" type="text" value="{{ item.night_break_time }}"></ion-input>
+        <ion-input class="worktime borderRadius" type="text" value="{{ item.night_break_time }}"></ion-input>
       </ion-col>
       <ion-col size="5">
         minutes
@@ -272,7 +272,7 @@
         <span style="margin-top: 5px;">Working Hours</span> 
       </ion-col> 
       <ion-col size="3">
-        <ion-input style="border: 1px solid #e4e4e4; text-align: center; color: #707070" type="text" value="{{ item.total_work_time }}"></ion-input>
+        <ion-input class="worktime borderRadius" type="text" value="{{ item.total_work_time }}"></ion-input>
       </ion-col>
       <ion-col size="4"></ion-col>
     </ion-row>
@@ -281,7 +281,7 @@
         <span style="margin-top: 5px;">Amount Overtime</span> 
       </ion-col> 
       <ion-col size="3">
-        <ion-input style="border: 1px solid #e4e4e4; text-align: center; color: #707070" type="text" value="{{ item.orver_work_time }}"></ion-input>
+        <ion-input class="worktime borderRadius" type="text" value="{{ item.orver_work_time }}"></ion-input>
       </ion-col>
       <ion-col size="4"></ion-col>
     </ion-row>
@@ -291,7 +291,7 @@
         <span style="margin-top: 5px;">Late Night Work</span> 
       </ion-col> 
       <ion-col size="3">
-        <ion-input style="border: 1px solid #e4e4e4; text-align: center; color: #707070" type="text" value="{{ item.night_work_time }}"></ion-input>
+        <ion-input class="worktime borderRadius" type="text" value="{{ item.night_work_time }}"></ion-input>
       </ion-col>
       <ion-col size="4"></ion-col>
     </ion-row>
@@ -300,7 +300,7 @@
         <span style="margin-top: 5px;">Deduction</span> 
       </ion-col> 
       <ion-col size="3">
-        <ion-input style="border: 1px solid #e4e4e4; text-align: center; color: #707070" type="text" value="{{ item.night_work_time }}"></ion-input>
+        <ion-input class="worktime borderRadius" type="text" value="{{ item.night_work_time }}"></ion-input>
       </ion-col>
       <ion-col size="4"></ion-col>
     </ion-row>
@@ -371,7 +371,7 @@
         <span style="margin-top: 5px;">Working Hours</span> 
       </ion-col> 
       <ion-col size="3">
-        <ion-input style="border: 1px solid #e4e4e4; text-align: center; color: #707070" type="text" value="{{ item.total_work_time }}"></ion-input>
+        <ion-input class="worktime borderRadius" type="text" value="{{ item.total_work_time }}"></ion-input>
       </ion-col>
       <ion-col size="4"></ion-col>
     </ion-row>
@@ -380,7 +380,7 @@
         <span style="margin-top: 5px;">Amount Overtime</span> 
       </ion-col> 
       <ion-col size="3">
-        <ion-input style="border: 1px solid #e4e4e4; text-align: center; color: #707070" type="text" value="{{ item.orver_work_time }}"></ion-input>
+        <ion-input class="worktime borderRadius" type="text" value="{{ item.orver_work_time }}"></ion-input>
       </ion-col>
       <ion-col size="4"></ion-col>
     </ion-row>
@@ -390,7 +390,7 @@
         <span style="margin-top: 5px;">Late Night Work</span> 
       </ion-col> 
       <ion-col size="3">
-        <ion-input style="border: 1px solid #e4e4e4; text-align: center; color: #707070" type="text" value="{{ item.night_work_time }}"></ion-input>
+        <ion-input class="worktime borderRadius" type="text" value="{{ item.night_work_time }}"></ion-input>
       </ion-col>
       <ion-col size="4"></ion-col>
     </ion-row>
@@ -399,7 +399,7 @@
         <span style="margin-top: 5px;">Deduction</span> 
       </ion-col> 
       <ion-col size="3">
-        <ion-input style="border: 1px solid #e4e4e4; text-align: center; color: #707070" type="text" value="{{ item.night_work_time }}"></ion-input>
+        <ion-input class="worktime borderRadius" type="text" value="{{ item.night_work_time }}"></ion-input>
       </ion-col>
       <ion-col size="4"></ion-col>
     </ion-row>
@@ -408,7 +408,7 @@
         <span style="margin-top: 5px;">Attendance Type</span> 
       </ion-col> 
       <ion-col size="7">
-        <ion-select class="dropdownstyle" value="{{ item.atendance_type }}" placeholder="Select One" >
+        <ion-select class="dropdownstyle borderRadius" value="{{ item.atendance_type }}" placeholder="Select One" >
           <ion-select-option *ngFor="let t of attendance_type" value="{{ t.id }}" >{{ t.value }}</ion-select-option>
         </ion-select>
       </ion-col>
@@ -418,7 +418,7 @@
         <span style="margin-top: 5px;">Reason</span> 
       </ion-col> 
       <ion-col size="7">
-        <ion-input style="border: 1px solid #e4e4e4; color: #707070" type="text" value="{{ item.reason }}"></ion-input>
+        <ion-input class="worktime borderRadius" type="text" value="{{ item.reason }}"></ion-input>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -511,22 +511,23 @@
 </ion-grid>
 
 <div id="transportext">
-  <ion-list lines="none" class="date-container" >
-    <!-- <ion-item tappable (click)="toggleSection(i)" [ngClass]="{'section-active': item.open, 'section': !item.open}" class="date-blk" color="newColor" > -->
-    <ion-item tappable (click)="toggleSection(90)"  class="date-blk" color="newColor" >
+  <ion-list lines="none" class="date-container" *ngFor ="let te of tranExpen; let i = index" >
+    <ion-item tappable (click)="toggleSection2(i)" [ngClass]="{'section-active': te.open, 'section': !te.open}" class="date-blk" color="newColor" >
+    <!-- <ion-item tappable (click)="toggleSection(90)"  class="date-blk" color="newColor" > -->
       <p>
-        <span class="datetitle">Transportation Expenses</span>
+        <span class="datetitle">Transportation Expenses</span><br>
+        {{ te.use_date | date: 'yyyy/MM/dd EEEE' }}
       </p>
-      <ion-icon slot="end" style="font-size: 24px;color: #707070;"  name="chevron-down-outline"></ion-icon>
-    <!-- <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="item.open" name="chevron-up-outline"></ion-icon> -->
+      <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="!te.open" name="chevron-down-outline"></ion-icon>
+      <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="te.open" name="chevron-up-outline"></ion-icon>
     </ion-item>
-    <ion-grid class="total-blk"  >
+    <ion-grid class="total-blk" [ngStyle]="!te.open ? {'display': 'none'} : {'display': 'block'}"  >
       <ion-row>
         <ion-col size="6">
           <span style="margin-top: 5px;">Date</span> 
         </ion-col> 
         <ion-col size="6">
-          <ion-datetime class="worktime" value="2019-10-01T15:43:40.394Z" display-timezone="utc"></ion-datetime>
+          <ion-datetime class="worktime borderRadius" value="{{ te.use_date }}" display-timezone="utc"></ion-datetime>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -534,7 +535,7 @@
           <span style="margin-top: 5px;">Destination</span> 
         </ion-col> 
         <ion-col size="6">
-          <ion-input class="worktime" type="text" value=""></ion-input>
+          <ion-input class="worktime borderRadius" type="text" value="{{ te.destination }}"></ion-input>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -542,7 +543,9 @@
           <span style="margin-top: 5px;">Tronsporation</span> 
         </ion-col> 
         <ion-col size="6">
-          <ion-input class="worktime" type="text" value=""></ion-input>
+          <ion-select class="worktime borderRadius" value="{{ te.transport_type }}" placeholder="Select One" >
+            <ion-select-option *ngFor="let s of transporation" value="{{ s.id }}">{{ s.value }}</ion-select-option>
+          </ion-select>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -550,7 +553,7 @@
           <span style="margin-top: 5px;">Departure</span> 
         </ion-col> 
         <ion-col size="6">
-          <ion-input class="worktime" type="text" value=""></ion-input>
+          <ion-input class="worktime borderRadius" type="text" value="{{ te.from_area }}"></ion-input>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -558,7 +561,7 @@
           <span style="margin-top: 5px;">Arrival</span> 
         </ion-col> 
         <ion-col size="6">
-          <ion-input class="worktime" type="text" value=""></ion-input>
+          <ion-input class="worktime borderRadius" type="text" value="{{ te.to_area }}"></ion-input>
         </ion-col>
       </ion-row>
       
@@ -568,7 +571,7 @@
         </ion-col> 
         <ion-col size="6">
           <ul class="checklist">
-            <li *ngFor="let t of tripTypeList">
+            <li *ngFor="let t of tripTypeList" value="{{ te.rourte_type }}">
               <ion-checkbox class="checkbox-style" slot="start" [(ngModel)]="t.isChecked"></ion-checkbox>
               {{t.val}}
             </li>
@@ -593,7 +596,7 @@
           <span style="margin-top: 5px;">Amount</span> 
         </ion-col> 
         <ion-col size="6">
-          <ion-input type="number" class="worktime" value="333"></ion-input>
+          <ion-input type="number" class="worktime borderRadius" value="{{ te.amount }}"></ion-input>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -601,7 +604,9 @@
           <span style="margin-top: 5px;">Billing</span> 
         </ion-col> 
         <ion-col size="6">
-          <ion-input type="number" class="worktime" value="333"></ion-input>
+          <ion-select class="worktime borderRadius" value="{{ te.demand_type }}" placeholder="Select One" >
+            <ion-select-option *ngFor="let d of deman_type" value="{{ d.id }}">{{ d.value }}</ion-select-option>
+          </ion-select>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -609,7 +614,10 @@
           <span style="margin-top: 5px;">Action</span> 
         </ion-col> 
         <ion-col size="6">
-          <ion-button >Remove</ion-button>
+          <ion-button color="white" class="del-btn" >
+            <ion-icon slot="start" name="trash-outline" style="font-size: 1.2rem;"></ion-icon>
+              Remove
+          </ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>

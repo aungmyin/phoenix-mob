@@ -53,6 +53,9 @@ export class MemberInfoComponent implements OnInit {
   workPattern: any[];
   workPatternExist: any[];
   workinghour: any;
+  tranExpen: any;
+  deman_type: any;
+  transporation: any;
 
   constructor(private authService: AuthService, private customerInfo: CustomerWorkreportInfoService, private memberService: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
 
@@ -78,15 +81,9 @@ export class MemberInfoComponent implements OnInit {
       this.mbInfo = res.member_info;
       this.information = res.work_report_detail;
       this.workPattern = res.project_info;
-      
-      //to display exist work pattern
-      /* for (let index = 0; index < 6; index++) {
-        if(this.workPattern[index]['pattern_flg'] == 1) {
-          this.workPatternExist[index] = this.workPattern[index];
-        }
-      } */
-      //this.statusDly(this.mbInfo);
-     // console.log(this.workinghour);
+
+      //transporation expense
+      this.tranExpen = res.transport_expense;
 
       //this.information[1].open = true;
     });
@@ -105,6 +102,44 @@ export class MemberInfoComponent implements OnInit {
       {
         id: 1,
         value: 'Yes'
+      }
+    ];
+
+    this.deman_type = [
+      {
+        id: 0,
+        value: 'in house'
+      },
+      {
+        id: 1,
+        value: 'Customer'
+      }
+    ];
+
+    this.transporation = [
+      {
+        id: 0,
+        value: '-'
+      },
+      {
+        id: 1,
+        value: 'Bus'
+      },
+      {
+        id: 2,
+        value: 'Train'
+      },
+      {
+        id: 3,
+        value: 'Taxi'
+      },
+      {
+        id: 4,
+        value: 'Air plane'
+      },
+      {
+        id: 5,
+        value: 'Other'
       }
     ];
 
@@ -198,6 +233,10 @@ export class MemberInfoComponent implements OnInit {
 
   toggleSection(index) {
     this.information[index].open = !this.information[index].open;
+  }
+
+  toggleSection2(index) {
+    this.tranExpen[index].open = !this.tranExpen[index].open;
   }
 
   memberNoFormat(mbno: Number) {
