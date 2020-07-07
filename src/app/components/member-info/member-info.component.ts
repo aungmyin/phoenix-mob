@@ -81,11 +81,12 @@ export class MemberInfoComponent implements OnInit {
       this.mbInfo = res.member_info;
       this.information = res.work_report_detail;
       this.workPattern = res.project_info;
+      this.customerWorkReport =res.customer_work_report;
 
       //transporation expense
       this.tranExpen = res.transport_expense;
 
-      console.log(this.tranExpen);
+      console.log(this.customerWorkReport);
 
     });
 
@@ -150,15 +151,6 @@ export class MemberInfoComponent implements OnInit {
       { val: 'All', isChecked: true }
     ];
 
-    this.tripTypeList = [
-      { val: 'One-Way', isChecked: false },
-      { val: 'Round Trip', isChecked: true }
-    ];
-
-    this.voucherlist = [
-      { val: 'No', isChecked: false },
-      { val: 'Yes', isChecked: true }
-    ];
 
     this.attendance_type = [
       {
@@ -238,6 +230,10 @@ export class MemberInfoComponent implements OnInit {
 
   toggleSection2(index) {
     this.tranExpen[index].open = !this.tranExpen[index].open;
+  }
+
+  toggleSectionc() {
+    this.customerWorkReport.open = !this.customerWorkReport.open;
   }
 
   memberNoFormat(mbno: Number) {

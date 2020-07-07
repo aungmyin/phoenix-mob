@@ -645,12 +645,13 @@
       </ion-row>
     </ion-grid>
   </ion-list>
-</div>
-<div class="addnewblg">
+  <div class="addnewblg">
       <ion-button color="secondary" class="add-transport-btn" >
           + Add another transporation expense
       </ion-button>
-</div>
+  </div>
+
+
 <div class="totol-container">
   <ion-list class="total-container">
     <ion-grid>
@@ -679,6 +680,83 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+  </ion-list>
+</div>
+</div> <!-- End Transporation Expense -->
+
+<div id="customerWorkReport">
+  <ion-list lines="none" class="date-white-container" >
+    <ion-item tappable (click)="toggleSectionc()" [ngClass]="{'section-active': customerWorkReport?.open, 'section': !customerWorkReport?.open}" class="customer-blk" color="newColor" >
+      <!-- <ion-item tappable (click)="toggleSection(90)"  class="date-blk" color="newColor" > -->
+        <p>
+          <span style="font-weight: 500;color: #707070;">Detail</span>
+        </p>
+        <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="!customerWorkReport?.open" name="chevron-down-outline"></ion-icon>
+        <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="customerWorkReport?.open" name="chevron-up-outline"></ion-icon>
+    </ion-item>
+    <ion-grid class="detail-box">
+      <ion-row>
+        <ion-col size="5"><b style="color: #707070;">Customer Name</b></ion-col>
+        <ion-col size="7">Customer Name here</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5"><b style="color: #707070;">Project Name</b></ion-col>
+        <ion-col size="7">Project Name</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5"><b style="color: #707070;">Contract Period</b></ion-col>
+        <ion-col size="7">2020/06/01 to 2020/06/01</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+  <ion-list lines="none">
+    <ion-item>
+      <b style="color: #707070;">Customer Work Report</b>
+      <ion-select slot="end" class="dropdownstyle borderRadius" style="padding: 7px 13px;" value="0" placeholder="Select One" >
+        <ion-select-option *ngFor="let t of tran_expen" value="{{ t.id }}" >{{ t.value }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <p>If there is a work report for submitting the customer,
+        please upload it.</p>
+    </ion-item>
+  </ion-list>
+  <ion-grid style="border-bottom: 1px dashed #000000; margin: 15px; padding-bottom: 15px;">
+    <ion-row>
+      <ion-col size="6">
+        <div class="bd1-color">
+          <ion-icon slot="start"class="icon-style" name="cloud-download-outline"></ion-icon>
+          Download PDF
+        </div>
+      </ion-col>
+      <ion-col>
+        <div class="bd1-color" style="border: 1px solid #feaa46; color: #feaa46;">
+          <ion-icon slot="start"class="icon-style" style="color: #feaa46;" name="trash-outline"></ion-icon>
+          Remove
+        </div>
+      </ion-col>
+      <ion-col size="1"></ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list lines="none" class="date-white-container" >
+    <ion-item style="border-bottom: 1px solid #ebebeb;" tappable (click)="toggleSectionc()" [ngClass]="{'section-active': customerWorkReport?.open, 'section': !customerWorkReport?.open}" class="customer-blk" color="newColor" >
+      <!-- <ion-item tappable (click)="toggleSection(90)"  class="date-blk" color="newColor" > -->
+        <p>
+          <span style="font-weight: 700;color: #707070; font-size: 1.3rem;">Total</span>
+        </p>
+        <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="!customerWorkReport?.open" name="chevron-down-outline"></ion-icon>
+        <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="customerWorkReport?.open" name="chevron-up-outline"></ion-icon>
+    </ion-item>
+    <!-- <ion-item tappable (click)="toggleSection(32)" [ngClass]="{'section-active': total, 'section': !total}" class="date-white-blk" color="newColor" >
+      <span style="font-size: 20px;">Result</span>
+      <ion-icon slot="end" style="font-size: 24px;color: #707070;" name="chevron-up-outline"></ion-icon>
+    </ion-item> -->
+    <ion-item>
+      <p style="width: 100%">
+        <span style="float: left;font-weight: 700;color: #707070; padding: 15px 5px;">Actual Working Hours</span>
+        <span style="float: right;padding: 15px 24px;">0</span>
+      </p>
+    </ion-item>
   </ion-list>
 </div>
 <!--<ion-list>

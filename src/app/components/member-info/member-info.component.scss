@@ -128,6 +128,10 @@
     background: #d6f2ec;
     padding: 5px;
 }
+.customer-blk {
+    background: #ffffff;
+    padding: 5px;
+}
 .date-gray-blk {
     background: #f2f2f2;
     padding: 5px;
@@ -138,8 +142,11 @@
 }
 .date-white-blk {
     background: #ffffff;
-    border-bottom: 1px solid #eeeeee;
+    border-bottom: 1px solid #ebebeb;
     padding: 5px;
+}
+.detail-box {
+    margin: 0 15px 0 15px;
 }
 .total-blk {
     padding: 15px; 
