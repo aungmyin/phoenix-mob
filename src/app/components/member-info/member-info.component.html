@@ -571,9 +571,21 @@
         </ion-col> 
         <ion-col size="6">
           <ul class="checklist">
-            <li *ngFor="let t of tripTypeList" value="{{ te.rourte_type }}">
-              <ion-checkbox class="checkbox-style" slot="start" [(ngModel)]="t.isChecked"></ion-checkbox>
-              {{t.val}}
+            
+            <li >
+              <label *ngIf="te.rourte_type == 0">
+                <ion-checkbox  class="checkbox-style" slot="start" [checked]="true"  ></ion-checkbox>
+                One-way<br>
+                <ion-checkbox  class="checkbox-style" slot="start" [checked]="false"  ></ion-checkbox>
+                Round-Trip
+              </label>
+              <label *ngIf="te.rourte_type == 1">
+                <ion-checkbox  class="checkbox-style" [checked]="false" slot="start" ></ion-checkbox>
+                One-way<br>
+                <ion-checkbox  class="checkbox-style" slot="start" [checked]="true"  ></ion-checkbox>
+                Round-Trip
+              </label>
+              
             </li>
           </ul>
         </ion-col>
@@ -584,9 +596,20 @@
         </ion-col> 
         <ion-col size="6">
           <ul class="checklist">
-            <li *ngFor="let v of voucherlist">
-              <ion-checkbox class="checkbox-style" slot="start" [(ngModel)]="v.isChecked"></ion-checkbox>
-              {{v.val}}
+            <li >
+              <label *ngIf="te.print_flg == 0">
+                <ion-checkbox  class="checkbox-style" slot="start" [checked]="true"  ></ion-checkbox>
+                No
+                <ion-checkbox  class="checkbox-style" slot="start" [checked]="false"  ></ion-checkbox>
+                Yes
+              </label>
+              <label *ngIf="te.print_flg == 1">
+                <ion-checkbox  class="checkbox-style" [checked]="false" slot="start" ></ion-checkbox>
+                No
+                <ion-checkbox  class="checkbox-style" slot="start" [checked]="true"  ></ion-checkbox>
+                Yes
+              </label>
+              
             </li>
           </ul>
         </ion-col>
@@ -634,7 +657,7 @@
       <ion-row>
         <ion-col>Total Amount</ion-col>
         <ion-col>
-          <ion-input type="number" class="worktime borderRadius" value=""></ion-input>
+          <ion-input type="number" class="worktime borderRadius" style="padding: 5px !important"  value=""></ion-input>
         </ion-col>
         <ion-col class="textcenter" size="2">JPY</ion-col>
       </ion-row>
@@ -642,7 +665,7 @@
       <ion-row>
         <ion-col>Customer Billing</ion-col>
         <ion-col>
-          <ion-input type="number" class="worktime borderRadius" value=""></ion-input>
+          <ion-input type="number" class="worktime borderRadius" style="padding: 5px !important" value=""></ion-input>
         </ion-col>
         <ion-col class="textcenter" size="2">JPY</ion-col>
       </ion-row>
