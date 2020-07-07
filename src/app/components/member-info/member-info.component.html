@@ -694,7 +694,7 @@
         <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="!customerWorkReport?.open" name="chevron-down-outline"></ion-icon>
         <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="customerWorkReport?.open" name="chevron-up-outline"></ion-icon>
     </ion-item>
-    <ion-grid class="detail-box">
+    <ion-grid class="detail-box" [ngStyle]="!customerWorkReport?.open ? {'display': 'none'} : {'display': 'block'}">
       <ion-row>
         <ion-col size="5"><b style="color: #707070;">Customer Name</b></ion-col>
         <ion-col size="7">Customer Name here</ion-col>
@@ -751,10 +751,10 @@
       <span style="font-size: 20px;">Result</span>
       <ion-icon slot="end" style="font-size: 24px;color: #707070;" name="chevron-up-outline"></ion-icon>
     </ion-item> -->
-    <ion-item>
+    <ion-item [ngStyle]="!customerWorkReport?.open ? {'display': 'none'} : {'display': 'block'}">
       <p style="width: 100%">
-        <span style="float: left;font-weight: 700;color: #707070; padding: 15px 5px;">Actual Working Hours</span>
-        <span style="float: right;padding: 15px 24px;">0</span>
+        <span style="float: left;font-weight: 700;color: #707070; padding: 10px 5px;">Actual Working Hours</span>
+        <span style="float: right;padding: 10px 24px;">0</span>
       </p>
     </ion-item>
   </ion-list>
