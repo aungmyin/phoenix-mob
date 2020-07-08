@@ -56,6 +56,8 @@ export class MemberInfoComponent implements OnInit {
   tranExpen: any;
   deman_type: any;
   transporation: any;
+  customerWorkReportDetail: any;
+  newArray: any = [];
 
   constructor(private authService: AuthService, private customerInfo: CustomerWorkreportInfoService, private memberService: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
 
@@ -82,6 +84,8 @@ export class MemberInfoComponent implements OnInit {
       this.information = res.work_report_detail;
       this.workPattern = res.project_info;
       this.customerWorkReport =res.customer_work_report;
+
+      //this.customerWorkReportDetail = res.customer_work_report.customer_workreport_items;
 
       //transporation expense
       this.tranExpen = res.transport_expense;
@@ -226,6 +230,10 @@ export class MemberInfoComponent implements OnInit {
 
   toggleSection(index) {
     this.information[index].open = !this.information[index].open;
+  }
+
+  toggleSectionCustomer(index) {
+    this.customerWorkReportDetail[index].open = !this.customerWorkReportDetail[index].open;
   }
 
   toggleSection2(index) {
