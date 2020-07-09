@@ -85,13 +85,10 @@ export class MemberInfoComponent implements OnInit {
       this.workPattern = res.project_info;
       this.customerWorkReport =res.customer_work_report;
 
-      //this.customerWorkReportDetail = res.customer_work_report.customer_workreport_items;
-
       //transporation expense
       this.tranExpen = res.transport_expense;
-
      
-      console.log(this.customerWorkReport);
+      console.log(typeof(this.customerWorkReport));
 
     });
 
@@ -155,7 +152,6 @@ export class MemberInfoComponent implements OnInit {
       { val: 'Weekend', isChecked: false },
       { val: 'All', isChecked: true }
     ];
-
 
     this.attendance_type = [
       {
@@ -233,8 +229,8 @@ export class MemberInfoComponent implements OnInit {
     this.information[index].open = !this.information[index].open;
   }
 
-  toggleSectionCustomer(index) {
-    this.customerWorkReportDetail[index].open = !this.customerWorkReportDetail[index].open;
+  toggleSectionCustomer() {
+    this.newArray.open = !this.newArray.open;
   }
 
   toggleSection2(index) {

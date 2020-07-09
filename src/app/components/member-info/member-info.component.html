@@ -722,11 +722,16 @@
           please upload it.</p>
       </ion-item>
     </ion-list>
+    <div class="datelist" *ngFor="let item of c.customer_workreport_items; let i = index">
+      <ion-item>
+        {{ item.customer_start_time }}
+      </ion-item>
+    </div>
   </div>
 
   <div class="displayswitch">
 
-    <div class="datelist" *ngFor="let item of customerWorkReportDetail; let i = index">
+    <div class="datelist" *ngFor="let item of c?.customer_workreport_items; let i = index">
       <ion-list lines="none" class="date-container" *ngIf="item.customer_start_time == '00:00' && isWeekEnd(item.report_date) == false" >
         <ion-item tappable (click)="toggleSectionCustomer(i)" [ngClass]="{'section-active': item.open, 'section': !item.open}" class="date-blk" color="newColor" >
           <ion-icon slot="start" style="color: #707070;" name="alert-outline"></ion-icon>
