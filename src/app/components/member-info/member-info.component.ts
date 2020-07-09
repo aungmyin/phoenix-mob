@@ -57,7 +57,7 @@ export class MemberInfoComponent implements OnInit {
   deman_type: any;
   transporation: any;
   customerWorkReportDetail: any;
-  newArray: any = [];
+  newArray: any;
 
   constructor(private authService: AuthService, private customerInfo: CustomerWorkreportInfoService, private memberService: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
 
@@ -90,6 +90,7 @@ export class MemberInfoComponent implements OnInit {
       //transporation expense
       this.tranExpen = res.transport_expense;
 
+     
       console.log(this.customerWorkReport);
 
     });
