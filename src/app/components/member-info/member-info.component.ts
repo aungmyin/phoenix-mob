@@ -58,6 +58,7 @@ export class MemberInfoComponent implements OnInit {
   transporation: any;
   customerWorkReportDetail: any;
   newArray: any;
+  showDetails: boolean= false;
 
   constructor(private authService: AuthService, private customerInfo: CustomerWorkreportInfoService, private memberService: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
 
@@ -229,12 +230,12 @@ export class MemberInfoComponent implements OnInit {
     this.information[index].open = !this.information[index].open;
   }
 
-  toggleSectionCustomer() {
-    this.newArray.open = !this.newArray.open;
+  toggleSectionCustomer(index) {
+    //this.customerWorkReport.customer_workreport_items[index].open = !this.customerWorkReport.customer_workreport_items[index].open;
   }
 
   toggleSection2(index) {
-    this.tranExpen[index].open = !this.tranExpen[index].open;
+    this.showDetails = !this.showDetails;
   }
 
   toggleSectionc() {
