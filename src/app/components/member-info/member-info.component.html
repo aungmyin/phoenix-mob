@@ -96,7 +96,7 @@
   </ion-item>
 </ion-list>
 <div *ngFor="let item of information; let i = index ">
-<ion-list lines="none" class="date-container" *ngIf="item.start_time == '00:00' && isWeekEnd(item.report_date) == false" >
+<ion-list lines="none" class="date-container" style="background: #d6f2ec;" *ngIf="item.start_time == '00:00' && isWeekEnd(item.report_date) == false" >
   <ion-item tappable (click)="toggleSection(i)" [ngClass]="{'section-active': item.open, 'section': !item.open}" class="date-blk" color="newColor" >
     <ion-icon slot="start" style="color: #707070;" name="alert-outline"></ion-icon>
     <p>
