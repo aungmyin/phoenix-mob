@@ -17,7 +17,7 @@ export class WorkreportSearchComponent implements OnInit {
     year: '',
     month: '',
     member_id: '',
-    member_info: ''
+    token: ''
   }
 
   newDate: any;
@@ -222,11 +222,12 @@ export class WorkreportSearchComponent implements OnInit {
  }
 
   searchWkReportAction() {
-    this.postData.member_id = this.authUser.email;
+    this.postData.member_id = this.loginUser['email'];
+    this.postData.token = this.loginUser['access-token'];
     console.log(this.postData);
     if(this.validateInputs()) {
       this.memberService.memberData(this.postData).subscribe( (res: any) => {
-        //console.log(res.member_info);
+        console.log(res.member_info);
         this.memberService.updateMemberData(res);
       })
     } else {

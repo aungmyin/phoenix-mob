@@ -96,7 +96,7 @@
   </ion-item>
 </ion-list>
 <div *ngFor="let item of information; let i = index ">
-<ion-list lines="none" class="date-container" style="background: #d6f2ec;" *ngIf="item.start_time == '00:00' && isWeekEnd(item.report_date) == false" >
+<ion-list lines="none" class="date-container bg-bluelight" *ngIf="item.start_time == '00:00' && isWeekEnd(item.report_date) == false" >
   <ion-item tappable (click)="toggleSection(i)" [ngClass]="{'section-active': item.open, 'section': !item.open}" class="date-blk" color="newColor" >
     <ion-icon slot="start" style="color: #707070;" name="alert-outline"></ion-icon>
     <p>
@@ -511,7 +511,7 @@
 </ion-grid>
 
 <div id="transportext">
-  <ion-list lines="none" class="date-container" *ngFor ="let te of tranExpen; let i = index" >
+  <ion-list lines="none" class="date-container bg-bluelight" *ngFor ="let te of tranExpen; let i = index" >
     <ion-item tappable (click)="toggleSection2(i)" [ngClass]="{'section-active': te.open, 'section': !te.open}" class="date-blk" color="newColor" >
     <!-- <ion-item tappable (click)="toggleSection(90)"  class="date-blk" color="newColor" > -->
       <p>
@@ -645,11 +645,17 @@
       </ion-row>
     </ion-grid>
   </ion-list>
-  <div class="addnewblg">
-      <ion-button color="secondary" class="add-transport-btn" >
-          + Add another transporation expense
-      </ion-button>
-  </div>
+  <ion-list class="btn-container" lines="none">
+    <ion-item lines="none">
+      <div class="addnewblg">
+          <ion-button color="secondary" class="add-transport-btn" >
+              + Add another transporation expense
+          </ion-button>
+      </div>
+    </ion-item>
+    
+  </ion-list>
+  
 
 
   <div class="totol-container">
@@ -723,7 +729,7 @@
       </ion-item>
     </ion-list>
     <div class="datelist" *ngFor="let item of c.customer_workreport_items| slice:1; let r = index;">
-      <ion-list lines="none" class="date-container" >
+      <ion-list lines="none" class="date-container bg-bluelight" >
         <ion-item tappable (click)="toggleSectionCustomer(r)" [ngClass]="{'section-active': item.open, 'section': !item.open}" class="date-blk" color="newColor" >
           <ion-icon slot="start" style="color: #707070;" name="alert-outline"></ion-icon>
           <p>
@@ -912,7 +918,7 @@
       <ion-col size="6">
         <div class="bd1-color">
           <ion-icon slot="start"class="icon-style" name="cloud-download-outline"></ion-icon>
-          Download PDF
+          Upload PDF
         </div>
       </ion-col>
       <ion-col>

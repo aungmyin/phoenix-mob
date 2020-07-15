@@ -89,7 +89,7 @@ export class MemberInfoComponent implements OnInit {
       //transporation expense
       this.tranExpen = res.transport_expense;
      
-      console.log(typeof(this.customerWorkReport));
+     // console.log(typeof(this.customerWorkReport));
 
     });
 

@@ -34,7 +34,9 @@ export class HttpService {
   getWorkReportDetail(serviceName: string, data: any) {
     //console.log(data.year + data.month + data.member_id + "http data");
     const headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': "*"    
+      'Access-Control-Allow-Origin': "*",
+      'Content-Type':  'application/json',
+      'access-token': data.token 
     });
     const options = { headers: headers, withCredintials: true };
     const url = environment.apiUrl + serviceName + "?year=" + data.year + "&month=" + data.month + "&member_id=" + data.member_id;
