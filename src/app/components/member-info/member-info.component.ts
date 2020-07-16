@@ -4,6 +4,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { MemberInfoService } from 'src/app/services/member-info.service';
 import { CustomerWorkreportInfoService } from 'src/app/services/customer-workreport-info.service';
 
+
+
 @Component({
   selector: 'app-member-info',
   templateUrl: './member-info.component.html',
@@ -241,6 +243,10 @@ export class MemberInfoComponent implements OnInit {
       }
     ]
 
+  }
+
+  scrolltoElement(placetogo) {
+    document.getElementById(placetogo).scrollIntoView();
   }
 
   toggleSection(index) {

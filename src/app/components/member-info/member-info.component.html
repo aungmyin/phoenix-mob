@@ -87,10 +87,10 @@
         <ion-label style="color: #cccccc;">Jump to: </ion-label>
       </li>
       <li>
-        <ion-label >Total</ion-label>
+        <ion-label (click)="scrolltoElement('totalblk')">Total</ion-label>
       </li>
       <li>
-        <ion-label >Result</ion-label>
+        <ion-label (click)="scrolltoElement('resultblk')">Result</ion-label>
       </li>
     </ul>
   </ion-item>
@@ -425,7 +425,7 @@
 </ion-list>
 </div>
 
-<ion-list lines="none" class="date-white-container">
+<ion-list id="totalblk" lines="none" class="date-white-container">
   <ion-item class="date-white-blk" color="newColor" >
     <span style="font-size: 20px;">Total</span>
     <ion-icon slot="end" style="font-size: 24px;color: #707070;" name="chevron-up-outline"></ion-icon>
@@ -450,7 +450,7 @@
   </ion-grid>
 </ion-list>
 
-<ion-list lines="none" class="date-white-container">
+<ion-list id="resultblk" lines="none" class="date-white-container">
   <ion-item tappable (click)="toggleSection(32)" [ngClass]="{'section-active': total, 'section': !total}" class="date-white-blk" color="newColor" >
     <span style="font-size: 20px;">Result</span>
     <ion-icon slot="end" style="font-size: 24px;color: #707070;" name="chevron-up-outline"></ion-icon>
