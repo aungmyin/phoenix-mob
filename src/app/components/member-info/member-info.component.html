@@ -731,16 +731,16 @@
     </ion-list>
     <div class="datelist" *ngFor="let item of c.customer_workreport_items| slice:1; let r = index;">
       <ion-list lines="none" class="date-container bg-bluelight" >
-        <ion-item tappable (click)="toggleSectionCustomer(r)" [ngClass]="{'section-active': item.open, 'section': !item.open}" class="date-blk" color="newColor" >
+        <ion-item tappable (click)="myToggleFunction('myid' + r, r)"  class="date-blk" color="newColor" >
           <ion-icon slot="start" style="color: #707070;" name="alert-outline"></ion-icon>
           <p>
             <span class="datetitle">{{ item.report_date | date: 'yyyy/MM/dd EEEE' }}</span><br>
             <span> Working hours not entered</span>
           </p>
-          <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="!item.open" name="chevron-down-outline"></ion-icon>
-          <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="item.open" name="chevron-up-outline"></ion-icon>
+          <ion-icon slot="end" id="{{ 'down' + r }}" style="font-size: 24px;color: #707070;" name="chevron-down-outline"></ion-icon>
+          <ion-icon slot="end" id="{{ 'up' + r }}" style="font-size: 24px;color: #707070; display: none;" name="chevron-up-outline"></ion-icon>
         </ion-item>
-        <ion-grid class="total-blk" [ngStyle]="!item.open ? {'display': 'none'} : {'display': 'block'}"  >
+        <ion-grid id="{{ 'myid' + r }}" class="total-blk" [ngStyle]="!item.open ? {'display': 'none'} : {'display': 'block'}">
           <ion-row>
             <ion-col size="5">
               <span style="margin-top: 5px;">Work Hours</span> 

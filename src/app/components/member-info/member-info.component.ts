@@ -249,6 +249,22 @@ export class MemberInfoComponent implements OnInit {
     document.getElementById(placetogo).scrollIntoView();
   }
 
+  myToggleFunction(ID, index) {
+    var x = document.getElementById(ID);
+    var d = document.getElementById("down" + index);
+    var p = document.getElementById("up" + index);
+
+    if (x.style.display === "none") {
+      x.style.display = "block";
+      d.style.display = "none";
+      p.style.display = "block";
+    } else {
+      x.style.display = "none";
+      d.style.display = "block";
+      p.style.display = "none";
+    }
+  }
+
   toggleSection(index) {
     this.information[index].open = !this.information[index].open;
   }
