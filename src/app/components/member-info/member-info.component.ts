@@ -16,7 +16,7 @@ export class MemberInfoComponent implements OnInit {
     year: '',
     month: '',
     member_id: '',
-    member_info: ''
+    token: ''
   }
 
   panelOpenState = false;
@@ -25,6 +25,8 @@ export class MemberInfoComponent implements OnInit {
   mbInfo: any;
   memberNo: String;
   fmmemberNo: any;
+
+  displayUserData: any;
 
   items: any = [];
   tran_expen: any = [];
@@ -67,7 +69,7 @@ export class MemberInfoComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.postData.year = params["year"];
       this.postData.month = params["month"];
-      console.log(this.postData.year + this.postData.month + " parameter");
+     
     });
 
     if(!this.postData.year || this.postData.year == '') {
@@ -77,6 +79,21 @@ export class MemberInfoComponent implements OnInit {
       this.postData.month = this.newMonth + 1;
       //console.log(this.newDate + this.newMonth + "current year");
     }
+
+
+    this.authService.userData$.subscribe( (res: any) => {
+      //console.log(res.email);
+      this.displayUserData = res;
+      this.postData.member_id = this.displayUserData['email'];
+      this.postData.token = this.displayUserData['access-token'];
+      
+      this.memberService.memberData(this.postData).subscribe( (res: any) => {
+        console.log(res.member_info);
+        this.memberService.updateMemberData(res);
+      });
+    });
+
+    console.log(this.postData);
 
     //this.postData.member_info = '';
     this.memberService.memberData$.subscribe((res: any) => {
@@ -89,7 +106,7 @@ export class MemberInfoComponent implements OnInit {
       //transporation expense
       this.tranExpen = res.transport_expense;
      
-     // console.log(typeof(this.customerWorkReport));
+     // console.log(this.postData);
 
     });
 
@@ -272,6 +289,15 @@ export class MemberInfoComponent implements OnInit {
     }
   }
 
+  getWorkReportByCurrentDate() {
+    this.postData.member_id = this.loginUser['email'];
+    this.postData.token = this.loginUser['access-token'];
+
+    this.memberService.memberData(this.postData).subscribe( (res: any) => {
+      console.log(res.member_info);
+    });
+  }
+
   isWeekEnd(wkday: any) {
     var date = new Date(wkday);
     return date.getDay() === 6 || date.getDay() === 0;
@@ -280,6 +306,7 @@ export class MemberInfoComponent implements OnInit {
 
   goMoreInfoClient(urls: String) {
     this.postData.member_id = this.loginUser.email;
+    this.postData.token = this.loginUser['access-token'];
     console.log(this.postData);
     //search by date again
     this.customerInfo.getcustomerData(this.postData).subscribe( (res: any) => {

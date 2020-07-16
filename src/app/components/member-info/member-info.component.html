@@ -512,16 +512,17 @@
 
 <div id="transportext">
   <ion-list lines="none" class="date-container bg-bluelight" *ngFor ="let te of tranExpen; let i = index" >
-    <ion-item tappable (click)="toggleSection2(i)" [ngClass]="{'section-active': te.open, 'section': !te.open}" class="date-blk" color="newColor" >
+    <ion-item tappable  class="date-blk" color="newColor" >
     <!-- <ion-item tappable (click)="toggleSection(90)"  class="date-blk" color="newColor" > -->
-      <p>
-        <span class="datetitle">Transportation Expenses</span><br>
-        {{ te.use_date | date: 'yyyy/MM/dd EEEE' }}
+      <p style="margin: 7px auto;">
+        <span class="datetitle">Transportation Expenses</span>
+        <!-- <br>
+        {{ te.use_date | date: 'yyyy/MM/dd EEEE' }} -->
       </p>
-      <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="!te.open" name="chevron-down-outline"></ion-icon>
-      <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="te.open" name="chevron-up-outline"></ion-icon>
+      <!-- <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="!te.open" name="chevron-down-outline"></ion-icon>
+      <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="te.open" name="chevron-up-outline"></ion-icon> -->
     </ion-item>
-    <ion-grid class="total-blk" [ngStyle]="!te.open ? {'display': 'none'} : {'display': 'block'}"  >
+    <ion-grid class="total-blk"  >
       <ion-row>
         <ion-col size="6">
           <span style="margin-top: 5px;">Date</span> 
