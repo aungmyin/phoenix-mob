@@ -5,7 +5,6 @@ import { MemberInfoService } from 'src/app/services/member-info.service';
 import { CustomerWorkreportInfoService } from 'src/app/services/customer-workreport-info.service';
 
 
-
 @Component({
   selector: 'app-member-info',
   templateUrl: './member-info.component.html',
@@ -82,6 +81,7 @@ export class MemberInfoComponent implements OnInit {
       //console.log(this.newDate + this.newMonth + "current year");
     }
 
+    //dropDownSwitch();
 
     this.authService.userData$.subscribe( (res: any) => {
       //console.log(res.email);
@@ -95,7 +95,7 @@ export class MemberInfoComponent implements OnInit {
       });
     });
 
-    console.log(this.postData);
+    //console.log(this.postData);
 
     //this.postData.member_info = '';
     this.memberService.memberData$.subscribe((res: any) => {
@@ -107,8 +107,6 @@ export class MemberInfoComponent implements OnInit {
 
       //transporation expense
       this.tranExpen = res.transport_expense;
-     
-     // console.log(this.postData);
 
     });
 
@@ -244,6 +242,7 @@ export class MemberInfoComponent implements OnInit {
     ]
 
   }
+
 
   scrolltoElement(placetogo) {
     document.getElementById(placetogo).scrollIntoView();

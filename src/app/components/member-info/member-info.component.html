@@ -720,7 +720,7 @@
     <ion-list lines="none">
       <ion-item>
         <b style="color: #707070;">Customer Work Report</b>
-        <ion-select slot="end" class="dropdownstyle borderRadius" style="padding: 7px 13px;" value="{{ c.client_report_flg }}" placeholder="Select One" >
+        <ion-select slot="end" id="customerWkDropdown" class="dropdownstyle borderRadius" style="padding: 7px 13px;" value="{{ c.client_report_flg }}" placeholder="Select One" >
           <ion-select-option *ngFor="let t of tran_expen" value="{{ t.id }}" >{{ t.value }}</ion-select-option>
         </ion-select>
       </ion-item>
@@ -729,28 +729,29 @@
           please upload it.</p>
       </ion-item>
     </ion-list>
-    <div class="datelist" *ngFor="let item of c.customer_workreport_items| slice:1; let r = index;">
-      <ion-list lines="none" class="date-container bg-bluelight" >
+    <div class="datelist" *ngFor="let items of c.customer_workreport_items| slice:0; let r = index;">
+      <!-- start Date not entered -->
+      <ion-list lines="none" class="date-container bg-bluelight" *ngIf="items.customer_start_time == '00:00' && isWeekEnd(items.report_date) == false " >
         <ion-item tappable (click)="myToggleFunction('myid' + r, r)"  class="date-blk" color="newColor" >
           <ion-icon slot="start" style="color: #707070;" name="alert-outline"></ion-icon>
           <p>
-            <span class="datetitle">{{ item.report_date | date: 'yyyy/MM/dd EEEE' }}</span><br>
+            <span class="datetitle">{{ items.report_date | date: 'yyyy/MM/dd EEEE' }}</span><br>
             <span> Working hours not entered</span>
           </p>
           <ion-icon slot="end" id="{{ 'down' + r }}" style="font-size: 24px;color: #707070;" name="chevron-down-outline"></ion-icon>
           <ion-icon slot="end" id="{{ 'up' + r }}" style="font-size: 24px;color: #707070; display: none;" name="chevron-up-outline"></ion-icon>
         </ion-item>
-        <ion-grid id="{{ 'myid' + r }}" class="total-blk" [ngStyle]="!item.open ? {'display': 'none'} : {'display': 'block'}">
+        <ion-grid id="{{ 'myid' + r }}" class="total-blk" [ngStyle]="!items.open ? {'display': 'none'} : {'display': 'block'}">
           <ion-row>
             <ion-col size="5">
               <span style="margin-top: 5px;">Work Hours</span> 
             </ion-col> 
             <ion-col size="3">
-              <ion-input class="worktime" type="text" value="{{ item.customer_start_time }}"></ion-input>
+              <ion-input class="worktime" type="text" value="{{ items.customer_start_time }}"></ion-input>
             </ion-col>
             <ion-col size="1" style="text-align: center;">-</ion-col>
             <ion-col size="3">
-              <ion-input class="worktime borderRadius" type="text" value="{{ item.customer_end_time }}"></ion-input>
+              <ion-input class="worktime borderRadius" type="text" value="{{ items.customer_end_time }}"></ion-input>
             </ion-col>
             <ion-col size="5">
               
@@ -760,7 +761,7 @@
                 <ion-select-option >Stardard Hour</ion-select-option>
                 <ion-select-option >Stardard Hour</ion-select-option>
               </ion-select> -->
-              <ion-select class="dropdownstyle" value="{{ item.customer_attendance_type }}" name="custWkReport" placeholder="-" >
+              <ion-select class="dropdownstyle" value="{{ items.customer_attendance_type }}" name="custWkReport" placeholder="-" >
                 <ion-select-option *ngFor="let p of workPatternExist" value="{{ p.pattern }}">勤務時間_パタン{{ p.pattern }}</ion-select-option>
               </ion-select>
               <!-- <ion-input style="border: 1px solid #e4e4e4; text-align: center;" type="number" value="333"></ion-input> -->
@@ -771,7 +772,7 @@
               <span style="margin-top: 5px;">Break Time</span> 
             </ion-col> 
             <ion-col size="2">
-              <ion-input class="worktime borderRadius" type="text" value="{{ item.customer_break_time }}"></ion-input>
+              <ion-input class="worktime borderRadius" type="text" value="{{ items.customer_break_time }}"></ion-input>
             </ion-col>
             <ion-col size="5">
               minutes
@@ -782,7 +783,7 @@
               <span style="margin-top: 5px;">Night Break Time</span> 
             </ion-col> 
             <ion-col size="2">
-              <ion-input class="worktime borderRadius" type="text" value="{{ item.customer_night_break_time }}"></ion-input>
+              <ion-input class="worktime borderRadius" type="text" value="{{ items.customer_night_break_time }}"></ion-input>
             </ion-col>
             <ion-col size="5">
               minutes
@@ -793,7 +794,7 @@
               <span style="margin-top: 5px;">Working Hours</span> 
             </ion-col> 
             <ion-col size="3">
-              <ion-input class="worktime borderRadius" type="text" value="{{ item.customer_total_work_time }}"></ion-input>
+              <ion-input class="worktime borderRadius" type="text" value="{{ items.customer_total_work_time }}"></ion-input>
             </ion-col>
             <ion-col size="4"></ion-col>
           </ion-row>
@@ -803,7 +804,7 @@
               <span style="margin-top: 5px;">Attendance Type</span> 
             </ion-col> 
             <ion-col size="7">
-              <ion-select class="dropdownstyle borderRadius" value="{{ item.customer_attendance_type }}" placeholder="Select One" >
+              <ion-select class="dropdownstyle borderRadius" value="{{ items.customer_attendance_type }}" placeholder="Select One" >
                 <ion-select-option *ngFor="let t of attendance_type" value="{{ t.id }}" >{{ t.value }}</ion-select-option>
               </ion-select>
             </ion-col>
@@ -814,69 +815,53 @@
               <span style="margin-top: 5px;">Reason</span> 
             </ion-col> 
             <ion-col size="7">
-              <ion-input class="worktime borderRadius" type="text" value="{{ item.customer_reason }}"></ion-input>
+              <ion-input class="worktime borderRadius" type="text" value="{{ items.customer_reason }}"></ion-input>
             </ion-col>
           </ion-row>
         </ion-grid>
       </ion-list>
-    </div>
-  </div>
+      <!-- end Date not entered -->
 
-  <div class="displayswitch">
-
-    <!-- <div class="datelist" *ngFor="let item of c?.customer_workreport_items; let i = index">
-      <ion-list lines="none" class="date-container" *ngIf="item.customer_start_time == '00:00' && isWeekEnd(item.report_date) == false" >
-        <ion-item tappable (click)="toggleSectionCustomer(i)" [ngClass]="{'section-active': item.open, 'section': !item.open}" class="date-blk" color="newColor" >
+      <!-- Weekend Date Started -->
+      <ion-list lines="none" class="date-weekend-container" *ngIf="items.customer_start_time == '00:00' && isWeekEnd(items.report_date) == true" >
+        <ion-item tappable (click)="myToggleFunction('myid' + r, r)"  class="date-weekend-blk" color="newColor" >
           <ion-icon slot="start" style="color: #707070;" name="alert-outline"></ion-icon>
           <p>
-            <span class="datetitle">{{ item.report_date | date: 'yyyy/MM/dd EEEE' }}</span><br>
-            <span> Working hours not entered</span>
+            <span class="datetitle">{{ items.report_date | date: 'yyyy/MM/dd EEEE' }}</span><br>
+            <span> No Entries</span>
           </p>
-          <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="!item.open" name="chevron-down-outline"></ion-icon>
-          <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="item.open" name="chevron-up-outline"></ion-icon>
+          <ion-icon slot="end" id="{{ 'down' + r }}" style="font-size: 24px;color: #707070;" name="chevron-down-outline"></ion-icon>
+          <ion-icon slot="end" id="{{ 'up' + r }}" style="font-size: 24px;color: #707070; display: none;" name="chevron-up-outline"></ion-icon>
         </ion-item>
-        <ion-grid class="total-blk" [ngStyle]="!item.open ? {'display': 'none'} : {'display': 'block'}"  >
+        <ion-grid id="{{ 'myid' + r }}" class="total-blk" [ngStyle]="!items.open ? {'display': 'none'} : {'display': 'block'}">
           <ion-row>
             <ion-col size="5">
               <span style="margin-top: 5px;">Work Hours</span> 
             </ion-col> 
-            <ion-col size="3">
-              <ion-input class="worktime" type="text" value="{{ item.customer_start_time }}"></ion-input>
-            </ion-col>
-            <ion-col size="1" style="text-align: center;">-</ion-col>
-            <ion-col size="3">
-              <ion-input class="worktime borderRadius" type="text" value="{{ item.customer_end_time }}"></ion-input>
-            </ion-col>
+            <ion-col size="3"></ion-col>
+            <ion-col size="1" style="text-align: center;"></ion-col>
+            <ion-col size="3"></ion-col>
             <ion-col size="5">
               
             </ion-col> 
-            <ion-col size="7">
-              
-              <ion-select class="dropdownstyle" value="{{ item.customer_attendance_type }}" name="custWkReport" placeholder="-" >
-                <ion-select-option *ngFor="let p of workPatternExist" value="{{ p.pattern }}">勤務時間_パタン{{ p.pattern }}</ion-select-option>
-              </ion-select>
-            </ion-col>
+            <ion-col size="7"></ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="5">
               <span style="margin-top: 5px;">Break Time</span> 
             </ion-col> 
-            <ion-col size="2">
-              <ion-input class="worktime borderRadius" type="text" value="{{ item.customer_break_time }}"></ion-input>
-            </ion-col>
+            <ion-col size="2"></ion-col>
             <ion-col size="5">
-              minutes
+              
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="5">
               <span style="margin-top: 5px;">Night Break Time</span> 
             </ion-col> 
-            <ion-col size="2">
-              <ion-input class="worktime borderRadius" type="text" value="{{ item.customer_night_break_time }}"></ion-input>
-            </ion-col>
+            <ion-col size="2"></ion-col>
             <ion-col size="5">
-              minutes
+              
             </ion-col>
           </ion-row>
           <ion-row>
@@ -884,7 +869,7 @@
               <span style="margin-top: 5px;">Working Hours</span> 
             </ion-col> 
             <ion-col size="3">
-              <ion-input class="worktime borderRadius" type="text" value="{{ item.customer_total_work_time }}"></ion-input>
+              <ion-input class="worktime borderRadius" type="text" value="{{ items.customer_total_work_time }}"></ion-input>
             </ion-col>
             <ion-col size="4"></ion-col>
           </ion-row>
@@ -894,7 +879,7 @@
               <span style="margin-top: 5px;">Attendance Type</span> 
             </ion-col> 
             <ion-col size="7">
-              <ion-select class="dropdownstyle borderRadius" value="{{ item.customer_attendance_type }}" placeholder="Select One" >
+              <ion-select class="dropdownstyle borderRadius" value="{{ items.customer_attendance_type }}" placeholder="Select One" >
                 <ion-select-option *ngFor="let t of attendance_type" value="{{ t.id }}" >{{ t.value }}</ion-select-option>
               </ion-select>
             </ion-col>
@@ -905,14 +890,92 @@
               <span style="margin-top: 5px;">Reason</span> 
             </ion-col> 
             <ion-col size="7">
-              <ion-input class="worktime borderRadius" type="text" value="{{ item.customer_reason }}"></ion-input>
+              <ion-input class="worktime borderRadius" type="text" value="{{ items.customer_reason }}"></ion-input>
             </ion-col>
           </ion-row>
         </ion-grid>
       </ion-list>
+      <!-- Weekend Date End-->
+
+      <!-- Date entered Started -->
+      <ion-list lines="none" class="date-gray-container" *ngIf="items.customer_start_time != '00:00' && isWeekEnd(items.report_date) == false" >
+        <ion-item tappable (click)="myToggleFunction('myid' + r, r)"  class="date-gray-blk" color="newColor" >
+          <ion-icon slot="start" style="color: #707070;" name="alert-outline"></ion-icon>
+          <p>
+            <span class="datetitle">{{ items.report_date | date: 'yyyy/MM/dd EEEE' }}</span><br>
+            <span> No Entries</span>
+          </p>
+          <ion-icon slot="end" id="{{ 'down' + r }}" style="font-size: 24px;color: #707070;" name="chevron-down-outline"></ion-icon>
+          <ion-icon slot="end" id="{{ 'up' + r }}" style="font-size: 24px;color: #707070; display: none;" name="chevron-up-outline"></ion-icon>
+        </ion-item>
+        <ion-grid id="{{ 'myid' + r }}" class="total-blk" [ngStyle]="!items.open ? {'display': 'none'} : {'display': 'block'}">
+          <ion-row>
+            <ion-col size="5">
+              <span style="margin-top: 5px;">Work Hours</span> 
+            </ion-col> 
+            <ion-col size="3"></ion-col>
+            <ion-col size="1" style="text-align: center;"></ion-col>
+            <ion-col size="3"></ion-col>
+            <ion-col size="5">
+              
+            </ion-col> 
+            <ion-col size="7"></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="5">
+              <span style="margin-top: 5px;">Break Time</span> 
+            </ion-col> 
+            <ion-col size="2"></ion-col>
+            <ion-col size="5">
+              
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="5">
+              <span style="margin-top: 5px;">Night Break Time</span> 
+            </ion-col> 
+            <ion-col size="2"></ion-col>
+            <ion-col size="5">
+              
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="5">
+              <span style="margin-top: 5px;">Working Hours</span> 
+            </ion-col> 
+            <ion-col size="3">
+              <ion-input class="worktime borderRadius" type="text" value="{{ items.customer_total_work_time }}"></ion-input>
+            </ion-col>
+            <ion-col size="4"></ion-col>
+          </ion-row>
   
+          <ion-row>
+            <ion-col size="5">
+              <span style="margin-top: 5px;">Attendance Type</span> 
+            </ion-col> 
+            <ion-col size="7">
+              <ion-select class="dropdownstyle borderRadius" value="{{ items.customer_attendance_type }}" placeholder="Select One" >
+                <ion-select-option *ngFor="let t of attendance_type" value="{{ t.id }}" >{{ t.value }}</ion-select-option>
+              </ion-select>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="5">
+              <span style="margin-top: 5px;">Reason</span> 
+            </ion-col> 
+            <ion-col size="7">
+              <ion-input class="worktime borderRadius" type="text" value="{{ items.customer_reason }}"></ion-input>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-list>
+      <!--  Date entered End-->
       
-    </div> -->
+    </div>
+  </div>
+
+  <div class="displayswitch">
 
   <ion-grid style="border-bottom: 1px dashed #000000; margin: 15px; padding-bottom: 15px;">
     <ion-row>
