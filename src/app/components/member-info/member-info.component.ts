@@ -17,7 +17,8 @@ export class MemberInfoComponent implements OnInit {
     year: '',
     month: '',
     member_id: '',
-    token: ''
+    token: '',
+    mySelect: ''
   }
 
   panelOpenState = false;
@@ -63,6 +64,13 @@ export class MemberInfoComponent implements OnInit {
   newArray: any;
   showDetails: boolean= false;
 
+  customerSelectOpt: Number=1;
+  testing: any;
+
+  trasport_switch: boolean = false;
+  customer_switch: boolean = false;
+  workreport_switch: boolean = true;
+
   constructor(private authService: AuthService, private customerInfo: CustomerWorkreportInfoService, private memberService: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
@@ -103,7 +111,7 @@ export class MemberInfoComponent implements OnInit {
       this.mbInfo = res.member_info;
       this.information = res.work_report_detail;
       this.workPattern = res.project_info;
-      this.customerWorkReport =res.customer_work_report;
+      this.customerWorkReport = res.customer_work_report;
 
       //transporation expense
       this.tranExpen = res.transport_expense;
@@ -243,6 +251,13 @@ export class MemberInfoComponent implements OnInit {
 
   }
 
+  onOptionsSelected(event){
+    //const value = event.target.value;
+    //this.selected = value;
+    this.customerSelectOpt = event;
+    console.log(event);
+  }
+
 
   scrolltoElement(placetogo) {
     document.getElementById(placetogo).scrollIntoView();
@@ -278,6 +293,23 @@ export class MemberInfoComponent implements OnInit {
 
   toggleSectionc() {
     this.customerWorkReport.open = !this.customerWorkReport.open;
+  }
+
+  changeDisplayClick(whichblk: String) {
+    if(whichblk == 'customer') {
+      this.trasport_switch =false;
+      this.customer_switch = true;
+      this.workreport_switch = false;
+    } else if(whichblk == 'transporatiion') {
+      this.trasport_switch =true;
+      this.customer_switch = false;
+      this.workreport_switch = false;
+    } else {
+      this.trasport_switch =false;
+      this.customer_switch = false;
+      this.workreport_switch = true;
+    }
+    
   }
 
   memberNoFormat(mbno: Number) {
