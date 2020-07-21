@@ -12,6 +12,14 @@
     background: #f2fffd;
 }
 
+.alertview-blk{
+    padding: 5px;
+    border: 1px solid #ffaa46;
+    margin: 15px 15px 40px 15px;
+    border-radius: 20px;
+    background: #fff9f2;
+}
+
 .filter-blk{
     padding: 5px;
     border: 1px solid #f0f0f0;
@@ -190,6 +198,14 @@
     font-weight: 500;
     background: #f2fffd;
     font-size: 1.2rem;
+}
+.alert-blk{
+    font-size: 19px;
+    color: #717070;
+    font-weight: 500;
+    background: #fff9f2;
+    font-size: 1.2rem;
+    line-height: 23px;
 }
 ul.checklist{
     list-style-type: none;

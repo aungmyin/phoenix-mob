@@ -3,6 +3,15 @@
     <p class="fontstyle">Status: <span class="statusVal">{{ mbInfo?.status_name }}</span></p>
   </ion-item>
 </ion-list>
+<ion-list lines="none" class="alertview-blk">
+  <ion-item class="alert-blk" color="alertColor" >
+    <p>
+      The application deadline for the work report is
+      until the morning of the first business day.
+      Be careful not to forget to apply!
+    </p>
+  </ion-item>
+</ion-list>
 <ion-list lines="none" class="nextview-blk" (click)="goMoreInfoClient('/home/client')">
   <ion-item class="link-pages" color="newColor" >
     Customer Information
@@ -22,17 +31,23 @@
     <thead>
       <tr>
         <th scope="col" class="firstWidth">
-          <div class="btn-style active" (click)="changeDisplayClick('workreport')">
+          <div class="btn-style" [ngClass]="{
+            'active': workreport_switch
+          }" (click)="changeDisplayClick('workreport')">
             Work Report
           </div>
         </th>
         <th scope="col" class="minwidth" (click)="changeDisplayClick('transporatiion')">
-          <div class="btn-style" style="min-width: 250px;">
+          <div class="btn-style" [ngClass]="{
+            'active': trasport_switch
+          }" style="min-width: 250px;">
             Transportation Expenses
           </div>
         </th>
         <th scope="col" class="minwidth" (click)="changeDisplayClick('customer')">
-          <div class="btn-style" style="min-width: 230px;">
+          <div class="btn-style" [ngClass]="{
+            'active': customer_switch
+          }" style="min-width: 230px;">
             Customer Work Report
           </div>
         </th>
