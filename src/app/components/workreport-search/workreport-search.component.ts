@@ -118,10 +118,6 @@ export class WorkreportSearchComponent implements OnInit {
       }
     ];
 
-    this.auth.userData$.subscribe((res: any) => {
-      this.authUser = res;
-     // console.log(this.authUser);
-    });
 
     this.monthlist = [
       { id: 1,
