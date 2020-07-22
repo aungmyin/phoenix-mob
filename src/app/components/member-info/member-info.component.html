@@ -82,11 +82,11 @@
     </ul>
     <div style="border-top: 1px dashed #f0f0f0;clear: both; height: 5px;">&nbsp;</div>
     <ul class="checklist">
-      <li>
+      <li (click)="AllToggleFunction()">
         <ion-icon slot="start" name="expand-outline"></ion-icon>
         <ion-label style="margin-left: 5px;">Expand dates</ion-label>
       </li>
-      <li>
+      <li (click)="AllToggleFunction()">
         <ion-icon slot="start" name="contract-outline"></ion-icon>
         <ion-label style="margin-left: 5px;">Collapse dates</ion-label>
       </li>
@@ -104,10 +104,10 @@
           <ion-label style="color: #cccccc;">Jump to: </ion-label>
         </li>
         <li>
-          <ion-label (click)="scrolltoElement('totalblk')">Total</ion-label>
+          <ion-label (click)="scrolltoElement('totalblk')"><u>Total</u></ion-label>
         </li>
         <li>
-          <ion-label (click)="scrolltoElement('resultblk')">Result</ion-label>
+          <ion-label (click)="scrolltoElement('resultblk')"><u>Result</u></ion-label>
         </li>
       </ul>
     </ion-item>
@@ -115,16 +115,16 @@
 
   <div *ngFor="let item of information; let i = index ">
     <ion-list lines="none" class="date-container bg-bluelight" *ngIf="item.start_time == '00:00' && isWeekEnd(item.report_date) == false" >
-      <ion-item tappable (click)="toggleSection(i)" [ngClass]="{'section-active': item.open, 'section': !item.open}" class="date-blk" color="newColor" >
+      <ion-item tappable (click)="myWkToggleFunction('mywk' + i, i)" class="date-blk" color="newColor" >
         <ion-icon slot="start" style="color: #707070;" name="alert-outline"></ion-icon>
         <p>
           <span class="datetitle">{{ item.report_date | date: 'yyyy/MM/dd EEEE' }}</span><br>
           <span> Working hours not entered</span>
         </p>
-        <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="!item.open" name="chevron-down-outline"></ion-icon>
-        <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="item.open" name="chevron-up-outline"></ion-icon>
+        <ion-icon slot="end" id="{{ 'wkdown' + i }}" style="font-size: 24px;color: #707070;"  name="chevron-down-outline"></ion-icon>
+        <ion-icon slot="end" id="{{ 'wkup' + i }}" style="font-size: 24px;color: #707070;display: none;"  name="chevron-up-outline"></ion-icon>
       </ion-item>
-      <ion-grid class="total-blk" [ngStyle]="!item.open ? {'display': 'none'} : {'display': 'block'}"  >
+      <ion-grid id="{{ 'mywk' + i }}" class="total-blk" [ngStyle]="!item.open ? {'display': 'none'} : {'display': 'block'}"  >
         <ion-row>
           <ion-col size="5">
             <span style="margin-top: 5px;">Work Hours</span> 
@@ -228,16 +228,16 @@
     </ion-list>
 
     <ion-list lines="none" class="date-gray-container" *ngIf="item.start_time != '00:00' && isWeekEnd(item.report_date) == false">
-      <ion-item tappable (click)="toggleSection(i)" [ngClass]="{'section-active': item.open, 'section': !item.open}" class="date-gray-blk" color="newColor" >
+      <ion-item tappable (click)="myWkToggleFunction('mywk' + i, i)" class="date-gray-blk" color="newColor" >
         <ion-icon slot="start" style="color: #707070;" name="alert-outline"></ion-icon>
         <p>
           <span class="datetitle">{{ item.report_date | date: 'yyyy/MM/dd EEEE' }}</span><br>
           <span> You have entered Working hours </span>
         </p>
-        <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="!item.open" name="chevron-down-outline"></ion-icon>
-        <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="item.open" name="chevron-up-outline"></ion-icon>
+        <ion-icon slot="end" id="{{ 'wkdown' + i }}" style="font-size: 24px;color: #707070;" name="chevron-down-outline"></ion-icon>
+        <ion-icon slot="end" id="{{ 'wkup' + i }}" style="font-size: 24px;color: #707070; display: none;"  name="chevron-up-outline"></ion-icon>
       </ion-item>
-      <ion-grid class="total-blk" [ngStyle]="!item.open ? {'display': 'none'} : {'display': 'block'}"  >
+      <ion-grid id="{{ 'mywk' + i }}" class="total-blk" [ngStyle]="!item.open ? {'display': 'none'} : {'display': 'block'}"  >
         <ion-row>
           <ion-col size="5">
             <span style="margin-top: 5px;">Work Hours</span> 
@@ -341,16 +341,16 @@
     </ion-list>
 
     <ion-list lines="none" class="date-weekend-container" *ngIf="isWeekEnd(item.report_date) == true">
-      <ion-item tappable (click)="toggleSection(i)" [ngClass]="{'section-active': item.open, 'section': !item.open}" class="date-weekend-blk" color="newColor" >
+      <ion-item tappable (click)="myWkToggleFunction('mywk' + i, i)" class="date-weekend-blk" color="newColor" >
         <ion-icon slot="start" style="color: #707070;" name="alert-outline"></ion-icon>
         <p>
           <span class="datetitle">{{ item.report_date | date: 'yyyy/MM/dd EEEE' }}</span><br>
           <span>No Entries</span>
         </p>
-        <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="!item.open" name="chevron-down-outline"></ion-icon>
-        <ion-icon slot="end" style="font-size: 24px;color: #707070;" *ngIf="item.open" name="chevron-up-outline"></ion-icon>
+        <ion-icon slot="end" id="{{ 'wkdown' + i }}" style="font-size: 24px;color: #707070;" name="chevron-down-outline"></ion-icon>
+        <ion-icon slot="end" id="{{ 'wkup' + i }}" style="font-size: 24px;color: #707070; display: none;" name="chevron-up-outline"></ion-icon>
       </ion-item>
-      <ion-grid class="total-blk" [ngStyle]="!item.open ? {'display': 'none', 'transition': '2s'} : {'display': 'block', 'transition': '2s'}"  >
+      <ion-grid id="{{ 'mywk' + i }}" class="total-blk" [ngStyle]="!item.open ? {'display': 'none', 'transition': '2s'} : {'display': 'block', 'transition': '2s'}"  >
         <ion-row>
           <ion-col size="5">
             <span style="margin-top: 5px;">Work Hours</span> 
@@ -747,7 +747,8 @@
       </ion-item>
       <ion-item>
         <p>If there is a work report for submitting the customer,
-          please upload it.</p>
+          please upload it. </p>
+          
       </ion-item>
     </ion-list>
     <div id="customer_attend_list" *ngIf="customerSelectOpt == 0" >

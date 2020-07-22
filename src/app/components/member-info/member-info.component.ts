@@ -82,7 +82,7 @@ export class MemberInfoComponent implements OnInit {
      
     });
 
-    if(!this.postData.year || this.postData.year.length == 0) {
+    if(!this.postData.year || this.postData.year == '') {
       this.newDate = new Date().getFullYear();
       this.newMonth = new Date().getMonth();
       this.postData.year = this.newDate;
@@ -284,6 +284,41 @@ export class MemberInfoComponent implements OnInit {
       x.style.display = "none";
       d.style.display = "block";
       p.style.display = "none";
+    }
+  }
+
+  myWkToggleFunction(ID, index) {
+    var x = document.getElementById(ID);
+    var d = document.getElementById("wkdown" + index);
+    var p = document.getElementById("wkup" + index);
+
+    if (x.style.display === "none") {
+      x.style.display = "block";
+      d.style.display = "none";
+      p.style.display = "block";
+    } else {
+      x.style.display = "none";
+      d.style.display = "block";
+      p.style.display = "none";
+    }
+  }
+
+  AllToggleFunction() {
+    for (let index = 0; index < 30; index++) {
+      var x = document.getElementById("mywk" + index);
+      var d = document.getElementById("wkdown" + index);
+      var p = document.getElementById("wkup" + index);
+
+      if (x.style.display === "none") {
+        x.style.display = "block";
+        d.style.display = "none";
+        p.style.display = "block";
+      } else {
+        x.style.display = "none";
+        d.style.display = "block";
+        p.style.display = "none";
+      }
+      
     }
   }
 
