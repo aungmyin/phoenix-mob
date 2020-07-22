@@ -44,7 +44,7 @@ export class WorkreportSearchComponent implements OnInit {
       //console.log(this.postData.year + this.postData.month + " parameter");
     });
 
-    if(!this.postData.year || this.postData.year.length == 0) {
+    if(!this.postData.year || this.postData.year == '' ) {
       this.newDate = new Date().getFullYear();
       this.newMonth = new Date().getMonth();
       this.postData.year = this.newDate;

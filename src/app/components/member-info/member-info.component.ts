@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { MemberInfoService } from 'src/app/services/member-info.service';
 import { CustomerWorkreportInfoService } from 'src/app/services/customer-workreport-info.service';
+import { element } from 'protractor';
 
 
 @Component({
@@ -65,7 +66,7 @@ export class MemberInfoComponent implements OnInit {
   showDetails: boolean= false;
 
   customerSelectOpt: Number=1;
-  testing: any;
+  testing: any[];
 
   trasport_switch: boolean = false;
   customer_switch: boolean = false;
@@ -81,7 +82,7 @@ export class MemberInfoComponent implements OnInit {
      
     });
 
-    if(!this.postData.year || this.postData.year == '') {
+    if(!this.postData.year || this.postData.year.length == 0) {
       this.newDate = new Date().getFullYear();
       this.newMonth = new Date().getMonth();
       this.postData.year = this.newDate;
@@ -115,6 +116,13 @@ export class MemberInfoComponent implements OnInit {
 
       //transporation expense
       this.tranExpen = res.transport_expense;
+      
+      for(let key in this.customerWorkReport) {
+        this.testing = this.customerWorkReport[key];
+        console.log(this.testing);
+      }
+
+     // console.log(this.testing.client_report_flg);
 
     });
 

@@ -47,7 +47,7 @@ export class FeedPage implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.postData.year = params["year"];
       this.postData.month = params["month"];
-      console.log(this.postData.year + this.postData.month + " parameter");
+     // console.log(this.postData.year + this.postData.month + " parameter");
     });
 
     if(!this.postData.year || this.postData.year == '') {
@@ -79,7 +79,8 @@ export class FeedPage implements OnInit {
   }
 
   gotoPagesAction(urls: String) {
-    this.router.navigate([urls]);
+    //urls = urls + "?year=" + this.postData.year + "&month=" + this.postData.month;
+    this.router.navigate([urls], { queryParams: { year: this.postData.year, month: this.postData.month }});
   }
 
   //customer workreport data
