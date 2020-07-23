@@ -72,6 +72,10 @@ export class MemberInfoComponent implements OnInit {
   customer_switch: boolean = false;
   workreport_switch: boolean = true;
 
+  notEnter: boolean = false;
+  weekEnd: boolean = false;
+  entered: boolean = false;
+
   constructor(private authService: AuthService, private customerInfo: CustomerWorkreportInfoService, private memberService: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
@@ -264,6 +268,44 @@ export class MemberInfoComponent implements OnInit {
     //this.selected = value;
     this.customerSelectOpt = event;
     console.log(event);
+  }
+
+  onClickDays(choice: number) {
+    if(choice == 0) {
+      this.checkBoxList = [
+        { val: 'Work hour not entered', isChecked: true },
+        { val: 'Weekend', isChecked: false },
+        { val: 'All', isChecked: false }
+      ];
+      //Display not entered
+      this.notEnter = false;
+      this.weekEnd = true;
+      this.entered = true;
+
+    } else if(choice == 1) {
+      this.checkBoxList = [
+        { val: 'Work hour not entered', isChecked: false },
+        { val: 'Weekend', isChecked: true },
+        { val: 'All', isChecked: false }
+      ];
+      //Display weekend
+      this.notEnter = true;
+      this.weekEnd = false;
+      this.entered = true;
+    } else {
+      this.checkBoxList = [
+        { val: 'Work hour not entered', isChecked: false },
+        { val: 'Weekend', isChecked: false },
+        { val: 'All', isChecked: true }
+      ];
+      //Display not entered
+      this.notEnter = false;
+      this.weekEnd = false;
+      this.entered = false;
+    }
+
+    //console.log(choice);
+    
   }
 
 

@@ -65,13 +65,15 @@
       <!-- <ion-icon slot="end" name="chevron-down-outline" style="font-size: 13px;"></ion-icon> -->
     </ion-item>
     <ul class="checklist">
-      <li *ngFor="let entry of checkBoxList">
-        <ion-checkbox class="checkbox-style" slot="start" [(ngModel)]="entry.isChecked"></ion-checkbox>
-        {{entry.val}}
+      <li *ngFor="let entry of checkBoxList; let n = index  ">
+        <div (click)="onClickDays(n)">
+          <ion-checkbox class="checkbox-style"  slot="start" [(ngModel)]="entry.isChecked"></ion-checkbox>
+          {{entry.val}}
+        </div>
       </li>
     </ul>
     <ul class="checklist">
-      <li>
+      <li (click)="onClickDays(2)">
         <ion-icon slot="start" name="list-outline"></ion-icon>
         <ion-label style="margin-left: 5px;">List</ion-label>
       </li>
@@ -114,7 +116,7 @@
   </ion-list>
 
   <div *ngFor="let item of information; let i = index ">
-    <ion-list lines="none" class="date-container bg-bluelight" *ngIf="item.start_time == '00:00' && isWeekEnd(item.report_date) == false" >
+    <ion-list lines="none" class="date-container bg-bluelight" *ngIf="(item.start_time == '00:00') && (isWeekEnd(item.report_date) == false) && (notEnter == false)" >
       <ion-item tappable (click)="myWkToggleFunction('mywk' + i, i)" class="date-blk" color="newColor" >
         <ion-icon slot="start" style="color: #707070;" name="alert-outline"></ion-icon>
         <p>
@@ -227,7 +229,7 @@
       </ion-grid>
     </ion-list>
 
-    <ion-list lines="none" class="date-gray-container" *ngIf="item.start_time != '00:00' && isWeekEnd(item.report_date) == false">
+    <ion-list lines="none" class="date-gray-container" *ngIf="(item.start_time != '00:00') && (isWeekEnd(item.report_date) == false) && (entered == false)">
       <ion-item tappable (click)="myWkToggleFunction('mywk' + i, i)" class="date-gray-blk" color="newColor" >
         <ion-icon slot="start" style="color: #707070;" name="alert-outline"></ion-icon>
         <p>
@@ -340,7 +342,7 @@
       </ion-grid>
     </ion-list>
 
-    <ion-list lines="none" class="date-weekend-container" *ngIf="isWeekEnd(item.report_date) == true">
+    <ion-list lines="none" class="date-weekend-container" *ngIf="(isWeekEnd(item.report_date) == true)  && ( weekEnd == false)">
       <ion-item tappable (click)="myWkToggleFunction('mywk' + i, i)" class="date-weekend-blk" color="newColor" >
         <ion-icon slot="start" style="color: #707070;" name="alert-outline"></ion-icon>
         <p>
