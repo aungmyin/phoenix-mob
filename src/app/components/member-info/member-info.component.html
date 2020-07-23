@@ -115,6 +115,19 @@
     </ion-item>
   </ion-list>
 
+  <div style="margin: 15px;">
+    <ion-list lines="none">
+      <ion-item class="showDate" *ngIf="notEnterMsg == false">
+        <p>
+          Showing dates with Working Hours Not Entered<br>
+          <u (click)="onClickDays(2)" style="font-weight: 300;">View all dates</u> 
+        </p>
+        
+      </ion-item>
+    </ion-list>
+  </div>
+  
+
   <div *ngFor="let item of information; let i = index ">
     <ion-list lines="none" class="date-container bg-bluelight" *ngIf="(item.start_time == '00:00') && (isWeekEnd(item.report_date) == false) && (notEnter == false)" >
       <ion-item tappable (click)="myWkToggleFunction('mywk' + i, i)" class="date-blk" color="newColor" >

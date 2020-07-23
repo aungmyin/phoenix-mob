@@ -75,6 +75,7 @@ export class MemberInfoComponent implements OnInit {
   notEnter: boolean = false;
   weekEnd: boolean = false;
   entered: boolean = false;
+  notEnterMsg: boolean = true;
 
   constructor(private authService: AuthService, private customerInfo: CustomerWorkreportInfoService, private memberService: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
 
@@ -281,6 +282,7 @@ export class MemberInfoComponent implements OnInit {
       this.notEnter = false;
       this.weekEnd = true;
       this.entered = true;
+      this.notEnterMsg = false;
 
     } else if(choice == 1) {
       this.checkBoxList = [
@@ -292,6 +294,7 @@ export class MemberInfoComponent implements OnInit {
       this.notEnter = true;
       this.weekEnd = false;
       this.entered = true;
+      this.notEnterMsg = true;
     } else {
       this.checkBoxList = [
         { val: 'Work hour not entered', isChecked: false },
@@ -302,6 +305,7 @@ export class MemberInfoComponent implements OnInit {
       this.notEnter = false;
       this.weekEnd = false;
       this.entered = false;
+      this.notEnterMsg = true;
     }
 
     //console.log(choice);
@@ -345,21 +349,24 @@ export class MemberInfoComponent implements OnInit {
     }
   }
 
-  AllToggleFunction() {
+  AllToggleFunction(inputNo) {
     for (let index = 0; index < 30; index++) {
       var x = document.getElementById("mywk" + index);
       var d = document.getElementById("wkdown" + index);
       var p = document.getElementById("wkup" + index);
 
-      if (x.style.display === "none") {
-        x.style.display = "block";
-        d.style.display = "none";
-        p.style.display = "block";
-      } else {
-        x.style.display = "none";
-        d.style.display = "block";
-        p.style.display = "none";
+      if(x) {
+        if (x.style.display === "none") {
+          x.style.display = "block";
+          d.style.display = "none";
+          p.style.display = "block";
+        } else {
+          x.style.display = "none";
+          d.style.display = "block";
+          p.style.display = "none";
+        }
       }
+      
       
     }
   }
