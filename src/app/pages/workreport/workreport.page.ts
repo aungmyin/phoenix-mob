@@ -22,7 +22,8 @@ export class WorkreportPage implements OnInit {
     year: '',
     month: '',
     member_id: '',
-    member_info: ''
+    member_info: '',
+    token: ''
   }
 
   customer = {
@@ -123,7 +124,7 @@ export class WorkreportPage implements OnInit {
 
   getWorkReportData() {
     this.postData.member_id = this.authUser.email;
-    
+    this.postData.token = this.authUser['access-token'];
    // console.log(this.postData + "mingalar");
    if (this.postData.member_id) {
       this.memberInfo.memberData(this.postData).subscribe(

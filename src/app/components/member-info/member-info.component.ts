@@ -109,7 +109,7 @@ export class MemberInfoComponent implements OnInit {
       });
     });
 
-    //console.log(this.postData);
+    this.postData.mySelect = '0';
 
     //this.postData.member_info = '';
     this.memberService.memberData$.subscribe((res: any) => {
@@ -119,15 +119,10 @@ export class MemberInfoComponent implements OnInit {
       this.workPattern = res.project_info;
       this.customerWorkReport = res.customer_work_report;
 
+      this.getClientFlg(this.customerWorkReport);
+
       //transporation expense
       this.tranExpen = res.transport_expense;
-      
-      for(let key in this.customerWorkReport) {
-        this.testing = this.customerWorkReport[key];
-        console.log(this.testing);
-      }
-
-     // console.log(this.testing.client_report_flg);
 
     });
 
@@ -271,6 +266,12 @@ export class MemberInfoComponent implements OnInit {
     console.log(event);
   }
 
+  getClientFlg(newAarry: any) {
+    var innerArr = newAarry;
+
+    return innerArr[0];
+  }
+
   onClickDays(choice: number) {
     if(choice == 0) {
       this.checkBoxList = [
@@ -315,6 +316,8 @@ export class MemberInfoComponent implements OnInit {
 
   scrolltoElement(placetogo) {
     document.getElementById(placetogo).scrollIntoView();
+    
+    console.log(this.postData.mySelect + " and assign");
   }
 
   myToggleFunction(ID, index) {
@@ -331,6 +334,7 @@ export class MemberInfoComponent implements OnInit {
       d.style.display = "block";
       p.style.display = "none";
     }
+
   }
 
   myWkToggleFunction(ID, index) {
@@ -355,7 +359,7 @@ export class MemberInfoComponent implements OnInit {
       var d = document.getElementById("wkdown" + index);
       var p = document.getElementById("wkup" + index);
 
-      if(x) {
+      if(x) { //check id is exist or not
         if (x.style.display === "none") {
           x.style.display = "block";
           d.style.display = "none";
@@ -461,7 +465,7 @@ export class MemberInfoComponent implements OnInit {
       this.workingPattern = res.project_info.working_hour;
       this.workingHour = res.work_report;
   
-     // console.log(this.newData.project_info);
+      console.log(this.customerWorkReport);
       this.customerInfo.updateCustomerData(res);
 
       let navigationExtras: NavigationExtras = {
