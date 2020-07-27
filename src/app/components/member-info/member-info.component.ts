@@ -76,6 +76,7 @@ export class MemberInfoComponent implements OnInit {
   weekEnd: boolean = false;
   entered: boolean = false;
   notEnterMsg: boolean = true;
+  current_value = 0;
 
   constructor(private authService: AuthService, private customerInfo: CustomerWorkreportInfoService, private memberService: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
 
@@ -104,12 +105,17 @@ export class MemberInfoComponent implements OnInit {
       this.postData.token = this.displayUserData['access-token'];
       
       this.memberService.memberData(this.postData).subscribe( (res: any) => {
-        console.log(res.member_info);
+        //console.log(res.member_info);
+      let myArray = res.customer_work_report;
+    
+      this.postData.mySelect = myArray[0].client_report_flg;
+
         this.memberService.updateMemberData(res);
       });
     });
 
-    this.postData.mySelect = '0';
+    let index: number = this.tran_expen.findIndex(item => item.id === this.postData.mySelect);
+    this.postData.mySelect = this.tran_expen[index];
 
     //this.postData.member_info = '';
     this.memberService.memberData$.subscribe((res: any) => {
@@ -119,11 +125,9 @@ export class MemberInfoComponent implements OnInit {
       this.workPattern = res.project_info;
       this.customerWorkReport = res.customer_work_report;
 
-      this.getClientFlg(this.customerWorkReport);
-
       //transporation expense
       this.tranExpen = res.transport_expense;
-
+      
     });
 
 
@@ -264,12 +268,6 @@ export class MemberInfoComponent implements OnInit {
     //this.selected = value;
     this.customerSelectOpt = event;
     console.log(event);
-  }
-
-  getClientFlg(newAarry: any) {
-    var innerArr = newAarry;
-
-    return innerArr[0];
   }
 
   onClickDays(choice: number) {

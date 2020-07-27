@@ -755,8 +755,8 @@
     <ion-list lines="none">
       <ion-item>
         <b style="color: #707070;">Customer Work Report</b>
-        <ion-select slot="end" id="customerWkDropdown" value="{{ c.client_report_flg }}" [(ngModel)]="postData.mySelect" (ngModelChange)='onOptionsSelected(postData.mySelect)' class="dropdownstyle borderRadius" style="padding: 7px 13px;"  placeholder="Select One" >
-          <ion-select-option *ngFor="let t of tran_expen" value="{{ t.id }}" >{{ t.value }}</ion-select-option>
+        <ion-select slot="end" id="customerWkDropdown" value="{{ postData.mySelect }}" [(ngModel)]="postData.mySelect" (ngModelChange)='onOptionsSelected(postData.mySelect)' class="dropdownstyle borderRadius" style="padding: 7px 13px;" >
+          <ion-select-option *ngFor="let t of tran_expen; let i of index" selected="true" value="{{ t.id }}" >{{ t.value }}</ion-select-option>
         </ion-select>
         
       </ion-item>
