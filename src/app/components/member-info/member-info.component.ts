@@ -78,6 +78,8 @@ export class MemberInfoComponent implements OnInit {
   notEnterMsg: boolean = true;
   current_value = 0;
 
+  placeholder: String;
+
   constructor(private authService: AuthService, private customerInfo: CustomerWorkreportInfoService, private memberService: MemberInfoService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
@@ -109,6 +111,12 @@ export class MemberInfoComponent implements OnInit {
       let myArray = res.customer_work_report;
     
       this.postData.mySelect = myArray[0].client_report_flg;
+
+      if(myArray[0].client_report_flg == 1) {
+        this.placeholder = 'Yes';
+      } else {
+        this.placeholder = 'No';
+      }
 
         this.memberService.updateMemberData(res);
       });

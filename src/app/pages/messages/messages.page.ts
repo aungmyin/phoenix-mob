@@ -86,14 +86,14 @@ export class MessagesPage implements OnInit {
 
       this.memberNo = this.UserProfile.member_no;
 
-      this.memberNoFormat(this.memberNo);
+      this.memberNoFormat(this.UserProfile.member_no);
 
       this.authority(this.UserProfile.authority_type);
 
       this.employmentType(this.UserProfile.employment_type);
 
       this.employmentStatus(this.UserProfile.employment_status);
-
+      console.log(this.UserProfile.member_no, "member no");
     } );
   }
 

@@ -16,11 +16,12 @@ import { WorkreportDetailInfoComponent } from './workreport-detail-info/workrepo
 import { CustomerWorkreportInfoComponent } from './customer-workreport-info/customer-workreport-info.component';
 import { TransportationExpenseComponent } from './transportation-expense/transportation-expense.component';
 import { WorkreportSearchComponent } from './workreport-search/workreport-search.component';
+import { LogoLargeComponent } from './logo-large/logo-large.component';
 
 @NgModule({
-  declarations: [SlidesComponent, StartComponent, LogoComponent, FeedCardComponent, FeedUpdateComponent, TimeagoComponent, ExpandableComponent, ProfileComponent, MemberInfoComponent, ClientinfoComponent, WorkreportDetailInfoComponent, CustomerWorkreportInfoComponent,
+  declarations: [SlidesComponent, StartComponent, LogoComponent, LogoLargeComponent, FeedCardComponent, FeedUpdateComponent, TimeagoComponent, ExpandableComponent, ProfileComponent, MemberInfoComponent, ClientinfoComponent, WorkreportDetailInfoComponent, CustomerWorkreportInfoComponent,
     TransportationExpenseComponent, WorkreportSearchComponent ],
-  exports: [SlidesComponent, StartComponent, LogoComponent, FeedCardComponent, FeedUpdateComponent, TimeagoComponent, ExpandableComponent, ProfileComponent, MemberInfoComponent, ClientinfoComponent, WorkreportDetailInfoComponent, CustomerWorkreportInfoComponent,
+  exports: [SlidesComponent, StartComponent, LogoComponent, LogoLargeComponent, FeedCardComponent, FeedUpdateComponent, TimeagoComponent, ExpandableComponent, ProfileComponent, MemberInfoComponent, ClientinfoComponent, WorkreportDetailInfoComponent, CustomerWorkreportInfoComponent,
     TransportationExpenseComponent, WorkreportSearchComponent],
   imports: [
     CommonModule,

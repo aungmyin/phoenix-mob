@@ -1,38 +1,37 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar color='dark'>
     <ion-title>login</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content>
-  <div class="textcenter" style="text-align: center;">
-    <app-logo></app-logo>
-    <h1>Sign In</h1>
+  <div class="textcenter logo-container">
+    <app-logo-large style="width: 80%;"></app-logo-large>
   </div>
 
-  <form>
+  <form class="form-container">
     <ion-list>
 
-      <ion-item>
-        <ion-label position="stacked">Email/Account</ion-label>
+      <ion-item >
+        <ion-label class="login-lable" position="stacked">Email/Account</ion-label>
         <ion-input type="text" name="username" [(ngModel)]="postData.username"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="stacked">Password</ion-label>
+        <ion-label class="login-lable" position="stacked">Password</ion-label>
         <ion-input type="password" autocomplete="off" name="password" [(ngModel)]="postData.password"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="stacked">Company</ion-label>
+        <ion-label class="login-lable"  position="stacked">Company</ion-label>
         <ion-input type="text" autocomplete="off" name="company" [(ngModel)]="postData.company"></ion-input>
       </ion-item>
 
-      <ion-item>
-        <a routerLink="/signup">Create account</a>
+      <ion-item lines="none" style="margin-bottom: 20px;">
+        <a slot="end" routerLink="/signup" style="color: #c1c5ca;">Forgot password</a>
       </ion-item>
 
-      <ion-button expand="block" color="success" (click)="loginAction()" >Log in</ion-button>
+      <ion-button expand="block" style="margin-left: 15px; font-size: 15px;" color="primary" (click)="loginAction()" >Log in</ion-button>
 
     </ion-list>
   
