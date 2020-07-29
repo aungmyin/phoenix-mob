@@ -31,6 +31,17 @@ export class HttpService {
     return this.http.get(url, options);
   }
 
+  getForgotPassword(serviceName: string, data: any) {
+    
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': "*"     
+    });
+    const options = { headers: headers, withCredintials: false };
+    const url = environment.apiUrl + serviceName + "?email=" + data.username + "&company=" + data.company;
+
+    return this.http.get(url, options);
+  }
+
   getWorkReportDetail(serviceName: string, data: any) {
     //console.log(data.year + data.month + data.member_id + "http data");
     const headers = new HttpHeaders({
@@ -67,6 +78,20 @@ export class HttpService {
     };
    // const options = { headers: headers, withCredintials: false };
     const url = environment.apiUrl + serviceName + "?company=" + data.company + "&email=" + data.email + "&oldpass=" + data.old_password + "&newpass=" + data.new_password;
+
+    return this.http.get(url, options);
+  }
+
+  forgotpassword(serviceName: string, data: any) {
+    
+    const options = {
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Origin': "*"
+      }),
+      withCredintials: true
+    };
+   // const options = { headers: headers, withCredintials: false };
+    const url = environment.apiUrl + serviceName + "?email=" + data.username + "&company=" + data.company;
 
     return this.http.get(url, options);
   }

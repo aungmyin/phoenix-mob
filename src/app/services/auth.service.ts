@@ -46,6 +46,10 @@ export class AuthService {
     return this.httpService.getupdatepsw('changepass/chpass', postDate);
   }
 
+  forgotpassword(postDate: any): Observable<any> {
+    return this.httpService.forgotpassword('/forgotpass/ask', postDate);
+  }
+
   logout() {
     //this.storageService.clear();
 
